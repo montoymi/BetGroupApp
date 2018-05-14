@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'GAME_LIST_TITLE' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="openGameSavePage()">
+				<ion-icon name="add"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+	<ion-toolbar>
+		<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<button ion-item *ngFor="let pollaHeader of pollaHeaderList" (click)="openGameTabsPage(pollaHeader)">
+			<ion-thumbnail item-start>
+				<img [src]="pollaHeader.image" />
+			</ion-thumbnail>
+			<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
+			<p>{{ 'GAME_LIST_COST' | translate }}: {{ pollaHeader.pollaCost ? pollaHeader.pollaCost : 0 }} créditos</p>
+			<p>{{ 'GAME_LIST_ACCESS' | translate }}: {{ pollaHeader.accessFlag == 0 ? ('GAME_ACCESS_FLAG_PUBLIC' | translate) : ('GAME_ACCESS_FLAG_PRIVATE'
+				| translate) }}</p>
+		</button>
+	</ion-list>
+	<p padding *ngIf="pollaHeaderList && pollaHeaderList.length == 0">{{ 'GAME_NO_DATA_FOUND' | translate }}</p>
+</ion-content>

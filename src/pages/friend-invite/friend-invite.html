@@ -1,0 +1,45 @@
+<ion-header>
+	<ion-navbar class="force-back-button">
+		<ion-title>{{ 'INVITE_TAB' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list radio-group inset>
+		<ion-grid no-padding>
+			<ion-row align-items-end>
+				<ion-col col-2>
+					<ion-item no-lines>
+						<ion-radio checked (ionSelect)='setByEmail(true)'></ion-radio>
+					</ion-item>
+				</ion-col>
+				<ion-col col-10>
+					<ion-item>
+						<ion-label floating>{{ 'EMAIL' | translate }}</ion-label>
+						<ion-input type="email" [(ngModel)]="friend.amigo.email" name="email" [disabled]="!byEmail"></ion-input>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-end>
+				<ion-col col-2>
+					<ion-item no-lines>
+						<ion-radio (ionSelect)='setByEmail(false)'></ion-radio>
+					</ion-item>
+				</ion-col>
+				<ion-col col-10>
+					<ion-item>
+						<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+						<ion-select [(ngModel)]="friend.amigo.userId" name="userId" [disabled]="byEmail">
+							<ion-option *ngFor="let friend of friendList" [value]="friend.amigo.userId">{{ friend.amigo.username }}</ion-option>
+						</ion-select>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-list>
+	<ion-fab right bottom>
+		<button ion-fab (click)="inviteFriend()">
+			<ion-icon name="send"></ion-icon>
+		</button>
+	</ion-fab>
+</ion-content>

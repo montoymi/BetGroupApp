@@ -1,68 +1,204 @@
 {
-  "BACK_BUTTON_TEXT": "Back",
+	"WELCOME_INTRO": "What is your bet today?",
 
-  "NAME": "Name",
-  "EMAIL": "Email",
-  "USERNAME": "Username",
-  "PASSWORD": "Password",
-  "LOGIN": "Sign in",
-  "SIGNUP": "Sign up",
+	"TUTORIAL_SKIP_BUTTON": "Skip",
+	"TUTORIAL_CONTINUE_BUTTON": "Continue",
+	"TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+	"NO_SHOW": "Do not show again",
 
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Search",
-  "TAB3_TITLE": "Settings",
+	"APP_TITLE": "Betgroup Sports",
 
-  "MAP_TITLE": "Map",
+	"LOGIN": "Sign in",
+	"SIGNUP": "Sign up",
+	"LOGIN_TITLE": "Sign in",
+	"LOGIN_NICKNAME_ERROR":
+		"The user entered does not exist in the system. Please correct and enter the username and try to log in again.",
+	"LOGIN_PASSWORD_ERROR":
+		"The credentials entered do not match. Please correct and enter the password and try to log in again.",
+	"LOGIN_BUTTON": "Sign in",
+	"FORGOT_PASSWORD_BUTTON": "Forgot password?",
+	"FORGOT_PASSWORD_TITLE": "Forgot password?",
+	"FORGOT_PASSWORD_SUBTITLE": "Please enter your email",
+	"FORGOT_PASSWORD_SUCCESS": "Sent has sent a temporary password to your email",
+	"FORGOT_PASSWORD_ERROR": "There is no registered user with that email",
+	"FORGOT_PASSWORD_ERROR2": "<MESSAGE>",
 
-  "TUTORIAL_SKIP_BUTTON": "Skip",
-  "TUTORIAL_CONTINUE_BUTTON": "Continue",
+	"KEEP_SESSION": "Keep me signed in",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+	"SIGNUP_TITLE": "Sign up",
+	"SIGNUP_BUTTON": "Sign up",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+	"SIGNUP_SUCCESS": "Account created",
+	"USER_SAVE_SUCCESS": "Profile updated",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+	"CONFIRM_PASSWORD_ERROR": "The passwords do not match",
+	"SIGNUP_NICKNAME_ERROR": "This nickname is already used, please enter another nickname.",
+	"SIGNUP_EMAIL_ERROR": "This email is already used, please enter another email.",
 
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+	"MY_PROFILE": "My profile",
+	"TUTORIAL_TITLE": "Tutorial",
+	"GAME_SAVE_TITLE": "Create game",
+	"GAME_LIST_TITLE": "My games",
+	"GAME_AVAILABLE_LIST_TITLE": "Games available",
+	"BET_MATCH_LIST_TITLE": "My forecasts",
+	"FRIEND_LIST_TITLE": "My friends",
+	"CREDIT_LIST_TITLE": "Credits",
+	"CONTACT_US_TITLE": "Contact us",
+	"SETTINGS_TITLE": "Settings",
+	"LOG_OUT_TITLE": "Log out",
 
-  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+	"USERNAME": "Username",
+	"FIRST_NAME": "Fist name",
+	"LAST_NAME": "Last name",
+	"SEX": "Sex",
+	"BIRTHDATE": "Birthdate",
+	"EMAIL": "Email",
+	"PHONE": "Phone",
+	"COUNTRY": "Country",
+	"PASSWORD": "Password",
+	"CONFIRM_PASSWORD": "Confirm password",
+	"FLAG_NOTIFICATION": "Do you want to receive notifications by email?",
 
-  "SETTINGS_TITLE": "Settings",
-  "SETTINGS_OPTION1": "Option 1",
-  "SETTINGS_OPTION2": "Option 2",
-  "SETTINGS_OPTION3": "Option 3",
-  "SETTINGS_OPTION4": "Option 4",
+	"SEX_MALE": "Male",
+	"SEX_FEMALE": "Female",
 
-  "SETTINGS_PROFILE_BUTTON": "Edit Profile",
+	"YES": "Yes",
+	"NO": "No",
 
-  "SETTINGS_PAGE_PROFILE": "Edit Profile",
+	"SEARCH_PLACEHOLDER": "Search",
 
-  "WELCOME_TITLE": "Welcome",
+	"USER_EDIT_TITLE": "Edit profile",
 
-  "LOGIN_TITLE": "Sign in",
-  "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
-  "LOGIN_BUTTON": "Sign in",
-  "SIGNUP_TITLE": "Sign up",
-  "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
-  "SIGNUP_BUTTON": "Sign up",
+	"GAME_ADMIN": "Administrator",
+	"GAME_BEGIN_DATE": "Start date",
+	"GAME_END_DATE": "End date",
+	"GAME_ACCUMULATED_CREDITS": "Accumulated well",
+	"GAME_PARTICIPANT_COUNT": "Number of participants",
+	"GAME_EVENT_COUNT": "Number of events",
+	"GAME_DATE_COUNT": "Number of dates",
+	"GAME_STATUS": "State",
+	"GAME_ACCUMULATED_POINTS": "Accumulated points",
+	"GAME_PENDING_EVENT_COUNT": "Number of pending events to bet",
+	"GAME_REMAINING_WILDCARD_COUNT": "Number of remaining wildcards",
+	"GAME_INSCRIPTION_DATE": "Date of registration",
+	"GAME_TOTAL": "Total",
+	"GAME_EARNINGS": "Earnings",
+	"GAME_POSITION": "Position",
+	"GAME_NUM_WILDCARDS": "Wildcards",
+	"GAME_NUM_WILDCARDS_LEFT": "Wildcards remaining",
 
-  "LIST_MASTER_TITLE": "Items",
+	"GAME_SAVE_SUCCESS": "Game created",
+	"GAME_SAVE_ERROR": "You do not have enough credits for the registration amount defined for the game",
+	"GAME_PASSWORD_ERROR": "Incorrect password",
 
-  "ITEM_CREATE_TITLE": "New Item",
-  "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
+	"GAME_STEP1_TITLE": "Select the betgroup",
 
-  "ITEM_NAME_PLACEHOLDER": "Name",
-  "ITEM_ABOUT_PLACEHOLDER": "About",
+	"GAME_STEP2_TITLE": "Enter the game data",
+	"GAME_TEMPLATE_NAME": "Betgroup",
+	"GAME_CODE": "Game code",
+	"GAME_NAME": "Game name",
+	"GAME_COST_FLAG": "With cost",
+	"GAME_POLLA_COST": "Cost",
+	"GAME_ACCESS_FLAG_PRIVATE": "Private",
+	"GAME_ACCESS_FLAG_PUBLIC": "Public",
+	"GAME_PASSWORD": "Password",
 
-  "DONE_BUTTON": "Done",
-  "CANCEL_BUTTON": "Cancel",
-  "DELETE_BUTTON": "Delete",
+	"TEMPLATE_MATCH_LIST_TITLE": "Events",
+	"TEMPLATE_MATCH_LIST_BUTTON": "Events",
 
-  "CARDS_TITLE": "Social",
+	"GAME_STEP3_TITLE": "Select the game mode",
+	"GAME_MODALITY_TOTAL_POLLA": "Total well",
+	"GAME_MODALITY_TINY_POLLA": "Well by date",
+	"GAME_MODALITY_WILDCARD": "Wildcards",
 
-  "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\""
+	"GAME_STEP4_TITLE": "Game rules",
+	"ACCEPT": "I have read and accept the rules",
+
+	"GAME_INFO_TAB": "Info",
+	"PARTICIPANTS_TAB": "Members",
+	"INVITE_TAB": "Friends",
+	"RULES_TAB": "Rules",
+	"RANKING_TAB": "Ranking",
+
+	"BET_MATCH_SAVE_TITLE": "Event forecast",
+	"BET_MATCH_FORECAST": "Enter the forecast",
+	"BET_MATCH_EVENT": "Event",
+	"BET_MATCH_STATUS": "Status",
+	"BET_MATCH_STATUS_CLOSED": "Closed",
+	"BET_MATCH_STATUS_OPENED": "Opened",
+
+	"GAME_BET_LIST_TITLE": "Events to forecast",
+
+	"GAME_BET_SAVE_TITLE": "Event forecast",
+	"GAME_BET_FORECAST": "Enter the forecast",
+	"GAME_BET_EVENT": "Event",
+	"GAME_BET_STATUS": "Status",
+	"GAME_BET_WILDCARD": "With wildcard",
+	"GAME_BET_STATUS_CLOSED": "Closed",
+	"GAME_BET_STATUS_OPENED": "Opened",
+
+	"BET_SAVE_SUCCESS": "Forecast updated",
+	"BET_SAVE_ERROR":
+		"This forecast can not be updated, since the event has already started according to the current date and time defined",
+
+	"REGISTER_SUCCESS": "Registration created",
+
+	"AVAILABLE_CREDITS": "Available credits",
+	"HISTORY_OF_CREDITS": "History of credits",
+
+	"ADD_CREDITS_TITLE": "Buy credits",
+	"COLLECT_CREDITS_TITLE": "Collect credits",
+
+	"CREDITS_TO_BUY": "Credits to buy",
+	"CREDITS_TO_COLLECT": "Credits to collect",
+
+	"CREDIT_ADD_SUCCESS": "Credit added",
+	"CREDIT_ADD_ERROR": "The action to collect credits is not equal to type of transaction with code 1.",
+	"CREDIT_ADD_ERROR2":
+		"You can not buy more than the maximum allowed in the application. Enter an amount to buy no greater than 5000.",
+	"CREDIT_ADD_ERROR3":
+		"There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
+
+	"CREDIT_COLLECT_SUCCESS": "Request registered",
+	"CREDIT_COLLECT_ERROR":
+		"You do not have the minimum of sufficient credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
+	"CREDIT_COLLECT_ERROR2":
+		"You are wanting to collect more credits than you currently have. Please enter a lower amount.",
+
+	"FOLLOW_SUCCESS": "Friend registered",
+	"UNFOLLOW_SUCCESS": "Friend deleted",
+
+	"INVITE_FRIEND_SUCCESS": "Friend invited",
+	"INVITE_FRIEND_ERROR": "This user is already enrolled in this game.",
+
+	"GAME_NO_DATA_FOUND": "You have no registered games",
+	"AVAILABLE_GAME_NO_DATA_FOUND":
+		"At the moment there are no available games. It's your chance to be the first to create one!",
+	"FRIEND_NO_DATA_FOUND": "You have no registered friends",
+	"CREDIT_NO_DATA_FOUND": "You have no registered credits",
+
+	"GAME_LIST_COST": "Entry",
+	"GAME_LIST_ACCESS": "Access",
+	"GAME_LIST_START_DATE": "Start date",
+
+	"SETTINGS_OPTION1": "Language",
+
+	"BACK_BUTTON_TEXT": "Back",
+	"OK_BUTTON": "Ok",
+	"CANCEL_BUTTON": "Cancel",
+	"ADD_BUTTON": "Add",
+	"EDIT_BUTTON": "Edit",
+	"DELETE_BUTTON": "Delete",
+	"BACK_BUTTON": "Previous",
+	"NEXT_BUTTON": "Next",
+	"COMPLETE_BUTTON": "Complete",
+
+	"CHANGE_PASSWORD_TITLE": "Change password",
+	"CHANGE_PASSWORD_BUTTON": "Change password",
+	"CHANGE_PASSWORD_SUCCESS": "Password changed",
+	"NEW_PASSWORD": "New password",
+	"CURRENT_PASSWORD_ERROR": "Incorrect password",
+
+	"ADD_CREDITS_BUTTON": "Buy credits",
+	"COLLECT_CREDITS_BUTTON": "Collect credits"
 }

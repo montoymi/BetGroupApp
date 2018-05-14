@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'BET_MATCH_SAVE_TITLE' | translate }}</ion-title>
+		<ion-buttons end>
+			<!--<button ion-button icon-only [disabled]="pollaBet.status==0" (click)="done()">-->
+			<button ion-button icon-only (click)="done()">
+				<ion-icon name="checkmark"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-item no-lines>
+		<h2>{{ 'BET_MATCH_EVENT' | translate }}</h2>
+		<p text-wrap>{{ match.localTeam.teamName }} vs. {{ match.visitorTeam.teamName }}</p>
+	</ion-item>
+	<ion-item no-lines>
+		<h2>{{ 'GAME_BET_FORECAST' | translate }}</h2>
+	</ion-item>
+	<ion-list style="margin-bottom: 16px" *ngFor="let pollaBet of pollaBetList">
+		<ion-item-divider>
+			{{ pollaBet.pollaParticipant.pollaHeader.pollaName }}
+		</ion-item-divider>
+		<ion-grid no-padding>
+			<ion-row align-items-end>
+				<ion-col>
+					<ion-item no-lines>
+						<ion-label stacked>Local</ion-label>
+						<ion-input type="number" text-center [(ngModel)]="pollaBet.localBetScore" name="localBetScore"></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col>
+					<ion-item no-lines>
+						<ion-label stacked>Visitante</ion-label>
+						<ion-input type="number" text-center [(ngModel)]="pollaBet.visitorBetScore" name="visitorBetScore"></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col>
+					<ion-item no-lines>
+						<ion-label>Comodín</ion-label>
+						<ion-checkbox></ion-checkbox>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-list>
+</ion-content>

@@ -1,48 +1,207 @@
 {
-  "NAME": "Nombre",
-  "PASSWORD": "Contraseña",
-  "EMAIL": "Email",
-  "LOGIN": "Iniciar sesión",
-  "SIGNUP": "Registrarse",
+	"WELCOME_INTRO": "¿Cual es tu apuesta de hoy?",
 
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Buscar",
-  "TAB3_TITLE": "Ajustes",
+	"TUTORIAL_SKIP_BUTTON": "Omitir",
+	"TUTORIAL_CONTINUE_BUTTON": "Continuar",
+	"TUTORIAL_SLIDE4_TITLE": "¿Listo para jugar?",
+	"NO_SHOW": "No volver a mostrar",
 
-  "MAP_TITLE": "Mapa",
+	"APP_TITLE": "Betgroup Sports",
 
-  "TUTORIAL_SLIDE1_TITLE": "Bienvenido/a al Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "El <b>Ionic Super Starter</b> es un starter de Ionic completo con muchas páginas preconstruidas y mejores prácticas.",
+	"LOGIN": "Iniciar sesión",
+	"SIGNUP": "Registrarse",
+	"LOGIN_TITLE": "Iniciar sesión",
+	"LOGIN_NICKNAME_ERROR":
+		"El usuario ingresado no existe en el sistema. Por favor, corrija e ingrese el nombre de usuario y trate de iniciar sesión nuevamente.",
+	"LOGIN_PASSWORD_ERROR":
+		"Las credenciales ingresadas no coinciden. Por favor, corrija e ingrese la contraseña y trate de iniciar sesión nuevamente.",
+	"LOGIN_BUTTON": "Iniciar sesión",
+	"FORGOT_PASSWORD_BUTTON": "¿Olvidó su contraseña?",
+	"FORGOT_PASSWORD_TITLE": "¿Olvidó su contraseña?",
+	"FORGOT_PASSWORD_SUBTITLE": "Por favor ingrese su correo electrónico",
+	"FORGOT_PASSWORD_SUCCESS": "Se ha enviado ha enviado una contraseña temporal a su correo electrónico",
+	"FORGOT_PASSWORD_ERROR": "No existe usuario registrado con ese correo electrónico",
+	"FORGOT_PASSWORD_ERROR2": "<MESSAGE>",
 
-  "TUTORIAL_SLIDE2_TITLE": "Cómo usar el Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Monta los varios tipos de página que quieras y quita los que no. Hemos incluido muchas estructuras de página comunes en apps móviles, como páginas de inicio de sesión y registro, pestañas, y esta página de tutorial.",
+	"KEEP_SESSION": "Mantenerme conectado",
 
-  "TUTORIAL_SLIDE3_TITLE": "Empezando",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
+	"SIGNUP_TITLE": "Registro",
+	"SIGNUP_BUTTON": "Registrarse",
 
-  "SETTINGS_TITLE": "Ajustes",
-  "SETTINGS_OPTION1": "Opción 1",
-  "SETTINGS_OPTION2": "Opción 2",
-  "SETTINGS_OPTION3": "Opción 3",
-  "SETTINGS_OPTION4": "Opción 4",
+	"SIGNUP_SUCCESS": "Cuenta creada",
+	"USER_SAVE_SUCCESS": "Perfil actualizado",
 
-  "SETTINGS_PAGE_PROFILE": "Editar Perfil",
+	"CONFIRM_PASSWORD_ERROR": "Las contraseñas no coinciden",
+	"SIGNUP_NICKNAME_ERROR": "Este nickname ya se encuentra usado. Por favor, ingrese otro nickname.",
+	"SIGNUP_EMAIL_ERROR": "Este email ya se encuentra usado. Por favor, ingrese otro email.",
 
-  "WELCOME_TITLE": "Bienvenido/a",
+	"MY_PROFILE": "Mi perfil",
+	"TUTORIAL_TITLE": "Tutorial",
+	"GAME_SAVE_TITLE": "Crear juego",
+	"GAME_LIST_TITLE": "Mis juegos",
+	"GAME_AVAILABLE_LIST_TITLE": "Juegos disponibles",
+	"BET_MATCH_LIST_TITLE": "Mis pronósticos",
+	"FRIEND_LIST_TITLE": "Mis amigos",
+	"CREDIT_LIST_TITLE": "Créditos",
+	"CONTACT_US_TITLE": "Contáctanos",
+	"SETTINGS_TITLE": "Configuraciones",
+	"LOG_OUT_TITLE": "Cerrar sesión",
 
-  "LOGIN_TITLE": "Iniciar sesión",
-  "LOGIN_ERROR": "No se ha podido iniciar sesión. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
-  "LOGIN_BUTTON": "Iniciar sesión",
-  "SIGNUP_TITLE": "Registro",
-  "SIGNUP_ERROR": "No se ha podido crear la cuenta. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
-  "SIGNUP_BUTTON": "Registrarse",
+	"USERNAME": "Nombre de usuario",
+	"FIRST_NAME": "Nombre",
+	"LAST_NAME": "Apellidos",
+	"SEX": "Sexo",
+	"BIRTHDATE": "Fecha de nacimiento",
+	"EMAIL": "Correo electrónico",
+	"PHONE": "Teléfono",
+	"COUNTRY": "País",
+	"PASSWORD": "Contraseña",
+	"CONFIRM_PASSWORD": "Confirmar contraseña",
+	"FLAG_NOTIFICATION": "¿Desea recibir notificaciones por correo electrónico?",
 
-  "LIST_MASTER_TITLE": "Items",
+	"SEX_MALE": "Masculino",
+	"SEX_FEMALE": "Femenino",
 
-  "ITEM_CREATE_TITLE": "Nuevo Item",
-  "ITEM_CREATE_CHOOSE_IMAGE": "Añadir Imagen",
+	"YES": "Si",
+	"NO": "No",
 
-  "CARDS_TITLE": "Social",
+	"SEARCH_PLACEHOLDER": "Buscar",
 
-  "SEARCH_TITLE": "Buscar"
+	"USER_EDIT_TITLE": "Editar perfil",
+
+	"GAME_ADMIN": "Administrador",
+	"GAME_BEGIN_DATE": "Fecha de inicio",
+	"GAME_END_DATE": "Fecha de fin",
+	"GAME_ACCUMULATED_CREDITS": "Pozo acumulado",
+	"GAME_PARTICIPANT_COUNT": "Número de participantes",
+	"GAME_EVENT_COUNT": "Número de eventos",
+	"GAME_DATE_COUNT": "Número de fechas",
+	"GAME_STATUS": "Estado",
+	"GAME_ACCUMULATED_POINTS": "Puntos acumulados",
+	"GAME_PENDING_EVENT_COUNT": "Número de eventos pendientes de apostar",
+	"GAME_REMAINING_WILDCARD_COUNT": "Cantidad de comodines restantes",
+	"GAME_INSCRIPTION_DATE": "Fecha de inscripción",
+	"GAME_TOTAL": "Total",
+	"GAME_EARNINGS": "Ganancias",
+	"GAME_POSITION": "Posición",
+	"GAME_NUM_WILDCARDS": "Comodines",
+	"GAME_NUM_WILDCARDS_LEFT": "Comodines restantes",
+
+	"GAME_SAVE_SUCCESS": "Juego creado",
+	"GAME_SAVE_ERROR": "Ud. no cuenta con créditos suficientes para el monto de inscripción definido para el juego",
+	"GAME_PASSWORD_ERROR": "Contraseña incorrecta",
+
+	"GAME_STEP1_TITLE": "Seleccionar el betgroup",
+
+	"GAME_STEP2_TITLE": "Ingresar los datos del juego",
+	"GAME_TEMPLATE_NAME": "Betgroup",
+	"GAME_CODE": "Código del juego",
+	"GAME_NAME": "Nombre del juego",
+	"GAME_COST_FLAG": "Con costo",
+	"GAME_POLLA_COST": "Costo",
+	"GAME_ACCESS_FLAG_PRIVATE": "Privado",
+	"GAME_ACCESS_FLAG_PUBLIC": "Público",
+	"GAME_PASSWORD": "Contraseña",
+
+	"TEMPLATE_MATCH_LIST_TITLE": "Eventos",
+	"TEMPLATE_MATCH_LIST_BUTTON": "Eventos",
+
+	"GAME_STEP3_TITLE": "Seleccionar la modalidad del juego",
+	"GAME_MODALITY_TOTAL_POLLA": "Pozo total",
+	"GAME_MODALITY_TINY_POLLA": "Pozo por fecha",
+	"GAME_MODALITY_WILDCARD": "Comodines",
+
+	"GAME_STEP4_TITLE": "Reglas del juego",
+	"ACCEPT": "He leído y acepto las reglas",
+
+	"GAME_INFO_TAB": "Info",
+	"PARTICIPANTS_TAB": "Miembros",
+	"INVITE_TAB": "Invitar",
+	"EVENTS_TAB": "Eventos",
+	"RULES_TAB": "Reglas",
+	"RANKING_TAB": "Ranking",
+
+	"BET_MATCH_SAVE_TITLE": "Pronóstico del evento",
+	"BET_MATCH_FORECAST": "Ingrese el pronóstico",
+	"BET_MATCH_EVENT": "Evento",
+	"BET_MATCH_STATUS": "Estado",
+	"BET_MATCH_STATUS_CLOSED": "Cerrado",
+	"BET_MATCH_STATUS_OPENED": "Abierto",
+
+	"GAME_BET_LIST_TITLE": "Eventos a pronosticar",
+
+	"GAME_BET_SAVE_TITLE": "Pronóstico del evento",
+	"GAME_BET_FORECAST": "Ingrese el pronóstico",
+	"GAME_BET_EVENT": "Evento",
+	"GAME_BET_STATUS": "Estado",
+	"GAME_BET_WILDCARD": "Con comodín",
+	"GAME_BET_STATUS_CLOSED": "Cerrado",
+	"GAME_BET_STATUS_OPENED": "Abierto",
+
+	"BET_SAVE_SUCCESS": "Pronóstico actualizado",
+	"BET_SAVE_ERROR":
+		"Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
+
+	"REGISTER_SUCCESS": "Inscripción creada",
+
+	"AVAILABLE_CREDITS": "Créditos disponibles",
+	"HISTORY_OF_CREDITS": "Histórico de créditos",
+
+	"ADD_CREDITS_TITLE": "Comprar créditos",
+	"COLLECT_CREDITS_TITLE": "Cobrar créditos",
+
+	"CREDITS_TO_BUY": "Créditos a comprar",
+	"CREDITS_TO_COLLECT": "Créditos a cobrar",
+
+	"ACCOUNT_NUMBER": "Número de cuenta",
+
+	"CREDIT_ADD_SUCCESS": "Crédito adicionado",
+	"CREDIT_ADD_ERROR": "La acción cobrar creditos no es igual a tipo de transacción con código 1.",
+	"CREDIT_ADD_ERROR2": "No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
+	"CREDIT_ADD_ERROR3": "Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
+
+	"CREDIT_COLLECT_SUCCESS": "Solicitud registrada",
+	"CREDIT_COLLECT_ERROR":
+		"Ud. no cuenta con el mínimo de créditos suficientes para realizar la transacción de cobro. Debe tener al menos 1000 créditos para hacer una transacción de tipo cobro.",
+	"CREDIT_COLLECT_ERROR2":
+		"Ud. esta queriendo cobrar más créditos de los que cuenta actualmente. Por favor, ingrese un monto menor.",
+
+	"FOLLOW_SUCCESS": "Amigo registrado",
+	"UNFOLLOW_SUCCESS": "Amigo eliminado",
+
+	"INVITE_FRIEND_SUCCESS": "Amigo invitado",
+	"INVITE_FRIEND_ERROR": "Este usuario ya está inscrito en este juego.",
+
+	"GAME_NO_DATA_FOUND":
+		"Ud. no tiene juegos inscritos. Por favor, cree un juego o acceda a los juegos disponibles que hay en el sistema",
+	"AVAILABLE_GAME_NO_DATA_FOUND":
+		"Por el momento no hay juegos disponibles. ¡Es tu oportunidad para ser el primero en crear uno!",
+	"FRIEND_NO_DATA_FOUND": "Ud. no tiene amigos registrados",
+	"CREDIT_NO_DATA_FOUND": "Ud. no tiene créditos registrados",
+
+	"GAME_LIST_COST": "Entrada",
+	"GAME_LIST_ACCESS": "Acceso",
+	"GAME_LIST_START_DATE": "Fecha de inicio",
+
+	"SETTINGS_OPTION1": "Idioma",
+
+	"BACK_BUTTON_TEXT": "Atrás",
+	"OK_BUTTON": "Aceptar",
+	"CANCEL_BUTTON": "Cancelar",
+	"ADD_BUTTON": "Agregar",
+	"EDIT_BUTTON": "Editar",
+	"DELETE_BUTTON": "Eliminar",
+	"BACK_BUTTON": "Anterior",
+	"NEXT_BUTTON": "Siguiente",
+	"COMPLETE_BUTTON": "Finalizar",
+
+	"CHANGE_PASSWORD_TITLE": "Cambiar contraseña",
+	"CHANGE_PASSWORD_BUTTON": "Cambiar contraseña",
+	"CHANGE_PASSWORD_SUCCESS": "Contraseña cambiada",
+	"CURRENT_PASSWORD": "Contraseña actual",
+	"NEW_PASSWORD": "Nueva contraseña",
+	"CURRENT_PASSWORD_ERROR": "Contraseña incorrecta",
+
+	"ADD_CREDITS_BUTTON": "Comprar créditos",
+	"COLLECT_CREDITS_BUTTON": "Cobrar créditos"
 }

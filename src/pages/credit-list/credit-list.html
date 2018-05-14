@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'CREDIT_LIST_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list *ngIf="credit">
+		<ion-item>
+			<h2>{{ 'AVAILABLE_CREDITS' | translate }}</h2>
+			<p>{{ credit.totalCreditos }}</p>
+		</ion-item>
+		<div padding>
+			<button type="button" ion-button small color="light" (click)="openCreditAddPage()">{{ 'ADD_CREDITS_BUTTON' | translate }}</button>
+			<button type="button" ion-button small color="light" (click)="openCreditCollectPage()">{{ 'COLLECT_CREDITS_BUTTON' | translate }}</button>
+		</div>
+		<ion-item no-lines>
+			<p>{{ 'HISTORY_OF_CREDITS' | translate }}</p>
+		</ion-item>
+		<ion-item *ngFor="let creditDetail of credit.creditDetailList">
+			<h2>{{ creditDetail.creditTransationType.description }}</h2>
+			<ion-grid no-padding>
+				<ion-row>
+					<ion-col col-6>
+						<p>{{ creditDetail.transactionDate | moment:'DD/MM/YY H:mm' }}</p>
+					</ion-col>
+					<ion-col col-6>
+						<p style="float: right">{{ creditDetail.creditTransationType.transactionSign }} {{ creditDetail.creditAmount }}</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
+	</ion-list>
+	<p padding *ngIf="credit && !credit.creditDetailList">{{ 'CREDIT_NO_DATA_FOUND' | translate }}</p>
+</ion-content>

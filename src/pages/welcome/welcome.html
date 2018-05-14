@@ -1,13 +1,20 @@
+<head>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Orbitron');
+	</style>
+</head>
+
 <ion-content scroll="false">
-  <div class="splash-bg"></div>
-  <div class="splash-info">
-    <div class="splash-logo"></div>
-    <div class="splash-intro">
-      {{ 'WELCOME_INTRO' | translate }}
-    </div>
-  </div>
-  <div padding>
-    <button ion-button block (click)="signup()">{{ 'SIGNUP' | translate }}</button>
-    <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
-  </div>
+	<div align="center" style="margin-top: 100px; margin-bottom: 100px">
+		<h2 style="font-family:'Orbitron',sans-serif;font-size:20px;">{{ 'APP_TITLE' | translate }}</h2>
+		<p>Versión 0.1</p>
+		<br>
+		<hr>
+		<h2 class="splash-intro">{{ 'WELCOME_INTRO' | translate }}</h2>
+		<hr>
+	</div>
+	<div padding>
+		<button ion-button small block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
+		<button ion-button small block color="light" (click)="signup()">{{ 'SIGNUP' | translate }}</button>
+	</div>
 </ion-content>

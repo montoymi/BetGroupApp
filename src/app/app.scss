@@ -14,3 +14,15 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.item[no-lines].bottom-border {
+	border-bottom: 1px solid color($colors, _gray);
+}
+
+.force-back-button .back-button {
+	display: inline-block;
+}
+
+html {
+	font-size: 9px;
+}

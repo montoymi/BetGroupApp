@@ -1,74 +1,102 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
-
 import { TranslateService } from '@ngx-translate/core';
+import { IonicPage, MenuController, NavController, Platform, ToastController } from 'ionic-angular';
+
+import { TutorialProvider, UserProvider, EventLoggerProvider, Settings } from '../../providers/providers';
+import { presentToast } from '../pages';
 
 export interface Slide {
-  title: string;
-  description: string;
-  image: string;
+	title: string;
+	description: string;
+	image: string;
 }
 
 @IonicPage()
 @Component({
-  selector: 'page-tutorial',
-  templateUrl: 'tutorial.html'
+	selector: 'page-tutorial',
+	templateUrl: 'tutorial.html'
 })
 export class TutorialPage {
-  slides: Slide[];
-  showSkip = true;
-  dir: string = 'ltr';
+	slideList: Slide[];
+	showSkip = true;
+	dir: string = 'ltr';
+	noShowTutorial: boolean;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
-    this.dir = platform.dir();
-    translate.get(["TUTORIAL_SLIDE1_TITLE",
-      "TUTORIAL_SLIDE1_DESCRIPTION",
-      "TUTORIAL_SLIDE2_TITLE",
-      "TUTORIAL_SLIDE2_DESCRIPTION",
-      "TUTORIAL_SLIDE3_TITLE",
-      "TUTORIAL_SLIDE3_DESCRIPTION",
-    ]).subscribe(
-      (values) => {
-        console.log('Loaded values', values);
-        this.slides = [
-          {
-            title: values.TUTORIAL_SLIDE1_TITLE,
-            description: values.TUTORIAL_SLIDE1_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-1.png',
-          },
-          {
-            title: values.TUTORIAL_SLIDE2_TITLE,
-            description: values.TUTORIAL_SLIDE2_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-2.png',
-          },
-          {
-            title: values.TUTORIAL_SLIDE3_TITLE,
-            description: values.TUTORIAL_SLIDE3_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-3.png',
-          }
-        ];
-      });
-  }
+	constructor(
+		public navCtrl: NavController,
+		public menu: MenuController,
+		public platform: Platform,
+		public toastCtrl: ToastController,
+		public tutorialProvider: TutorialProvider,
+		public userProvider: UserProvider,
+		public logger: EventLoggerProvider,
+		private translate: TranslateService,
+		private settings: Settings
+	) {
+		this.dir = platform.dir();
 
-  startApp() {
-    this.navCtrl.setRoot('WelcomePage', {}, {
-      animate: true,
-      direction: 'forward'
-    });
-  }
+		this.loadSlides();
+	}
 
-  onSlideChangeStart(slider) {
-    this.showSkip = !slider.isEnd();
-  }
+	loadSlides() {
+		let lang = this.translate.store.currentLang;
 
-  ionViewDidEnter() {
-    // the root left menu should be disabled on the tutorial page
-    this.menu.enable(false);
-  }
+		this.tutorialProvider.getSlides(lang).subscribe(
+			(res: any) => {
+				this.slideList = res.body;
+			},
+			err => {
+				presentToast(this.toastCtrl, err.message);
+			}
+		);
 
-  ionViewWillLeave() {
-    // enable the root left menu when leaving the tutorial page
-    this.menu.enable(true);
-  }
+		// Asigna el valor al checkbox.
+		this.settings.getValue('noShowTutorial').then((noShowTutorial: boolean) => {
+			this.noShowTutorial = noShowTutorial;
+		});
+	}
 
+	updateSettings() {
+		this.settings.setValue('noShowTutorial', this.noShowTutorial);
+	}
+
+	startApp() {
+		let menuLoaded: boolean = this.menu.getMenus().length > 0;
+		// Si aun no ingresa a la aplicación.
+		if (!menuLoaded) {
+			this.navCtrl.setRoot(
+				'WelcomePage',
+				{},
+				{
+					animate: true,
+					direction: 'forward'
+				}
+			);
+		} else {
+			this.navCtrl.setRoot('GameListPage');
+		}
+	}
+
+	onSlideChangeStart(slider) {
+		this.showSkip = !slider.isEnd();
+
+		switch (slider._activeIndex) {
+			case 1: // El primero es el cero, pero se cuenta el primer cambio de slide.
+				this.logger.logEvent(this.navCtrl.getActive().name, 'tutorial_begin', null);
+				break;
+			case slider._slides.length - 1:
+				this.logger.logEvent(this.navCtrl.getActive().name, 'tutorial_complete', null);
+				break;
+		}
+	}
+
+	ionViewDidEnter() {
+		// the root left menu should be disabled on the tutorial page
+		this.menu.enable(false);
+	}
+
+	ionViewWillLeave() {
+		// enable the root left menu when leaving the tutorial page
+		this.menu.enable(true);
+	}
 }

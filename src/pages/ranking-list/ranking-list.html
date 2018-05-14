@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar class="force-back-button">
+		<ion-title>{{ 'RANKING_TAB' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div padding>
+		<ion-segment [(ngModel)]="segment">
+			<ion-segment-button value="polla">
+				Polla general
+			</ion-segment-button>
+			<ion-segment-button value="pollita">
+				Pollita
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+	<div [ngSwitch]="segment">
+		<ion-list *ngSwitchCase="'polla'">
+			<button ion-item no-lines *ngFor="let pollaParticipant of pollaParticipantList">
+				<h2>{{ pollaParticipant.position }} - {{ pollaParticipant.user.username }}</h2>
+				<p item-end>Puntos: {{ pollaParticipant.total }}</p>
+			</button>
+		</ion-list>
+		<ion-list *ngSwitchCase="'pollita'">
+			<ion-item>
+				Ranking Pollita
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

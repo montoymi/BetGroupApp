@@ -1,0 +1,43 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'COLLECT_CREDITS_TITLE' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="done()">
+				<ion-icon name="checkmark"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<h2>Mínimo de créditos a cobrar</h2>
+			<p>1000 créditos</p>
+		</ion-item>
+		<ion-item>
+			<h2>Créditos disponibles</h2>
+			<p>{{ credit.totalCreditos }} créditos</p>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>{{ 'CREDITS_TO_COLLECT' | translate }}</ion-label>
+			<ion-input type="number" [(ngModel)]="creditDetail.creditAmount" name="creditAmount"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="creditDetail.creditAmount">
+			<h2>Los créditos a cobrar equivalen</h2>
+			<p>{{ creditDetail.creditAmount }} créditos = {{ creditDetail.creditAmount/10 }} U.S. dólar</p>
+		</ion-item>
+		<ion-item>
+			<h2 align="justify">
+				<ion-note text-wrap>
+					Por favor, pongase en contacto con el administrador del sistema para hacer efectivo el cobro del monto solicitado, alcanzando
+					la información de número de cuenta a depositar y el nombre de la cuenta.
+					<br> Este es el correo admin@betgroupsports.co para cualquier referencia.
+				</ion-note>
+			</h2>
+		</ion-item>
+	</ion-list>
+</ion-content>

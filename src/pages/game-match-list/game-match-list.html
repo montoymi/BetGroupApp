@@ -1,0 +1,23 @@
+<ion-header>
+	<ion-navbar class="force-back-button">
+		<ion-title>{{ 'EVENTS_TAB' | translate }}</ion-title>
+	</ion-navbar>
+	<ion-toolbar>
+		<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item no-lines class="bottom-border" *ngFor="let pollaMatch of pollaMatchList">
+			<ion-thumbnail item-start>
+				<img [src]="pollaMatch.match.localTeam.image" />
+			</ion-thumbnail>
+			<h2 text-wrap>{{ pollaMatch.match.localTeam.teamName }} vs. {{ pollaMatch.match.visitorTeam.teamName }}</h2>
+			<p>{{ pollaMatch.match.matchDate | moment:'DD/MM/YY H:mm' }}</p>
+			<ion-thumbnail item-end>
+				<img [src]="pollaMatch.match.visitorTeam.image" />
+			</ion-thumbnail>
+		</ion-item>
+	</ion-list>
+</ion-content>

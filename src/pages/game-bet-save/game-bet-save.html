@@ -1,0 +1,65 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'GAME_BET_SAVE_TITLE' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only [disabled]="pollaBet.status==0" (click)="done()">
+				<ion-icon name="checkmark"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<h2>{{ 'GAME_NAME' | translate }}</h2>
+			<p></p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_TEMPLATE_NAME' | translate }}</h2>
+			<p></p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_BET_EVENT' | translate }}</h2>
+			<p text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_BET_STATUS' | translate }}</h2>
+			<p>{{ pollaBet.status == 0 ? ('GAME_BET_STATUS_CLOSED' | translate) : ('GAME_BET_STATUS_OPENED' | translate) }}</p>
+		</ion-item>
+	</ion-list>
+	<ion-grid no-padding>
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<h2>{{ 'GAME_BET_FORECAST' | translate }}</h2>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-6>
+				<ion-item>
+					<ion-label stacked>L: {{ pollaBet.pollaMatch.match.localTeam.teamName }}</ion-label>
+					<ion-input type="number" [(ngModel)]="pollaBet.localBetScore" name="localBetScore"></ion-input>
+				</ion-item>
+			</ion-col>
+			<ion-col col-6>
+				<ion-item>
+					<ion-label stacked>V: {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</ion-label>
+					<ion-input type="number" [(ngModel)]="pollaBet.visitorBetScore" name="visitorBetScore"></ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<ion-label>{{ 'GAME_BET_WILDCARD' | translate }}</ion-label>
+					<ion-checkbox [(ngModel)]="pollaBet.flagWildcard" name=flagWildcard [disabled]="pollaBet.pollaMatch.pollaHeader.modeWildcardFlag!=1"></ion-checkbox>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

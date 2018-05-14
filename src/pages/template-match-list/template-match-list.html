@@ -1,0 +1,30 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{ 'TEMPLATE_MATCH_LIST_TITLE' | translate }}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="cancel()">
+				<span color="primary" showWhen="ios">
+					{{ 'CANCEL_BUTTON' | translate }}
+				</span>
+				<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+	<ion-toolbar>
+		<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item no-lines class="bottom-border" *ngFor="let templateDetail of templateDetailList">
+			<ion-thumbnail item-start>
+				<img [src]="templateDetail.match.localTeam.image" />
+			</ion-thumbnail>
+			<h2 text-wrap>{{ templateDetail.match.localTeam.teamName }} vs. {{ templateDetail.match.visitorTeam.teamName }}</h2>
+			<ion-thumbnail item-end>
+				<img [src]="templateDetail.match.visitorTeam.image" />
+			</ion-thumbnail>
+		</ion-item>
+	</ion-list>
+</ion-content>

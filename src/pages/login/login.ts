@@ -1,50 +1,146 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 
-import { User } from '../../providers';
-import { MainPage } from '../';
+import { UserProvider } from '../../providers/providers';
+import { User } from '../../models/account/user';
+import { MainPage, presentToast } from '../pages';
+import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+	selector: 'page-login',
+	templateUrl: 'login.html'
 })
 export class LoginPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
-  account: { email: string, password: string } = {
-    email: 'test@example.com',
-    password: 'test'
-  };
+	user: User;
+	keepSession: boolean;
 
-  // Our translated text strings
-  private loginErrorString: string;
+	private loginNicknameError: string;
+	private loginPasswordError: string;
+	private forgotPasswordTitle: string;
+	private forgotPasswordSubtitle: string;
+	private forgotPasswordSuccess: string;
+	private forgotPasswordError: string;
+	private forgotPasswordError2: string;
+	private email: string;
+	private cancelButton: string;
+	private okButton: string;
 
-  constructor(public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public toastCtrl: ToastController,
+		public translate: TranslateService,
+		private alertCtrl: AlertController,
+		public userProvider: UserProvider
+	) {
+		this.translate
+			.get([
+				'LOGIN_NICKNAME_ERROR',
+				'LOGIN_PASSWORD_ERROR',
+				'FORGOT_PASSWORD_TITLE',
+				'FORGOT_PASSWORD_SUBTITLE',
+				'FORGOT_PASSWORD_SUCCESS',
+				'FORGOT_PASSWORD_ERROR',
+				'FORGOT_PASSWORD_ERROR2',
+				'EMAIL',
+				'CANCEL_BUTTON',
+				'OK_BUTTON'
+			])
+			.subscribe(values => {
+				this.loginNicknameError = values['LOGIN_NICKNAME_ERROR'];
+				this.loginPasswordError = values['LOGIN_PASSWORD_ERROR'];
+				this.forgotPasswordTitle = values['FORGOT_PASSWORD_TITLE'];
+				this.forgotPasswordSubtitle = values['FORGOT_PASSWORD_SUBTITLE'];
+				this.forgotPasswordSuccess = values['FORGOT_PASSWORD_SUCCESS'];
+				this.forgotPasswordError = values['FORGOT_PASSWORD_ERROR'];
+				this.forgotPasswordError2 = values['FORGOT_PASSWORD_ERROR2'];
+				this.email = values['EMAIL'];
+				this.cancelButton = values['CANCEL_BUTTON'];
+				this.okButton = values['OK_BUTTON'];
+			});
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
-    })
-  }
+		this.user = new User();
 
-  // Attempt to login in through our User service
-  doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-      this.navCtrl.push(MainPage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
-  }
+		//this.user.username = 'Rubym';
+		//this.user.password = 'test1';
+		//this.user.username = 'Kcire';
+		//this.user.password = 'bacardi1';
+	}
+
+	doLogin() {
+		this.userProvider.login(this.user, this.keepSession).subscribe(
+			(res: any) => {
+				this.navCtrl.push(MainPage);
+			},
+			err => {
+				switch (err.error) {
+					case RESPONSE_ERROR.LOGIN_NICKNAME_ERROR:
+						presentToast(this.toastCtrl, this.loginNicknameError);
+						break;
+					case RESPONSE_ERROR.LOGIN_PASSWORD_ERROR:
+						presentToast(this.toastCtrl, this.loginPasswordError);
+						break;
+					default:
+						presentToast(this.toastCtrl, err.message);
+						break;
+				}
+			}
+		);
+	}
+
+	forgotPassword(email: string) {
+		let lang = this.translate.store.currentLang;
+
+		this.userProvider.forgotPassword(email, lang).subscribe(
+			(res: any) => {
+				presentToast(this.toastCtrl, this.forgotPasswordSuccess);
+				console.info(res.message);
+			},
+			err => {
+				switch (err.error) {
+					case RESPONSE_ERROR.FORGOT_PASSWORD_ERROR:
+						presentToast(this.toastCtrl, this.forgotPasswordError);
+						break;
+					case RESPONSE_ERROR.FORGOT_PASSWORD_ERROR2:
+						presentToast(this.toastCtrl, this.forgotPasswordError2);
+						break;
+					default:
+						presentToast(this.toastCtrl, err.message);
+						break;
+				}
+			}
+		);
+	}
+
+	presentForgotPasswordPrompt() {
+		let alert = this.alertCtrl.create({
+			title: this.forgotPasswordTitle,
+			subTitle: this.forgotPasswordSubtitle,
+			inputs: [
+				{
+					name: 'email',
+					placeholder: this.email,
+					type: 'email'
+				}
+			],
+			buttons: [
+				{
+					text: this.cancelButton,
+					role: 'cancel',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: this.okButton,
+					handler: data => {
+						this.forgotPassword(data.email);
+					}
+				}
+			]
+		});
+		alert.present();
+	}
 }

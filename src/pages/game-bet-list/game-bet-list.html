@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'GAME_BET_LIST_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+	<ion-toolbar>
+		<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<button ion-item no-lines class="bottom-border" *ngFor="let pollaBet of pollaBetList" (click)="openGameBetSavePage(pollaBet)">
+			<ion-thumbnail item-start>
+				<img [src]="pollaBet.pollaMatch.match.localTeam.image" />
+			</ion-thumbnail>
+			<h2 text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</h2>
+			<ion-grid no-padding>
+				<ion-row>
+					<ion-col col-12>
+						<p>{{ pollaBet.pollaMatch.match.matchDate | moment:'DD/MM/YY H:mm' }}</p>
+					</ion-col>
+				</ion-row>
+				<!--<ion-row>
+						<ion-col col-12>
+							<p>Resultado: 2 - 1</p>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>
+							<p>Puntos: 5</p>
+						</ion-col>
+					</ion-row>-->
+			</ion-grid>
+			<ion-thumbnail item-end>
+				<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />
+			</ion-thumbnail>
+		</button>
+	</ion-list>
+</ion-content>

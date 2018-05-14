@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'MY_PROFILE' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="openUserSavePage()">
+				<ion-icon name="create"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<h2>{{ 'USERNAME' | translate }}</h2>
+			<p>{{ user.username }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'FIRST_NAME' | translate }}</h2>
+			<p>{{ user.firstName }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'LAST_NAME' | translate }}</h2>
+			<p>{{ user.lastName }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'SEX' | translate }}</h2>
+			<p *ngIf="user.sex">{{ user.sex == 'M' ? ('SEX_MALE' | translate) : ('SEX_FEMALE' | translate) }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'BIRTHDATE' | translate }}</h2>
+			<p>{{ user.dateOfBirthday | moment:'DD/MM/YYYY' }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'EMAIL' | translate }}</h2>
+			<p>{{ user.email }}</p>
+		</ion-item>
+		<ion-item>
+			<h2 text-wrap>{{ 'FLAG_NOTIFICATION' | translate }}</h2>
+			<p *ngIf="user.flagNotification">{{ user.flagNotification == 1 ? ('YES' | translate) : ('NO' | translate) }}</p>
+		</ion-item>
+		<div padding>
+			<button type="button" ion-button small color="light" (click)="presentChangePasswordPrompt()">{{ 'CHANGE_PASSWORD_BUTTON' | translate }}</button>
+		</div>
+	</ion-list>
+</ion-content>

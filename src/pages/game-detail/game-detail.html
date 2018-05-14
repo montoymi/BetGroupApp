@@ -1,0 +1,74 @@
+<ion-header>
+	<ion-navbar class="force-back-button">
+		<ion-title>{{ 'GAME_INFO_TAB' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list *ngIf="pollaParticipant">
+		<div text-center padding>
+			<img [src]="pollaHeader.image" height="180" align="center" />
+		</div>
+		<ion-item>
+			<h2>{{ 'GAME_NAME' | translate }}</h2>
+			<p>{{ pollaHeader.pollaName }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_ADMIN' | translate }}</h2>
+			<p>{{ pollaHeader.admin.username }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_BEGIN_DATE' | translate }}</h2>
+			<p>{{ pollaHeader.startDate | moment:'DD/MM/YY H:mm' }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_END_DATE' | translate }}</h2>
+			<p>{{ pollaHeader.endDate | moment:'DD/MM/YY H:mm' }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_ACCUMULATED_CREDITS' | translate }}</h2>
+			<p>{{ pollaHeader.total_bet }} créditos = {{ pollaHeader.total_bet/10 }} U.S. dólar</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_PARTICIPANT_COUNT' | translate }}</h2>
+			<p>{{ pollaHeader.numParticipants }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_EVENT_COUNT' | translate }}</h2>
+			<p>{{ pollaHeader.numMatchs }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_DATE_COUNT' | translate }}</h2>
+			<p>{{ pollaHeader.numEvents }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_INSCRIPTION_DATE' | translate }}</h2>
+			<p>{{ pollaParticipant.inscriptionDate | moment:'DD/MM/YY H:mm' }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_TOTAL' | translate }}</h2>
+			<p>{{ pollaParticipant.total }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_EARNINGS' | translate }}</h2>
+			<p>{{ pollaParticipant.earnings }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_POSITION' | translate }}</h2>
+			<p>{{ pollaParticipant.position }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_NUM_WILDCARDS' | translate }}</h2>
+			<p>{{ pollaParticipant.numWildCards }}</p>
+		</ion-item>
+		<ion-item>
+			<h2>{{ 'GAME_NUM_WILDCARDS_LEFT' | translate }}</h2>
+			<p>{{ pollaParticipant.numWildCardsLeft }}</p>
+		</ion-item>
+	</ion-list>
+	<ion-fab right bottom>
+		<button ion-fab (click)="openBetListPage()">
+			<ion-icon name="trending-up"></ion-icon>
+		</button>
+	</ion-fab>
+</ion-content>

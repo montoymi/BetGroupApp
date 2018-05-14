@@ -1,0 +1,13 @@
+<ion-header>
+	<ion-navbar class="force-back-button">
+		<ion-title>{{ 'RULES_TAB' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item no-lines *ngIf="pollaHeader.rules" text-wrap>
+			<p style="white-space: pre-line">{{ pollaHeader.rules }}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

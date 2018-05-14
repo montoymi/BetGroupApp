@@ -1,0 +1,18 @@
+page-game-save {
+	/*
+	 * La barra de búsqueda en el lugar particular en que está no debería tener el estilo por defecto.
+	 * No se encontró la manera de dar borde al searchbar ni en md ni en ios. Por esto se remueve todo
+	 * borde y color, el cual es reemplazado por una línea inferior (tag <hr>).
+	 */
+
+	// Se elimina todo borde.
+	.searchbar-ios {
+		background-color: transparent; // Background del borde externo
+		border-color: transparent; // Border superior e inferior.
+	}
+
+	// Se elimina el espacio inferior.
+	.searchbar-md .searchbar-input {
+		padding-bottom: 0px;
+	}
+}

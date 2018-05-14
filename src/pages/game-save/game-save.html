@@ -1,0 +1,107 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'GAME_SAVE_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form (submit)="done()">
+		<ion-stepper #stepper mode="vertical" (selectIndexChange)="selectChange($event)">
+			<ion-step label="{{ 'GAME_STEP1_TITLE' | translate }}">
+				<ion-list radio-group>
+					<div padding>
+						<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+						<hr style="margin-top: 0px;">
+					</div>
+					<ion-item *ngFor="let templateHeader of templateHeaderList">
+						<ion-thumbnail item-start>
+							<img [src]="templateHeader.image" />
+						</ion-thumbnail>
+						<ion-label text-wrap>
+							{{ templateHeader.templateName }}
+							<br>
+							<p>{{ templateHeader.startDate | moment:'DD/MM/YY' }} - {{ templateHeader.endDate | moment:'DD/MM/YY' }}</p>
+						</ion-label>
+						<ion-radio [(ngModel)]="templateHeader.checked" name="checked" item-end ngDefaultControl (ionSelect)="setCheckedTemplateHeader(templateHeader)">
+						</ion-radio>
+					</ion-item>
+					<div padding>
+						<button type="button" ion-button small ionicStepperNext>{{ 'NEXT_BUTTON' | translate }}</button>
+					</div>
+				</ion-list>
+			</ion-step>
+			<ion-step label="{{ 'GAME_STEP2_TITLE' | translate }}">
+				<ion-list *ngIf="selectedTemplateHeader">
+					<ion-item>
+						<h2>{{ 'GAME_TEMPLATE_NAME' | translate }}</h2>
+						<p text-wrap>{{ selectedTemplateHeader.templateName }}</p>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>{{ 'GAME_NAME' | translate }}</ion-label>
+						<ion-input type="text" [(ngModel)]="pollaHeader.pollaName" name="pollaName"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label>{{ 'GAME_COST_FLAG' | translate }}</ion-label>
+						<ion-toggle [(ngModel)]="pollaHeader.costFlag" name=costFlag></ion-toggle>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>{{ 'GAME_POLLA_COST' | translate }}</ion-label>
+						<ion-input type="number" #pollaCost [(ngModel)]="pollaHeader.pollaCost" name="pollaCost" [disabled]="!pollaHeader.costFlag"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label>{{ 'GAME_ACCESS_FLAG_PRIVATE' | translate }}</ion-label>
+						<ion-toggle [(ngModel)]="pollaHeader.accessFlag" name=accessFlag></ion-toggle>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>{{ 'GAME_PASSWORD' | translate }}</ion-label>
+						<ion-input type="password" [(ngModel)]="pollaHeader.password" name="password" [disabled]="!pollaHeader.accessFlag"></ion-input>
+					</ion-item>
+					<div padding>
+						<button type="button" ion-button small color="light" (click)="openTemplateMatchListPage()">{{ 'TEMPLATE_MATCH_LIST_BUTTON' | translate }}</button>
+						<br>
+						<button type="button" ion-button small color="light" ionicStepperPrevious>{{ 'BACK_BUTTON' | translate }}</button>
+						<button type="button" ion-button small ionicStepperNext>{{ 'NEXT_BUTTON' | translate }}</button>
+					</div>
+				</ion-list>
+			</ion-step>
+			<ion-step label="{{ 'GAME_STEP3_TITLE' | translate }}">
+				<ion-list *ngIf="selectedTemplateHeader">
+					<ion-item no-lines>
+						<ion-label>{{ 'GAME_MODALITY_TOTAL_POLLA' | translate }}</ion-label>
+						<ion-checkbox #modePollaFlag [(ngModel)]="pollaHeader.modePollaFlag" name=modePollaFlag [disabled]="!selectedTemplateHeader.modePollaFlag"></ion-checkbox>
+					</ion-item>
+					<ion-item no-lines>
+						<ion-label>{{ 'GAME_MODALITY_TINY_POLLA' | translate }}</ion-label>
+						<ion-checkbox #modePollitaFlag [(ngModel)]="pollaHeader.modePollitaFlag" name=modePollitaFlag [disabled]="!(pollaHeader.costFlag && selectedTemplateHeader.modePollitaFlag)"></ion-checkbox>
+					</ion-item>
+					<ion-item no-lines>
+						<ion-label>{{ 'GAME_MODALITY_WILDCARD' | translate }}</ion-label>
+						<ion-checkbox #modeWildcardFlag [(ngModel)]="pollaHeader.modeWildcardFlag" name=modeWildcardFlag [disabled]="!(pollaHeader.costFlag && selectedTemplateHeader.modeWildcardFlag)"></ion-checkbox>
+					</ion-item>
+					<div padding>
+						<button type="button" ion-button small color="light" ionicStepperPrevious>{{ 'BACK_BUTTON' | translate }}</button>
+						<button type="button" ion-button small ionicStepperNext>{{ 'NEXT_BUTTON' | translate }}</button>
+					</div>
+				</ion-list>
+			</ion-step>
+			<ion-step label="{{ 'GAME_STEP4_TITLE' | translate }}">
+				<ion-list>
+					<ion-item no-lines *ngIf="pollaHeader.rules" text-wrap>
+						<p style="white-space: pre-line">{{ pollaHeader.rules }}</p>
+					</ion-item>
+					<ion-item no-lines>
+						<ion-label text-wrap>{{ 'ACCEPT' | translate }}</ion-label>
+						<ion-checkbox #accept></ion-checkbox>
+					</ion-item>
+				</ion-list>
+				<div padding>
+					<button type="button" ion-button small color="light" ionicStepperPrevious>{{ 'BACK_BUTTON' | translate }}</button>
+					<button type="submit" ion-button small>{{ 'COMPLETE_BUTTON' | translate }}</button>
+				</div>
+			</ion-step>
+		</ion-stepper>
+	</form>
+</ion-content>
