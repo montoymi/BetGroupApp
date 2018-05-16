@@ -29,7 +29,7 @@ export class GameTabsPage {
 	tab5Title = ' ';
 	tab6Title = ' ';
 
-	tabParams = { pollaHeader: this.navParams.get('pollaHeader') };
+	tabParams = { pollaHeader: this.navParams.get('pollaHeader'), myPollas: this.navParams.get('myPollas') };
 
 	constructor(
 		public navCtrl: NavController, 

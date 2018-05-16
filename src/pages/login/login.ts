@@ -67,6 +67,7 @@ export class LoginPage {
 		//this.user.password = 'test1';
 		//this.user.username = 'Kcire';
 		//this.user.password = 'bacardi1';
+		//IntiTec02
 	}
 
 	doLogin() {

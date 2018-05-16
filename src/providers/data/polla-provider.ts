@@ -183,7 +183,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaBetList: PollaBet[] = res.body;
 				for (let pollaBet of pollaBetList) {
-					pollaBet.pollaMatch.match.matchDate = formatISO8601(pollaBet.pollaMatch.match.matchDate);
+					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaBet.pollaMatch.match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {
@@ -222,7 +222,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaBetList: PollaBet[] = res.body;
 				for (let pollaBet of pollaBetList) {
-					pollaBet.pollaMatch.match.matchDate = formatISO8601(pollaBet.pollaMatch.match.matchDate);
+					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaBet.pollaMatch.match.matchDateWithTimezone);
 					pollaBet.pollaParticipant.userId = userId;
 				}
 
@@ -266,7 +266,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaMatchList: PollaMatch[] = res.body;
 				for (let pollaMatch of pollaMatchList) {
-					pollaMatch.match.matchDate = formatISO8601(pollaMatch.match.matchDate);
+					pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaMatch.match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {

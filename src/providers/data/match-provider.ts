@@ -18,7 +18,7 @@ export class MatchProvider {
 			(res: any) => {
 				let matchList: Match[] = res.body;
 				for (let match of matchList) {
-					match.matchDate = formatISO8601(match.matchDate);
+					match.matchDateWithTimezone = formatISO8601(match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {

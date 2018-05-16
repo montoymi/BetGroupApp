@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, AlertController } from 'ionic-angular';
 
 import { UserProvider, FriendProvider } from '../../providers/providers';
 import { Friend } from '../../models/account/friend';
@@ -16,13 +16,16 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 })
 export class FriendInvitePage {
 	@ViewChild(Navbar) navBar: Navbar;
-	
+
 	byEmail: boolean = true;
 	friendList: Friend[];
 	friend: Friend;
 
 	private inviteFriendSuccess: string;
 	private inviteFriendError: string;
+	private inviteFriendAlertTitle: string;
+	private inviteFriendAlertSubtitle: string;
+	private okButton: string;
 
 	constructor(
 		public navCtrl: NavController,
@@ -30,12 +33,24 @@ export class FriendInvitePage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		public userProvider: UserProvider,
-		public friendProvider: FriendProvider
+		public friendProvider: FriendProvider,
+		private alertCtrl: AlertController
 	) {
-		this.translate.get(['INVITE_FRIEND_SUCCESS'], 'INVITE_FRIEND_ERROR').subscribe(values => {
-			this.inviteFriendSuccess = values['INVITE_FRIEND_SUCCESS'];
-			this.inviteFriendError = values['INVITE_FRIEND_ERROR'];
-		});
+		this.translate
+			.get([
+				'INVITE_FRIEND_SUCCESS',
+				'INVITE_FRIEND_ERROR',
+				'INVITE_FRIEND_ALERT_TITLE',
+				'INVITE_FRIEND_ALERT_SUBTITLE',
+				'OK_BUTTON'
+			])
+			.subscribe(values => {
+				this.inviteFriendSuccess = values['INVITE_FRIEND_SUCCESS'];
+				this.inviteFriendError = values['INVITE_FRIEND_ERROR'];
+				this.inviteFriendAlertTitle = values['INVITE_FRIEND_ALERT_TITLE'];
+				this.inviteFriendAlertSubtitle = values['INVITE_FRIEND_ALERT_SUBTITLE'];
+				this.okButton = values['OK_BUTTON']
+			});
 
 		this.friend = new Friend();
 		this.friend.user = userProvider.user;
@@ -65,6 +80,13 @@ export class FriendInvitePage {
 	}
 
 	inviteFriend() {
+		let myPollas: boolean = this.navParams.get('myPollas');
+		console.info('myPollas: ' + myPollas);
+		if (!myPollas) {
+			this.presentAlert();
+			return;
+		}
+
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 
 		if (this.byEmail) {
@@ -89,5 +111,14 @@ export class FriendInvitePage {
 				}
 			}
 		);
+	}
+
+	presentAlert() {
+		let alert = this.alertCtrl.create({
+			title: this.inviteFriendAlertTitle,
+			subTitle: this.inviteFriendAlertSubtitle,
+			buttons: [this.okButton]
+		});
+		alert.present();
 	}
 }

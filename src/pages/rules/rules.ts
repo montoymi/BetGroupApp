@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, Navbar, ToastController } from 'ionic-angular';
 
 import { PollaProvider } from '../../providers/providers';
@@ -19,6 +20,7 @@ export class RulesPage {
 		public navCtrl: NavController, 
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
+		public translate: TranslateService,
 		public pollaProvider: PollaProvider
 	) {
 		this.loadGameRules();
@@ -32,6 +34,7 @@ export class RulesPage {
 
 	loadGameRules() {
 		this.pollaHeader = this.navParams.get('pollaHeader');
+		this.pollaHeader.lang = this.translate.store.currentLang;
 
 		this.pollaProvider.getGameRules(this.pollaHeader).subscribe(
 			(res: any) => {

@@ -23,5 +23,7 @@ export class PollaHeader {
     total_bet: number; // Pozo acumulado
     numParticipants: number;
     numEvents: number;
-    numMatchs: number;
+	numMatchs: number;
+	
+	lang: string;
 }

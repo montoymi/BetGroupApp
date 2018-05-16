@@ -14,7 +14,7 @@
 				<img [src]="pollaMatch.match.localTeam.image" />
 			</ion-thumbnail>
 			<h2 text-wrap>{{ pollaMatch.match.localTeam.teamName }} vs. {{ pollaMatch.match.visitorTeam.teamName }}</h2>
-			<p>{{ pollaMatch.match.matchDate | moment:'DD/MM/YY H:mm' }}</p>
+			<p>{{ pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
 			<ion-thumbnail item-end>
 				<img [src]="pollaMatch.match.visitorTeam.image" />
 			</ion-thumbnail>

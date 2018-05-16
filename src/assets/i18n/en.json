@@ -171,6 +171,9 @@
 	"INVITE_FRIEND_SUCCESS": "Friend invited",
 	"INVITE_FRIEND_ERROR": "This user is already enrolled in this game.",
 
+	"INVITE_FRIEND_ALERT_TITLE": "Warning",
+	"INVITE_FRIEND_ALERT_SUBTITLE": "To be able to invite a friend you must first sign up for a game",
+
 	"GAME_NO_DATA_FOUND": "You have no registered games",
 	"AVAILABLE_GAME_NO_DATA_FOUND":
 		"At the moment there are no available games. It's your chance to be the first to create one!",

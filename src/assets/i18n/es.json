@@ -157,8 +157,10 @@
 
 	"CREDIT_ADD_SUCCESS": "Crédito adicionado",
 	"CREDIT_ADD_ERROR": "La acción cobrar creditos no es igual a tipo de transacción con código 1.",
-	"CREDIT_ADD_ERROR2": "No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
-	"CREDIT_ADD_ERROR3": "Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
+	"CREDIT_ADD_ERROR2":
+		"No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
+	"CREDIT_ADD_ERROR3":
+		"Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
 
 	"CREDIT_COLLECT_SUCCESS": "Solicitud registrada",
 	"CREDIT_COLLECT_ERROR":
@@ -171,6 +173,9 @@
 
 	"INVITE_FRIEND_SUCCESS": "Amigo invitado",
 	"INVITE_FRIEND_ERROR": "Este usuario ya está inscrito en este juego.",
+
+	"INVITE_FRIEND_ALERT_TITLE": "Aviso",
+	"INVITE_FRIEND_ALERT_SUBTITLE": "Para porder invitar a un amigo primero debe inscribirse en un juego",
 
 	"GAME_NO_DATA_FOUND":
 		"Ud. no tiene juegos inscritos. Por favor, cree un juego o acceda a los juegos disponibles que hay en el sistema",

@@ -169,6 +169,8 @@ export class GameSavePage {
 			? 0
 			: getFlagValue(this.pollaHeader.modeWildcardFlag);
 
+		this.pollaHeader.lang = this.translate.store.currentLang;
+
 		this.pollaProvider.getGameRules(this.pollaHeader).subscribe(
 			(res: any) => {
 				this.pollaHeader = res.body;
