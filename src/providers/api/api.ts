@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Api {
-	//url: string = 'http://192.168.0.4:8080/betgroup-ws';
-	url: string = 'http://vmi143234.contaboserver.net:8080/betgroup-ws';
+	url: string = 'http://localhost:8080/betgroup-ws';
+	//url: string = 'http://vmi143234.contaboserver.net:8080/betgroup-ws';
 
 	constructor(public http: HttpClient) {}
 

@@ -7,11 +7,11 @@ import { Slide } from '../../pages/tutorial/tutorial';
 import { RESPONSE_STATUS } from '../../constants/constants';
 
 @Injectable()
-export class TutorialProvider {
+export class ParamValueProvider {
 	constructor(public api: Api) {}
 
 	getSlides(lang: string) {
-		let seq = this.api.get('slides/tutorial', { lang: lang }).share();
+		let seq = this.api.get('params/tutorial', { lang: lang }).share();
 
 		seq.subscribe(
 			(res: any) => {
@@ -22,6 +22,23 @@ export class TutorialProvider {
 					slide.image = 'assets/img/ica-slidebox-img-' + index + '.png';
 				}
 
+				if (res.status != RESPONSE_STATUS.OK) {
+					console.info('status', res.status);
+				}
+			},
+			err => {
+				console.error('ERROR', err);
+			}
+		);
+
+		return seq;
+	}
+
+	getTerms(lang: string) {
+		let seq = this.api.get('params/terms', { lang: lang }).share();
+
+		seq.subscribe(
+			(res: any) => {
 				if (res.status != RESPONSE_STATUS.OK) {
 					console.info('status', res.status);
 				}

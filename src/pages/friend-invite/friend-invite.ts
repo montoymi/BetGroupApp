@@ -83,7 +83,7 @@ export class FriendInvitePage {
 		let myPollas: boolean = this.navParams.get('myPollas');
 		console.info('myPollas: ' + myPollas);
 		if (!myPollas) {
-			this.presentAlert();
+			this.presentFriendAlert();
 			return;
 		}
 
@@ -113,7 +113,7 @@ export class FriendInvitePage {
 		);
 	}
 
-	presentAlert() {
+	presentFriendAlert() {
 		let alert = this.alertCtrl.create({
 			title: this.inviteFriendAlertTitle,
 			subTitle: this.inviteFriendAlertSubtitle,

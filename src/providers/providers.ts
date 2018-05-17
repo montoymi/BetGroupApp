@@ -2,7 +2,7 @@ import { Api } from './api/api';
 import { Settings } from './settings/settings';
 import { EventLoggerProvider } from './event-logger/event-logger';
 import { UserProvider } from './data/user-provider';
-import { TutorialProvider } from './data/tutorial-provider';
+import { ParamValueProvider } from './data/param-value';
 import { TemplateProvider } from './data/template-provider';
 import { PollaProvider } from './data/polla-provider';
 import { CreditProvider } from './data/credit-provider';
@@ -17,7 +17,7 @@ export {
 	Settings,
 	EventLoggerProvider,
 	UserProvider,
-	TutorialProvider,
+	ParamValueProvider,
 	TemplateProvider,
 	PollaProvider,
 	CreditProvider,
@@ -27,5 +27,5 @@ export {
 
 // Se asigna el formato ISO 8601 para poder manejar el dato como fecha.
 export function formatISO8601(value) {
-	return value != undefined ? moment(value, DATE_FORMAT_ISO8601).utc().format() : value;
+	return value != undefined ? moment(value, DATE_FORMAT_ISO8601).format() : value;
 }

@@ -11,10 +11,8 @@
 	"LOGIN": "Iniciar sesión",
 	"SIGNUP": "Registrarse",
 	"LOGIN_TITLE": "Iniciar sesión",
-	"LOGIN_NICKNAME_ERROR":
-		"El usuario ingresado no existe en el sistema. Por favor, corrija e ingrese el nombre de usuario y trate de iniciar sesión nuevamente.",
-	"LOGIN_PASSWORD_ERROR":
-		"Las credenciales ingresadas no coinciden. Por favor, corrija e ingrese la contraseña y trate de iniciar sesión nuevamente.",
+	"LOGIN_NICKNAME_ERROR": "El usuario ingresado no existe en el sistema. Por favor, corrija e ingrese el nombre de usuario y trate de iniciar sesión nuevamente.",
+	"LOGIN_PASSWORD_ERROR": "Las credenciales ingresadas no coinciden. Por favor, corrija e ingrese la contraseña y trate de iniciar sesión nuevamente.",
 	"LOGIN_BUTTON": "Iniciar sesión",
 	"FORGOT_PASSWORD_BUTTON": "¿Olvidó su contraseña?",
 	"FORGOT_PASSWORD_TITLE": "¿Olvidó su contraseña?",
@@ -27,11 +25,23 @@
 
 	"SIGNUP_TITLE": "Registro",
 	"SIGNUP_BUTTON": "Registrarse",
+	"ACCEPT_CONDITIONS": "Acepto las condiciones",
 
 	"SIGNUP_SUCCESS": "Cuenta creada",
 	"USER_SAVE_SUCCESS": "Perfil actualizado",
 
-	"CONFIRM_PASSWORD_ERROR": "Las contraseñas no coinciden",
+	"USERNAME_REQUIRED_ERROR": "El nombre de usuario es requerido.",
+	"EMAIL_REQUIRED_ERROR": "El correo electrónico es requerido.",
+	"EMAIL_PATTERN_ERROR": "Ingrese un correo electrónico válido.",
+	"PASSWORD_REQUIRED_ERROR": "La contraseña es requerida.",
+	"PASSWORD_MINLENGTH_ERROR": "La contraseña debe tener al menos 5 caracteres de longitud.",
+	"PASSWORD_PATTERN_ERROR": "Su contraseña debe contener al menos una letra mayúscula, una minúscula y un número.",
+	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirmar contraseña es requerido.",
+	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "Las contraseñas no coinciden.",
+	"TERMS_PATTERN_ERROR": "Debe aceptar los términos y condiciones.",
+
+	"TERMS_ALERT_TITLE": "Términos y condiciones",
+
 	"SIGNUP_NICKNAME_ERROR": "Este nickname ya se encuentra usado. Por favor, ingrese otro nickname.",
 	"SIGNUP_EMAIL_ERROR": "Este email ya se encuentra usado. Por favor, ingrese otro email.",
 
@@ -112,7 +122,7 @@
 	"GAME_MODALITY_WILDCARD": "Comodines",
 
 	"GAME_STEP4_TITLE": "Reglas del juego",
-	"ACCEPT": "He leído y acepto las reglas",
+	"ACCEPT_RULES": "He leído y acepto las reglas",
 
 	"GAME_INFO_TAB": "Info",
 	"PARTICIPANTS_TAB": "Miembros",
@@ -139,8 +149,7 @@
 	"GAME_BET_STATUS_OPENED": "Abierto",
 
 	"BET_SAVE_SUCCESS": "Pronóstico actualizado",
-	"BET_SAVE_ERROR":
-		"Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
+	"BET_SAVE_ERROR": "Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
 
 	"REGISTER_SUCCESS": "Inscripción creada",
 
@@ -157,16 +166,13 @@
 
 	"CREDIT_ADD_SUCCESS": "Crédito adicionado",
 	"CREDIT_ADD_ERROR": "La acción cobrar creditos no es igual a tipo de transacción con código 1.",
-	"CREDIT_ADD_ERROR2":
-		"No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
-	"CREDIT_ADD_ERROR3":
-		"Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
+	"CREDIT_ADD_ERROR2": "No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
+	"CREDIT_ADD_ERROR3": "Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
 
 	"CREDIT_COLLECT_SUCCESS": "Solicitud registrada",
 	"CREDIT_COLLECT_ERROR":
 		"Ud. no cuenta con el mínimo de créditos suficientes para realizar la transacción de cobro. Debe tener al menos 1000 créditos para hacer una transacción de tipo cobro.",
-	"CREDIT_COLLECT_ERROR2":
-		"Ud. esta queriendo cobrar más créditos de los que cuenta actualmente. Por favor, ingrese un monto menor.",
+	"CREDIT_COLLECT_ERROR2": "Ud. esta queriendo cobrar más créditos de los que cuenta actualmente. Por favor, ingrese un monto menor.",
 
 	"FOLLOW_SUCCESS": "Amigo registrado",
 	"UNFOLLOW_SUCCESS": "Amigo eliminado",
@@ -177,10 +183,8 @@
 	"INVITE_FRIEND_ALERT_TITLE": "Aviso",
 	"INVITE_FRIEND_ALERT_SUBTITLE": "Para porder invitar a un amigo primero debe inscribirse en un juego",
 
-	"GAME_NO_DATA_FOUND":
-		"Ud. no tiene juegos inscritos. Por favor, cree un juego o acceda a los juegos disponibles que hay en el sistema",
-	"AVAILABLE_GAME_NO_DATA_FOUND":
-		"Por el momento no hay juegos disponibles. ¡Es tu oportunidad para ser el primero en crear uno!",
+	"GAME_NO_DATA_FOUND": "Ud. no tiene juegos inscritos. Por favor, cree un juego o acceda a los juegos disponibles que hay en el sistema",
+	"AVAILABLE_GAME_NO_DATA_FOUND": "Por el momento no hay juegos disponibles. ¡Es tu oportunidad para ser el primero en crear uno!",
 	"FRIEND_NO_DATA_FOUND": "Ud. no tiene amigos registrados",
 	"CREDIT_NO_DATA_FOUND": "Ud. no tiene créditos registrados",
 

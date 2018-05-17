@@ -2,6 +2,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Api } from '../api/api';
 import { Settings } from '../settings/settings';
@@ -32,7 +33,7 @@ import { formatISO8601 } from '../providers';
 export class UserProvider {
 	user: User;
 
-	constructor(public api: Api, public settings: Settings, public events: Events) {
+	constructor(public api: Api, public settings: Settings, public events: Events, public translate: TranslateService) {
 		// Obtiene el usuario de la configuración.
 		this.settings.getValue('user').then((user: User) => {
 			if (user) {
@@ -163,6 +164,7 @@ export class UserProvider {
 		this.user = user;
 		this.user.dateOfBirthday = formatISO8601(this.user.dateOfBirthday);
 		this.user.password = password;
+		this.user.preferredLang = this.translate.store.currentLang;
 
 		if (keepSession) {
 			// Registra el usuario en la configuración.

@@ -27,11 +27,23 @@
 
 	"SIGNUP_TITLE": "Sign up",
 	"SIGNUP_BUTTON": "Sign up",
+	"ACCEPT_CONDITIONS": "I accept the conditions",
 
 	"SIGNUP_SUCCESS": "Account created",
 	"USER_SAVE_SUCCESS": "Profile updated",
 
-	"CONFIRM_PASSWORD_ERROR": "The passwords do not match",
+	"USERNAME_REQUIRED_ERROR": "Username is required.",
+	"EMAIL_REQUIRED_ERROR": "Email is required.",
+	"EMAIL_PATTERN_ERROR": "Enter a valid email.",
+	"PASSWORD_REQUIRED_ERROR": "Password is required.",
+	"PASSWORD_MINLENGTH_ERROR": "Password must be at least 5 characters long.",
+	"PASSWORD_PATTERN_ERROR": "Your password must contain at least one uppercase, one lowercase, and one number.",
+	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirm password is required.",
+	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "The passwords do not match.",
+	"TERMS_PATTERN_ERROR": "You must accept terms and conditions.",
+
+	"TERMS_ALERT_TITLE": "Terms and conditions",
+
 	"SIGNUP_NICKNAME_ERROR": "This nickname is already used, please enter another nickname.",
 	"SIGNUP_EMAIL_ERROR": "This email is already used, please enter another email.",
 
@@ -112,7 +124,7 @@
 	"GAME_MODALITY_WILDCARD": "Wildcards",
 
 	"GAME_STEP4_TITLE": "Game rules",
-	"ACCEPT": "I have read and accept the rules",
+	"ACCEPT_RULES": "I have read and accept the rules",
 
 	"GAME_INFO_TAB": "Info",
 	"PARTICIPANTS_TAB": "Members",

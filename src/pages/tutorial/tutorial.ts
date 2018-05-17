@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, MenuController, NavController, Platform, ToastController } from 'ionic-angular';
 
-import { TutorialProvider, UserProvider, EventLoggerProvider, Settings } from '../../providers/providers';
+import { ParamValueProvider, UserProvider, EventLoggerProvider, Settings } from '../../providers/providers';
 import { presentToast } from '../pages';
 
 export interface Slide {
@@ -27,7 +27,7 @@ export class TutorialPage {
 		public menu: MenuController,
 		public platform: Platform,
 		public toastCtrl: ToastController,
-		public tutorialProvider: TutorialProvider,
+		public paramValueProvider: ParamValueProvider,
 		public userProvider: UserProvider,
 		public logger: EventLoggerProvider,
 		private translate: TranslateService,
@@ -39,9 +39,9 @@ export class TutorialPage {
 	}
 
 	loadSlides() {
-		let lang = this.translate.store.currentLang;
+		let lang: string = this.translate.store.currentLang;
 
-		this.tutorialProvider.getSlides(lang).subscribe(
+		this.paramValueProvider.getSlides(lang).subscribe(
 			(res: any) => {
 				this.slideList = res.body;
 			},
