@@ -12,7 +12,9 @@ export class TemplateHeader {
 	modePollitaFlag: number;
 	modePollaFlag: number;
 	startDate: any;
-    endDate: any;
+	endDate: any;
+	numEvents: number;
+	numMatchs: number;
 
 	checked: boolean;
 }
