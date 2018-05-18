@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
 import { PollaProvider, UserProvider, FriendProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { Friend } from '../../models/account/friend';
 import { User } from '../../models/account/user';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class ParticipantListPage {
 		public translate: TranslateService,
 		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
-		public friendProvider: FriendProvider
+		public friendProvider: FriendProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate.get(['FOLLOW_SUCCESS']).subscribe(values => {
 			this.followSuccess = values['FOLLOW_SUCCESS'];
@@ -46,11 +47,14 @@ export class ParticipantListPage {
 	loadParticipants() {
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getParticipantsByPollaId(pollaHeader.pollaId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaParticipantList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -62,11 +66,14 @@ export class ParticipantListPage {
 		friend.amigo = new User();
 		friend.amigo.userId = participantId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.friendProvider.createFriend(friend).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.followSuccess);
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

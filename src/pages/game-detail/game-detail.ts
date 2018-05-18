@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
 import { PollaProvider, UserProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 
 @IonicPage()
@@ -23,7 +23,8 @@ export class GameDetailPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider
+		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.loadPolla();
 	}
@@ -38,12 +39,15 @@ export class GameDetailPage {
 		this.pollaHeader = this.navParams.get('pollaHeader');
 		let userId = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getParticipantByPollaId(this.pollaHeader.pollaId, userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaParticipant = res.body;
 				this.pollaHeader = this.pollaParticipant.pollaHeader;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

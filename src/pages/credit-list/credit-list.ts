@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -19,7 +19,8 @@ export class CreditListPage {
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
 		public creditProvider: CreditProvider,
-		public logger: EventLoggerProvider
+		public logger: EventLoggerProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
 	}
@@ -31,11 +32,14 @@ export class CreditListPage {
 	}
 
 	loadCreditSummary() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.creditProvider.getCreditSummaryByUserId(this.userProvider.user.userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.credit = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

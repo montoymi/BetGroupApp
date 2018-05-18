@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
 import { PollaProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -25,6 +25,7 @@ export class RankingListPage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.segment = 'polla';
 		
@@ -40,11 +41,14 @@ export class RankingListPage {
 	loadRanking() {
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollaRankingByPollaId(pollaHeader.pollaId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaParticipantList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, FriendProvider } from '../../providers/providers';
 import { Friend } from '../../models/account/friend';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -22,7 +22,8 @@ export class FriendListPage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		public userProvider: UserProvider,
-		public friendProvider: FriendProvider
+		public friendProvider: FriendProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate.get(['UNFOLLOW_SUCCESS']).subscribe(values => {
 			this.unfollowSuccess = values['UNFOLLOW_SUCCESS'];
@@ -32,23 +33,29 @@ export class FriendListPage {
 	}
 
 	loadFriends() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.friendProvider.getFriendsByUserId(this.userProvider.user.userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.friendList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
 	}
 
 	deleteFriend(friendId: number) {
+		let loading = presentLoading(this.loadingCtrl);
 		this.friendProvider.deleteFriend(friendId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.unfollowSuccess);
 				this.loadFriends();
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -30,7 +30,8 @@ export class UserDetailPage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		private alertCtrl: AlertController,
-		public userProvider: UserProvider
+		public userProvider: UserProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate
 			.get([
@@ -64,12 +65,15 @@ export class UserDetailPage {
 	}
 
 	changePassword() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.changePassword(this.user).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.changePasswordSuccess);
 				this.user = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

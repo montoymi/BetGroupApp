@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
 import { TemplateProvider } from '../../providers/providers';
 import { TemplateDetail } from '../../models/template/template-detail';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,8 @@ export class TemplateMatchListPage {
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
-		public templateProvider: TemplateProvider
+		public templateProvider: TemplateProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.loadTemplateDetails();
 	}
@@ -26,11 +27,14 @@ export class TemplateMatchListPage {
 	loadTemplateDetails() {
 		let templateId: number = this.navParams.get('templateId');
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.templateProvider.getTemplateDetailsByTempHeaderId(templateId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.templateDetailList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

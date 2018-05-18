@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,8 @@ export class GameAvailableListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider
+		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {}
 
 	// Runs when the page is about to enter and become the active page.
@@ -30,11 +31,14 @@ export class GameAvailableListPage {
 	loadPollas() {
 		let userId: number = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollasByUserId(userId, false).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaHeaderList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

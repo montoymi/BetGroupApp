@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaBet } from '../../models/polla/polla-bet';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,8 @@ export class GameBetListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider
+		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.loadGameBets();
 	}
@@ -27,11 +28,14 @@ export class GameBetListPage {
 		let pollaId: number = this.navParams.get('pollaId');
 		let userId: number = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getGameBetsByPollaIdAndUserId(pollaId, userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaBetList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

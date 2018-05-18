@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, AlertController, LoadingController } from 'ionic-angular';
 
 import { PollaProvider, UserProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { RESPONSE_ERROR } from '../../constants/constants';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -15,11 +15,12 @@ import { presentToast } from '../pages';
 })
 export class GameAvailableDetailPage {
 	@ViewChild(Navbar) navBar: Navbar;
-	
+
 	pollaHeader: PollaHeader;
 
 	private password: string;
 	private gamePasswordError: string;
+	private gameSaveError: string;
 	private registerSuccess: string;
 	private cancelButton: string;
 	private okButton: string;
@@ -31,17 +32,17 @@ export class GameAvailableDetailPage {
 		public translate: TranslateService,
 		private alertCtrl: AlertController,
 		private userProvider: UserProvider,
-		public pollaProvider: PollaProvider
+		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {
-		this.translate
-			.get(['PASSWORD', 'GAME_PASSWORD_ERROR', 'REGISTER_SUCCESS', 'CANCEL_BUTTON', 'OK_BUTTON'])
-			.subscribe(values => {
-				this.password = values['PASSWORD'];
-				this.gamePasswordError = values['GAME_PASSWORD_ERROR'];
-				this.registerSuccess = values['REGISTER_SUCCESS'];
-				this.cancelButton = values['CANCEL_BUTTON'];
-				this.okButton = values['OK_BUTTON'];
-			});
+		this.translate.get(['PASSWORD', 'GAME_PASSWORD_ERROR', 'GAME_SAVE_ERROR', 'REGISTER_SUCCESS', 'CANCEL_BUTTON', 'OK_BUTTON']).subscribe(values => {
+			this.password = values['PASSWORD'];
+			this.gamePasswordError = values['GAME_PASSWORD_ERROR'];
+			this.gameSaveError = values['GAME_SAVE_ERROR'];
+			this.registerSuccess = values['REGISTER_SUCCESS'];
+			this.cancelButton = values['CANCEL_BUTTON'];
+			this.okButton = values['OK_BUTTON'];
+		});
 
 		this.loadPolla();
 	}
@@ -54,12 +55,15 @@ export class GameAvailableDetailPage {
 
 	loadPolla() {
 		this.pollaHeader = this.navParams.get('pollaHeader');
-		
+
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollaById(this.pollaHeader.pollaId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaHeader = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -72,11 +76,13 @@ export class GameAvailableDetailPage {
 		pollaParticipant.user = this.userProvider.user;
 		pollaParticipant.userId = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.createParticipant(pollaParticipant).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.registerSuccess);
-				
-				// Redirecciona al detalle mis juegos para ver el nuevo 
+
+				// Redirecciona al detalle mis juegos para ver el nuevo
 				// juego al que el usuario de ha inscrito.
 				this.navCtrl.setRoot('GameListPage');
 				this.navCtrl.push('GameTabsPage', {
@@ -85,9 +91,13 @@ export class GameAvailableDetailPage {
 				});
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.GAME_PASSWORD_ERROR:
 						presentToast(this.toastCtrl, this.gamePasswordError);
+						break;
+					case RESPONSE_ERROR.GAME_SAVE_ERROR:
+						presentToast(this.toastCtrl, this.gameSaveError);
 						break;
 					default:
 						presentToast(this.toastCtrl, err.message);

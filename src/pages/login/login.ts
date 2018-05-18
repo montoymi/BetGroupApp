@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, MenuController, LoadingController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { MainPage, presentToast } from '../pages';
+import { MainPage, presentToast, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
@@ -34,7 +34,8 @@ export class LoginPage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		private alertCtrl: AlertController,
-		public userProvider: UserProvider
+		public userProvider: UserProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate
 			.get([
@@ -72,11 +73,14 @@ export class LoginPage {
 	}
 
 	doLogin() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.login(this.user, this.keepSession).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.navCtrl.push(MainPage);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.LOGIN_NICKNAME_ERROR:
 						presentToast(this.toastCtrl, this.loginNicknameError);
@@ -95,12 +99,15 @@ export class LoginPage {
 	forgotPassword(email: string) {
 		let lang = this.translate.store.currentLang;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.forgotPassword(email, lang).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.forgotPasswordSuccess);
 				console.info(res.message);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.FORGOT_PASSWORD_ERROR:
 						presentToast(this.toastCtrl, this.forgotPasswordError);

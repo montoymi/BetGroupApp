@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
 import { RESPONSE_ERROR } from '../../constants/constants';
-import { presentToast, getFlagValue } from '../pages';
+import { presentToast, getFlagValue, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -25,7 +25,8 @@ export class UserSavePage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
-		public userProvider: UserProvider
+		public userProvider: UserProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate.get(['USER_SAVE_SUCCESS', 'SIGNUP_NICKNAME_ERROR', 'SIGNUP_EMAIL_ERROR']).subscribe(values => {
 			this.userSaveSuccess = values['USER_SAVE_SUCCESS'];
@@ -39,13 +40,16 @@ export class UserSavePage {
 	updateUser() {
 		this.user.flagNotification = getFlagValue(this.user.flagNotification);
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.updateUser(this.user).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.userSaveSuccess);
 				this.user = res.body;
 				this.viewCtrl.dismiss();
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.SIGNUP_NICKNAME_ERROR:
 						presentToast(this.toastCtrl, this.signupNicknameError);

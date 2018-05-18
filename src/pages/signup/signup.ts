@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, ParamValueProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { MainPage, presentToast } from '../pages';
+import { MainPage, presentToast, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
 import { PasswordValidator } from '../../validators/password.validator';
 
@@ -46,7 +46,8 @@ export class SignupPage {
 		public userProvider: UserProvider,
 		public paramValueProvider: ParamValueProvider,
 		public formBuilder: FormBuilder,
-		private alertCtrl: AlertController
+		private alertCtrl: AlertController,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate
 			.get([
@@ -125,12 +126,15 @@ export class SignupPage {
 	doSignup(values) {
 		this.user.preferredLang = this.translate.store.currentLang;
 		
+		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.signup(this.user).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.signupSuccess);
 				this.navCtrl.push(MainPage);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.SIGNUP_NICKNAME_ERROR:
 						presentToast(this.toastCtrl, this.signupNicknameError);
@@ -149,11 +153,14 @@ export class SignupPage {
 	loadTerms() {
 		let lang: string = this.translate.store.currentLang;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.paramValueProvider.getTerms(lang).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.terms = res.body.terms;
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					default:
 						presentToast(this.toastCtrl, err.message);

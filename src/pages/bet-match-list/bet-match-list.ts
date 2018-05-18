@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, MatchProvider } from '../../providers/providers';
 import { Match } from '../../models/tournament/match';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,8 @@ export class BetMatchListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public matchProvider: MatchProvider
+		public matchProvider: MatchProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.loadMatchsWithBets();
 	}
@@ -26,11 +27,14 @@ export class BetMatchListPage {
 	loadMatchsWithBets() {
 		let userId: number = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.matchProvider.getMatchsWithBetsByUserId(userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.matchList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

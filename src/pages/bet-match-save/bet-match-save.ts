@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { Match } from '../../models/tournament/match';
 import { PollaBet } from '../../models/polla/polla-bet';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
@@ -27,7 +27,8 @@ export class BetMatchSavePage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider
+		public pollaProvider: PollaProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate.get(['BET_SAVE_SUCCESS', 'BET_SAVE_ERROR']).subscribe(values => {
 			this.betSaveSuccess = values['BET_SAVE_SUCCESS'];
@@ -42,24 +43,30 @@ export class BetMatchSavePage {
 	loadBets() {
 		let userId: number = this.userProvider.user.userId;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getBetsByMatchIdAndUserId(this.match.matchId, userId).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaBetList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
 	}
 
 	updateBets() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.updateBets(this.pollaBetList).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.betSaveSuccess);
 				this.pollaBetList = res.body;
 				this.viewCtrl.dismiss(true);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.BET_SAVE_ERROR:
 						presentToast(this.toastCtrl, this.betSaveError);

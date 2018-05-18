@@ -203,6 +203,8 @@
 	"GAME_LIST_COST": "Entrada",
 	"GAME_LIST_ACCESS": "Acceso",
 	"GAME_LIST_START_DATE": "Fecha de inicio",
+	"GAME_LIST_NUM_PARTICIPANTS": "inscritos",
+	"CREDITS": "créditos",
 
 	"SETTINGS_OPTION1": "Idioma",
 

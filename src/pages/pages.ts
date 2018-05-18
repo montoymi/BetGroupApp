@@ -1,4 +1,4 @@
-import { ToastController } from 'ionic-angular';
+import { ToastController, LoadingController } from 'ionic-angular';
 
 // The page the user lands on after opening the app and without a session
 export const FirstRunPage = 'TutorialPage';
@@ -26,6 +26,13 @@ export function presentToast(toastCtrl: ToastController, message: string) {
 		position: 'bottom'
 	});
 	toast.present();
+}
+
+export function presentLoading(loadingCtrl: LoadingController) {
+	let loading = loadingCtrl.create();
+
+	loading.present();
+	return loading;
 }
 
 export function getFlagValue(value) {

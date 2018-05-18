@@ -8,14 +8,15 @@ import {
 	ModalController,
 	ToastController,
 	TextInput,
-	Checkbox
+	Checkbox,
+	LoadingController
 } from 'ionic-angular';
 import { IonicStepperComponent, IonicStepComponent } from 'ionic-stepper';
 
 import { TemplateProvider, UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
 import { TemplateHeader } from '../../models/template/template-header';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, getFlagValue } from '../pages';
+import { presentToast, getFlagValue, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
@@ -52,7 +53,8 @@ export class GameSavePage {
 		public userProvider: UserProvider,
 		public templateProvider: TemplateProvider,
 		public pollaProvider: PollaProvider,
-		public logger: EventLoggerProvider
+		public logger: EventLoggerProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate
 			.get([
@@ -172,19 +174,24 @@ export class GameSavePage {
 		this.pollaHeader.numMatchs = this.selectedTemplateHeader.numMatchs;
 		this.pollaHeader.lang = this.translate.store.currentLang;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getGameRules(this.pollaHeader).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.pollaHeader = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
 	}
 
 	createPolla() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.createPolla(this.pollaHeader).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.gameSuccess);
 				this.pollaHeader = res.body;
 
@@ -203,6 +210,7 @@ export class GameSavePage {
 				this.logger.logEvent(this.navCtrl.getActive().name, 'game_save', params);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.GAME_SAVE_ERROR:
 						presentToast(this.toastCtrl, this.gameSaveError);
@@ -246,11 +254,14 @@ export class GameSavePage {
 	 */
 
 	loadTemplateHeaders() {
+		let loading = presentLoading(this.loadingCtrl);
 		this.templateProvider.getAllTemplateHeaders().subscribe(
 			(res: any) => {
+				loading.dismiss();
 				this.templateHeaderList = res.body;
 			},
 			err => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

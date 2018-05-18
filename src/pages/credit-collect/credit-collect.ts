@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
 import { CreditDetail } from '../../models/credit/credit-detail';
-import { presentToast } from '../pages';
+import { presentToast, presentLoading } from '../pages';
 import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
@@ -29,7 +29,8 @@ export class CreditCollectPage {
 		public translate: TranslateService,
 		public userProvider: UserProvider,
 		public creditProvider: CreditProvider,
-		public logger: EventLoggerProvider
+		public logger: EventLoggerProvider,
+		public loadingCtrl: LoadingController
 	) {
 		this.translate
 			.get(['CREDIT_COLLECT_SUCCESS', 'CREDIT_COLLECT_ERROR', 'CREDIT_COLLECT_ERROR2'])
@@ -51,8 +52,10 @@ export class CreditCollectPage {
 		this.creditDetail.transactionTypeId = TRANSACTION_TYPE.COLLECT_CREDIT;
 		this.creditDetail.status = TRANSACTION_STATUS.PENDING;
 
+		let loading = presentLoading(this.loadingCtrl);
 		this.creditProvider.collectCredit(this.creditDetail).subscribe(
 			(res: any) => {
+				loading.dismiss();
 				presentToast(this.toastCtrl, this.creditCollectSuccess);
 				this.creditDetail = res.body;
 				this.viewCtrl.dismiss(true);
@@ -64,6 +67,7 @@ export class CreditCollectPage {
 				this.logger.logEvent(this.navCtrl.getActive().name, 'earn_virtual_currency', params);
 			},
 			err => {
+				loading.dismiss();
 				switch (err.error) {
 					case RESPONSE_ERROR.CREDIT_COLLECT_ERROR:
 						presentToast(this.toastCtrl, this.creditCollectError);
