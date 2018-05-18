@@ -46,7 +46,7 @@
 	"SIGNUP_EMAIL_ERROR": "Este email ya se encuentra usado. Por favor, ingrese otro email.",
 
 	"MY_PROFILE": "Mi perfil",
-	"TUTORIAL_TITLE": "Tutorial",
+
 	"GAME_SAVE_TITLE": "Crear juego",
 	"GAME_LIST_TITLE": "Mis juegos",
 	"GAME_AVAILABLE_LIST_TITLE": "Juegos disponibles",
@@ -55,7 +55,19 @@
 	"CREDIT_LIST_TITLE": "Créditos",
 	"CONTACT_US_TITLE": "Contáctanos",
 	"SETTINGS_TITLE": "Configuraciones",
+	"TUTORIAL_TITLE": "Tutorial",
 	"LOG_OUT_TITLE": "Cerrar sesión",
+
+	"GAME_SAVE_SUBTITLE": "Creación de juegos",
+	"GAME_LIST_SUBTITLE": "Juegos en que estoy inscrito",
+	"GAME_AVAILABLE_LIST_SUBTITLE": "Juegos en los que puedo inscribirme",
+	"BET_MATCH_LIST_SUBTITLE": "Eventos a pronosticar",
+	"FRIEND_LIST_SUBTITLE": "Personas a las que sigo",
+	"CREDIT_LIST_SUBTITLE": "Gestión de creditos",
+	"CONTACT_US_SUBTITLE": "Consultas y sugerencias",
+	"SETTINGS_SUBTITLE": "Preferencias del usuario",
+	"TUTORIAL_SUBTITLE": "Documentación de ayuda",
+	"LOG_OUT_SUBTITLE": "Salir de la aplicación",
 
 	"USERNAME": "Nombre de usuario",
 	"FIRST_NAME": "Nombre",

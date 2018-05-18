@@ -11,10 +11,8 @@
 	"LOGIN": "Sign in",
 	"SIGNUP": "Sign up",
 	"LOGIN_TITLE": "Sign in",
-	"LOGIN_NICKNAME_ERROR":
-		"The user entered does not exist in the system. Please correct and enter the username and try to log in again.",
-	"LOGIN_PASSWORD_ERROR":
-		"The credentials entered do not match. Please correct and enter the password and try to log in again.",
+	"LOGIN_NICKNAME_ERROR": "The user entered does not exist in the system. Please correct and enter the username and try to log in again.",
+	"LOGIN_PASSWORD_ERROR": "The credentials entered do not match. Please correct and enter the password and try to log in again.",
 	"LOGIN_BUTTON": "Sign in",
 	"FORGOT_PASSWORD_BUTTON": "Forgot password?",
 	"FORGOT_PASSWORD_TITLE": "Forgot password?",
@@ -48,7 +46,7 @@
 	"SIGNUP_EMAIL_ERROR": "This email is already used, please enter another email.",
 
 	"MY_PROFILE": "My profile",
-	"TUTORIAL_TITLE": "Tutorial",
+
 	"GAME_SAVE_TITLE": "Create game",
 	"GAME_LIST_TITLE": "My games",
 	"GAME_AVAILABLE_LIST_TITLE": "Games available",
@@ -57,7 +55,19 @@
 	"CREDIT_LIST_TITLE": "Credits",
 	"CONTACT_US_TITLE": "Contact us",
 	"SETTINGS_TITLE": "Settings",
+	"TUTORIAL_TITLE": "Tutorial",
 	"LOG_OUT_TITLE": "Log out",
+
+	"GAME_SAVE_SUBTITLE": "Game creation",
+	"GAME_LIST_SUBTITLE": "Games in which I am registered",
+	"GAME_AVAILABLE_LIST_SUBTITLE": "Games in which I can register",
+	"BET_MATCH_LIST_SUBTITLE": "Events to forecast",
+	"FRIEND_LIST_SUBTITLE": "People I follow",
+	"CREDIT_LIST_SUBTITLE": "Credit management",
+	"CONTACT_US_SUBTITLE": "Consultations and suggestions",
+	"SETTINGS_SUBTITLE": "User preferences",
+	"TUTORIAL_SUBTITLE": "Help documentation",
+	"LOG_OUT_SUBTITLE": "Exit the application",
 
 	"USERNAME": "Username",
 	"FIRST_NAME": "Fist name",
@@ -150,8 +160,7 @@
 	"GAME_BET_STATUS_OPENED": "Opened",
 
 	"BET_SAVE_SUCCESS": "Forecast updated",
-	"BET_SAVE_ERROR":
-		"This forecast can not be updated, since the event has already started according to the current date and time defined",
+	"BET_SAVE_ERROR": "This forecast can not be updated, since the event has already started according to the current date and time defined",
 
 	"REGISTER_SUCCESS": "Registration created",
 
@@ -166,16 +175,13 @@
 
 	"CREDIT_ADD_SUCCESS": "Credit added",
 	"CREDIT_ADD_ERROR": "The action to collect credits is not equal to type of transaction with code 1.",
-	"CREDIT_ADD_ERROR2":
-		"You can not buy more than the maximum allowed in the application. Enter an amount to buy no greater than 5000.",
-	"CREDIT_ADD_ERROR3":
-		"There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
+	"CREDIT_ADD_ERROR2": "You can not buy more than the maximum allowed in the application. Enter an amount to buy no greater than 5000.",
+	"CREDIT_ADD_ERROR3": "There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
 
 	"CREDIT_COLLECT_SUCCESS": "Request registered",
 	"CREDIT_COLLECT_ERROR":
 		"You do not have the minimum of sufficient credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
-	"CREDIT_COLLECT_ERROR2":
-		"You are wanting to collect more credits than you currently have. Please enter a lower amount.",
+	"CREDIT_COLLECT_ERROR2": "You are wanting to collect more credits than you currently have. Please enter a lower amount.",
 
 	"FOLLOW_SUCCESS": "Friend registered",
 	"UNFOLLOW_SUCCESS": "Friend deleted",
@@ -187,8 +193,7 @@
 	"INVITE_FRIEND_ALERT_SUBTITLE": "To be able to invite a friend you must first sign up for a game",
 
 	"GAME_NO_DATA_FOUND": "You have no registered games",
-	"AVAILABLE_GAME_NO_DATA_FOUND":
-		"At the moment there are no available games. It's your chance to be the first to create one!",
+	"AVAILABLE_GAME_NO_DATA_FOUND": "At the moment there are no available games. It's your chance to be the first to create one!",
 	"FRIEND_NO_DATA_FOUND": "You have no registered friends",
 	"CREDIT_NO_DATA_FOUND": "You have no registered credits",
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, MenuController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
@@ -30,6 +30,7 @@ export class LoginPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
+		public menu: MenuController,
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		private alertCtrl: AlertController,
@@ -143,5 +144,15 @@ export class LoginPage {
 			]
 		});
 		alert.present();
+	}
+
+	ionViewDidEnter() {
+		// the root left menu should be disabled on the login page
+		this.menu.enable(false);
+	}
+
+	ionViewWillLeave() {
+		// enable the root left menu when leaving the login page
+		this.menu.enable(true);
 	}
 }

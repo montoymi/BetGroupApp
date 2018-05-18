@@ -6,6 +6,7 @@ import { User } from '../../models/account/user';
 
 interface PageInterface {
 	title: string;
+	subtitle: string;
 	component: any;
 	icon: string;
 }
@@ -32,19 +33,19 @@ export class MenuPage {
 		public events: Events
 	) {
 		this.pageList1 = [
-			{ title: 'GAME_SAVE_TITLE', component: 'GameSavePage', icon: 'add-circle' },
-			{ title: 'GAME_LIST_TITLE', component: 'GameListPage', icon: 'star' },
-			{ title: 'GAME_AVAILABLE_LIST_TITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
-			{ title: 'BET_MATCH_LIST_TITLE', component: 'BetMatchListPage', icon: 'trending-up' },
-			{ title: 'FRIEND_LIST_TITLE', component: 'FriendListPage', icon: 'people' },
-			{ title: 'CREDIT_LIST_TITLE', component: 'CreditListPage', icon: 'cash' }
+			{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
+			{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
+			{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
+			{ title: 'GAME_SAVE_TITLE', subtitle: 'GAME_SAVE_SUBTITLE', component: 'GameSavePage', icon: 'add-circle' },
+			{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
+			{ title: 'CREDIT_LIST_TITLE', subtitle: 'CREDIT_LIST_SUBTITLE', component: 'CreditListPage', icon: 'cash' }
 		];
 
 		this.pageList2 = [
-			{ title: 'CONTACT_US_TITLE', component: 'ContactUsPage', icon: 'help-circle' },
-			{ title: 'SETTINGS_TITLE', component: 'SettingsPage', icon: 'settings' },
-			{ title: 'TUTORIAL_TITLE', component: 'TutorialPage', icon: 'school' },
-			{ title: 'LOG_OUT_TITLE', component: 'LoginPage', icon: 'exit' }
+			{ title: 'CONTACT_US_TITLE', subtitle: 'CONTACT_US_SUBTITLE', component: 'ContactUsPage', icon: 'help-circle' },
+			{ title: 'SETTINGS_TITLE', subtitle: 'SETTINGS_SUBTITLE', component: 'SettingsPage', icon: 'settings' },
+			{ title: 'TUTORIAL_TITLE', subtitle: 'TUTORIAL_SUBTITLE', component: 'TutorialPage', icon: 'school' },
+			{ title: 'LOG_OUT_TITLE', subtitle: 'LOG_OUT_SUBTITLE', component: 'LoginPage', icon: 'exit' }
 		];
 
 		this.user = userProvider.user;
