@@ -192,7 +192,7 @@
 	"INVITE_FRIEND_ALERT_TITLE": "Warning",
 	"INVITE_FRIEND_ALERT_SUBTITLE": "To be able to invite a friend you must first sign up for a game",
 
-	"GAME_NO_DATA_FOUND": "You have no registered games",
+	"GAME_NO_DATA_FOUND": "You do not have games registered. Please create a game or access the available games that are in the system",
 	"AVAILABLE_GAME_NO_DATA_FOUND": "At the moment there are no available games. It's your chance to be the first to create one!",
 	"FRIEND_NO_DATA_FOUND": "You have no registered friends",
 	"CREDIT_NO_DATA_FOUND": "You have no registered credits",
