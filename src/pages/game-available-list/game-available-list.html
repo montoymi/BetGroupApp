@@ -43,13 +43,13 @@
 						<ion-icon name="cash"></ion-icon>
 					</ion-col>
 					<ion-col>
-						<p>{{ pollaHeader.pollaCost ? pollaHeader.pollaCost : 0 }} {{ 'CREDITS' | translate }}</p>
+						<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 					</ion-col>
 					<ion-col col-1>
-						<ion-icon name=""></ion-icon>
+						<ion-icon name="trophy"></ion-icon>
 					</ion-col>
 					<ion-col>
-						<p>{{ pollaHeader.total_bet ? pollaHeader.total_bet : 0 }} {{ 'CREDITS' | translate }}</p>
+						<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 					</ion-col>
 				</ion-row>
 				<ion-row align-items-center>
