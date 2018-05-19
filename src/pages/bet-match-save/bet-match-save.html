@@ -14,38 +14,63 @@
 </ion-header>
 
 <ion-content>
-	<ion-item no-lines>
-		<h2>{{ 'BET_MATCH_EVENT' | translate }}</h2>
-		<p text-wrap>{{ match.localTeam.teamName }} vs. {{ match.visitorTeam.teamName }}</p>
-	</ion-item>
-	<ion-item no-lines>
-		<h2>{{ 'GAME_BET_FORECAST' | translate }}</h2>
-	</ion-item>
-	<ion-list style="margin-bottom: 16px" *ngFor="let pollaBet of pollaBetList">
-		<ion-item-divider>
-			{{ pollaBet.pollaParticipant.pollaHeader.pollaName }}
-		</ion-item-divider>
-		<ion-grid no-padding>
-			<ion-row align-items-end>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-label stacked>Local</ion-label>
-						<ion-input type="number" text-center [(ngModel)]="pollaBet.localBetScore" name="localBetScore"></ion-input>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-label stacked>Visitante</ion-label>
-						<ion-input type="number" text-center [(ngModel)]="pollaBet.visitorBetScore" name="visitorBetScore"></ion-input>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-label>Comodín</ion-label>
-						<ion-checkbox></ion-checkbox>
-					</ion-item>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-list>
+	<ion-slides pager="true" dir="{{ dir }}">
+		<ion-slide *ngFor="let pollaBet of pollaBetList">
+			<ion-grid>
+				<ion-row>
+					<ion-col col-3>
+						<p text-center>{{ pollaBet.pollaMatch.match.localTeam.teamName }}</p>
+					</ion-col>
+					<ion-col col-3 offset-6>
+						<p text-center>{{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</p>
+					</ion-col>
+				</ion-row>
+				<ion-row align-items-center>
+					<ion-col>
+						<ion-thumbnail>
+							<img [src]="pollaBet.pollaMatch.match.localTeam.image" />
+						</ion-thumbnail>
+					</ion-col>
+					<ion-col>
+						<ion-input type="number" text-center [(ngModel)]="pollaBet.localBetScore" name="localBetScore" [disabled]="pollaBet.status==0"></ion-input>
+					</ion-col>
+					<ion-col>
+						<ion-input type="number" text-center [(ngModel)]="pollaBet.visitorBetScore" name="visitorBetScore" [disabled]="pollaBet.status==0"></ion-input>
+					</ion-col>
+					<ion-col>
+						<ion-thumbnail>
+							<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />
+						</ion-thumbnail>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<ion-item no-lines>
+							<ion-label>{{ 'GAME_BET_WILDCARD' | translate }}</ion-label>
+							<ion-checkbox [(ngModel)]="pollaBet.flagWildcard" name=flagWildcard [disabled]="pollaBet.status==0 || pollaBet.pollaMatch.pollaHeader.modeWildcardFlag!=1"></ion-checkbox>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+
+			<ion-list>
+				<ion-item>
+					<h2>{{ 'GAME_NAME' | translate }}</h2>
+					<p>{{ pollaBet.pollaParticipant.pollaHeader.pollaName }}</p>
+				</ion-item>
+				<ion-item>
+					<h2>{{ 'GAME_TEMPLATE_NAME' | translate }}</h2>
+					<p></p>
+				</ion-item>
+				<ion-item>
+					<h2>{{ 'GAME_BET_EVENT' | translate }}</h2>
+					<p text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</p>
+				</ion-item>
+				<ion-item>
+					<h2>{{ 'GAME_BET_STATUS' | translate }}</h2>
+					<p>{{ pollaBet.status == 0 ? ('GAME_BET_STATUS_CLOSED' | translate) : ('GAME_BET_STATUS_OPENED' | translate) }}</p>
+				</ion-item>
+			</ion-list>
+		</ion-slide>
+	</ion-slides>
 </ion-content>

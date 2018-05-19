@@ -21,10 +21,29 @@
 			<ion-thumbnail item-start>
 				<img [src]="pollaHeader.image" />
 			</ion-thumbnail>
-			<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
-			<p>{{ 'GAME_LIST_COST' | translate }}: {{ pollaHeader.pollaCost ? pollaHeader.pollaCost : 0 }} créditos</p>
-			<p>{{ 'GAME_LIST_ACCESS' | translate }}: {{ pollaHeader.accessFlag == 0 ? ('GAME_ACCESS_FLAG_PUBLIC' | translate) : ('GAME_ACCESS_FLAG_PRIVATE'
-				| translate) }}</p>
+			<ion-grid no-padding>
+				<ion-row align-items-center>
+					<ion-col>
+						<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
+					</ion-col>
+				</ion-row>
+				<ion-row align-items-center>
+					<ion-col col-1>
+						<ion-icon name="{{ pollaHeader.accessFlag == 0 ? 'unlock' : 'lock' }}"></ion-icon>
+					</ion-col>
+					<ion-col>
+						<p>{{ pollaHeader.accessFlag == 0 ? ('GAME_ACCESS_FLAG_PUBLIC' | translate) : ('GAME_ACCESS_FLAG_PRIVATE' | translate)
+							}}
+						</p>
+					</ion-col>
+					<ion-col col-1 >
+						<ion-icon name="cash"></ion-icon>
+					</ion-col>
+					<ion-col>
+						<p>{{ pollaHeader.pollaCost ? pollaHeader.pollaCost : 0 }} {{ 'CREDITS' | translate }}</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 		</button>
 	</ion-list>
 	<p padding *ngIf="pollaHeaderList && pollaHeaderList.length == 0">{{ 'GAME_NO_DATA_FOUND' | translate }}</p>

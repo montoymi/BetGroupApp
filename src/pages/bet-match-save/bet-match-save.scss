@@ -1,5 +1,14 @@
 page-bet-match-save {
 	.input {
 		border: thin solid color($colors, _gray);
+		font-size: 13px;
+	}
+
+	p {
+		font-size: 13px;
+	}
+
+	ion-slide.swiper-slide {
+		align-items: flex-start;
 	}
 }

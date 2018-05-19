@@ -23,13 +23,13 @@
 					</ion-col>
 				</ion-row>
 				<ion-row align-items-center>
-						<ion-col col-1>
-							<ion-icon name="person"></ion-icon>
-						</ion-col>
-						<ion-col>
-							<p>Vercingetorix</p>
-						</ion-col>
-					</ion-row>
+					<ion-col col-1>
+						<ion-icon name="person"></ion-icon>
+					</ion-col>
+					<ion-col>
+						<p>{{ pollaHeader.admin.username }}</p>
+					</ion-col>
+				</ion-row>
 				<ion-row align-items-center>
 					<ion-col col-1>
 						<ion-icon name="{{ pollaHeader.accessFlag == 0 ? 'unlock' : 'lock' }}"></ion-icon>
@@ -51,7 +51,7 @@
 						<ion-icon name="calendar"></ion-icon>
 					</ion-col>
 					<ion-col>
-						<p>{{ pollaHeader.startDate | moment:'DD/MM/YY H:mm' }}</p>
+						<p>{{ pollaHeader.startDate | moment:'DD/MM/YY' }}</p>
 					</ion-col>
 					<ion-col col-1>
 						<ion-icon name="people"></ion-icon>

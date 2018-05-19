@@ -16,6 +16,7 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 export class BetMatchSavePage {
 	match: Match;
 	pollaBetList: PollaBet[];
+	dir: string = 'ltr';
 
 	private betSaveSuccess: string;
 	private betSaveError: string;
