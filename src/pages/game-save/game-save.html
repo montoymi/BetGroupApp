@@ -90,7 +90,7 @@
 			<ion-step label="{{ 'GAME_STEP4_TITLE' | translate }}">
 				<ion-list>
 					<ion-item no-lines *ngIf="pollaHeader.rules" text-wrap>
-						<p style="white-space: pre-line">{{ pollaHeader.rules }}</p>
+						<p style="white-space: pre-line; height: 180px; overflow-y: scroll">{{ pollaHeader.rules }}</p>
 					</ion-item>
 					<ion-item no-lines>
 						<ion-label text-wrap>{{ 'ACCEPT_RULES' | translate }}</ion-label>

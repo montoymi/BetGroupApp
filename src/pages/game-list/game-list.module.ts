@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
+
 import { GameListPage } from './game-list';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -9,7 +11,8 @@ import { GameListPage } from './game-list';
 	],
 	imports: [
 		IonicPageModule.forChild(GameListPage),
-		TranslateModule.forChild()
+		TranslateModule.forChild(),
+		PipesModule
 	],
 	exports: [
 		GameListPage

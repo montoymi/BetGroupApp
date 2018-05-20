@@ -39,4 +39,5 @@
 			</ion-thumbnail>
 		</button>
 	</ion-list>
+	<p padding *ngIf="matchList && matchList.length == 0">{{ 'GAME_NO_DATA_FOUND' | translate }}</p>
 </ion-content>

@@ -29,8 +29,6 @@
 					<ion-col>
 						<p>{{ pollaHeader.admin.username }}</p>
 					</ion-col>
-				</ion-row>
-				<ion-row align-items-center>
 					<ion-col col-1>
 						<ion-icon name="{{ pollaHeader.accessFlag == 0 ? 'unlock' : 'lock' }}"></ion-icon>
 					</ion-col>
@@ -39,11 +37,19 @@
 							}}
 						</p>
 					</ion-col>
+				</ion-row>
+				<ion-row align-items-center>
 					<ion-col col-1>
 						<ion-icon name="cash"></ion-icon>
 					</ion-col>
 					<ion-col>
-						<p>{{ pollaHeader.pollaCost ? pollaHeader.pollaCost : 0 }} {{ 'CREDITS' | translate }}</p>
+						<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
+					</ion-col>
+					<ion-col col-1>
+						<ion-icon name="trophy"></ion-icon>
+					</ion-col>
+					<ion-col>
+						<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 					</ion-col>
 				</ion-row>
 				<ion-row align-items-center>
