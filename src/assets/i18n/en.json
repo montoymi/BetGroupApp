@@ -1,34 +1,34 @@
 {
-	"WELCOME_INTRO": "What is your bet today?",
+	"WELCOME_INTRO": "What is your forecast for today?",
 
 	"TUTORIAL_SKIP_BUTTON": "Skip",
 	"TUTORIAL_CONTINUE_BUTTON": "Continue",
 	"TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
 	"NO_SHOW": "Do not show again",
 
-	"APP_TITLE": "Betgroup Sports",
+	"APP_TITLE": "Kiniela Sports",
 
 	"LOGIN": "Sign in",
 	"SIGNUP": "Sign up",
 	"LOGIN_TITLE": "Sign in",
-	"LOGIN_NICKNAME_ERROR": "The user entered does not exist in the system. Please correct and enter the username and try to log in again.",
+	"LOGIN_NICKNAME_ERROR": "The user that you have entered is not registered in the system. Please, change the username and try to log in again. ",
 	"LOGIN_PASSWORD_ERROR": "The credentials entered do not match. Please correct and enter the password and try to log in again.",
 	"LOGIN_BUTTON": "Sign in",
 	"FORGOT_PASSWORD_BUTTON": "Forgot password?",
 	"FORGOT_PASSWORD_TITLE": "Forgot password?",
 	"FORGOT_PASSWORD_SUBTITLE": "Please enter your email",
-	"FORGOT_PASSWORD_SUCCESS": "Sent has sent a temporary password to your email",
-	"FORGOT_PASSWORD_ERROR": "There is no registered user with that email",
+	"FORGOT_PASSWORD_SUCCESS": "A temporary password has been sent to your email",
+	"FORGOT_PASSWORD_ERROR": "There is no  user associated in the syste with that email",
 	"FORGOT_PASSWORD_ERROR2": "<MESSAGE>",
 
 	"KEEP_SESSION": "Keep me signed in",
 
 	"SIGNUP_TITLE": "Sign up",
 	"SIGNUP_BUTTON": "Sign up",
-	"ACCEPT_CONDITIONS": "I accept the conditions",
+	"ACCEPT_CONDITIONS": "I accept the terms and conditions",
 
-	"SIGNUP_SUCCESS": "Account created",
-	"USER_SAVE_SUCCESS": "Profile updated",
+	"SIGNUP_SUCCESS": "Your account has been  created",
+	"USER_SAVE_SUCCESS": "Your profile has been updated",
 
 	"USERNAME_REQUIRED_ERROR": "Username is required.",
 	"EMAIL_REQUIRED_ERROR": "Email is required.",
@@ -49,7 +49,7 @@
 
 	"GAME_SAVE_TITLE": "Create game",
 	"GAME_LIST_TITLE": "My games",
-	"GAME_AVAILABLE_LIST_TITLE": "Games available",
+	"GAME_AVAILABLE_LIST_TITLE": "Available games",
 	"BET_MATCH_LIST_TITLE": "My forecasts",
 	"FRIEND_LIST_TITLE": "My friends",
 	"CREDIT_LIST_TITLE": "Credits",
@@ -58,19 +58,19 @@
 	"TUTORIAL_TITLE": "Tutorial",
 	"LOG_OUT_TITLE": "Log out",
 
-	"GAME_SAVE_SUBTITLE": "Game creation",
-	"GAME_LIST_SUBTITLE": "Games in which I am registered",
-	"GAME_AVAILABLE_LIST_SUBTITLE": "Games in which I can register",
-	"BET_MATCH_LIST_SUBTITLE": "Events to forecast",
-	"FRIEND_LIST_SUBTITLE": "People I follow",
-	"CREDIT_LIST_SUBTITLE": "Credit management",
+	"GAME_SAVE_SUBTITLE": "Where you can create games according to your rules",
+	"GAME_LIST_SUBTITLE": "List of your registered games from where you can enter the forecasts of your game",
+	"GAME_AVAILABLE_LIST_SUBTITLE": "List of available games from where you can sign up for a game",
+	"BET_MATCH_LIST_SUBTITLE": "List of available events from where you can enter the forecasts of various reigstered games",
+	"FRIEND_LIST_SUBTITLE": "List of friends to whom I can see its registered games that are in progress",
+	"CREDIT_LIST_SUBTITLE": "Where you can see your account and manage credit operations",
 	"CONTACT_US_SUBTITLE": "Consultations and suggestions",
 	"SETTINGS_SUBTITLE": "User preferences",
 	"TUTORIAL_SUBTITLE": "Help documentation",
 	"LOG_OUT_SUBTITLE": "Exit the application",
 
 	"USERNAME": "Username",
-	"FIRST_NAME": "Fist name",
+	"FIRST_NAME": "First name",
 	"LAST_NAME": "Last name",
 	"SEX": "Sex",
 	"BIRTHDATE": "Birthdate",
@@ -110,18 +110,18 @@
 	"GAME_NUM_WILDCARDS_LEFT": "Wildcards remaining",
 
 	"GAME_SAVE_SUCCESS": "Game created",
-	"GAME_SAVE_ERROR": "You do not have enough credits for the registration amount defined for the game",
+	"GAME_SAVE_ERROR": "You don't have enough credits to register for this game.",
 	"GAME_PASSWORD_ERROR": "Incorrect password",
 
-	"GAME_STEP1_TITLE": "Select the betgroup",
+	"GAME_STEP1_TITLE": "Select the Kiniela to play",
 
-	"GAME_STEP2_TITLE": "Enter the game data",
-	"GAME_TEMPLATE_NAME": "Betgroup",
+	"GAME_STEP2_TITLE": "Enter the game detail information",
+	"GAME_TEMPLATE_NAME": "Kiniela",
 	"GAME_CODE": "Game code",
 	"GAME_NAME": "Game name",
-	"GAME_COST_FLAG": "With cost",
-	"GAME_POLLA_COST": "Cost",
-	"GAME_ACCESS_FLAG_PRIVATE": "Private",
+	"GAME_COST_FLAG": "Cost? (y/n)",
+	"GAME_POLLA_COST": "Registration fee",
+	"GAME_ACCESS_FLAG_PRIVATE": "Private? (y/n)",
 	"GAME_ACCESS_FLAG_PUBLIC": "Public",
 	"GAME_PASSWORD": "Password",
 
@@ -179,8 +179,7 @@
 	"CREDIT_ADD_ERROR3": "There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
 
 	"CREDIT_COLLECT_SUCCESS": "Request registered",
-	"CREDIT_COLLECT_ERROR":
-		"You do not have the minimum of sufficient credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
+	"CREDIT_COLLECT_ERROR":	"You don't have the minimum credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
 	"CREDIT_COLLECT_ERROR2": "You are wanting to collect more credits than you currently have. Please enter a lower amount.",
 
 	"FOLLOW_SUCCESS": "Friend registered",
@@ -192,9 +191,9 @@
 	"INVITE_FRIEND_ALERT_TITLE": "Warning",
 	"INVITE_FRIEND_ALERT_SUBTITLE": "To be able to invite a friend you must first sign up for a game",
 
-	"GAME_NO_DATA_FOUND": "You do not have games registered. Please create a game or access the available games that are in the system",
+	"GAME_NO_DATA_FOUND": "You don't have games registered. Please create a game or access the available games that are in the system",
 	"AVAILABLE_GAME_NO_DATA_FOUND": "At the moment there are no available games. It's your chance to be the first to create one!",
-	"FRIEND_NO_DATA_FOUND": "You have no registered friends",
+	"FRIEND_NO_DATA_FOUND": "You are not following any friends. Please, go access any game, so you can follow people and see their predictions.",
 	"CREDIT_NO_DATA_FOUND": "You have no registered credits",
 
 	"GAME_LIST_COST": "Entry",
