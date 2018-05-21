@@ -29,7 +29,7 @@ export class GameTabsPage {
 	tab5Title = ' ';
 	tab6Title = ' ';
 
-	tabParams = { pollaHeader: this.navParams.get('pollaHeader'), myPollas: this.navParams.get('myPollas') };
+	tabParams;// = { pollaHeader: this.navParams.get('pollaHeader'), myPollas: this.navParams.get('myPollas') };
 
 	constructor(
 		public navCtrl: NavController, 
@@ -51,5 +51,7 @@ export class GameTabsPage {
 		if (!myPollas) {
 			this.tab1Root = 'GameAvailableDetailPage';
 		}
+
+		this.tabParams = { pollaHeader: this.navParams.get('pollaHeader'), myPollas: this.navParams.get('myPollas') };
 	}
 }

@@ -5,7 +5,7 @@
 		</button>
 		<ion-title>{{ 'ADD_CREDITS_TITLE' | translate }}</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="done()">
+			<button ion-button icon-only [disabled]="!form.valid" (click)="done()">
 				<ion-icon name="checkmark"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -13,34 +13,35 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
-		<ion-item>
-			<h2>Costo del crédito</h2>
-			<p>10 créditos = 1 U.S. dólar</p>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'CREDITS_TO_BUY' | translate }}</ion-label>
-			<ion-input type="number" [(ngModel)]="creditDetail.creditAmount" name="creditAmount"></ion-input>
-		</ion-item>
-		<ion-item *ngIf="creditDetail.creditAmount">
-			<h2>Costo de los créditos</h2>
-			<p>{{ creditDetail.creditAmount }} créditos = {{ creditDetail.creditAmount/10 }} U.S. dólar</p>
-		</ion-item>
-		<ion-item>
-			<h2 align="justify">
-				<ion-note text-wrap>
-					El siguiente es el número de cuenta bancaria donde deberá hacer el depósito en el banco. Luego de realizado el depósito,
-					envíe el voucher con la transacción al correo indicado para aprobar la compra.
-				</ion-note>
-			</h2>
-		</ion-item>
-		<ion-item>
-			<h2>{{ 'ACCOUNT_NUMBER' | translate }}</h2>
-			<p>0000123042034234</p>
-		</ion-item>
-		<ion-item>
-			<h2>{{ 'EMAIL' | translate }}</h2>
-			<p>admin@betgroupsports.com</p>
-		</ion-item>
-	</ion-list>
+	<form [formGroup]="form">
+		<ion-list>
+			<ion-item>
+				<h2>Costo del crédito</h2>
+				<p>10 créditos = 1 U.S. dólar</p>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>{{ 'CREDITS_TO_BUY' | translate }}</ion-label>
+				<ion-input type="number" [(ngModel)]="creditDetail.creditAmount" formControlName="creditAmount"></ion-input>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let validation of validationMessages.creditAmount">
+					<div class="error-message" *ngIf="form.get('creditAmount').hasError(validation.type) && (form.get('creditAmount').dirty || form.get('creditAmount').touched)">
+						{{ validation.message }}
+					</div>
+				</ng-container>
+			</div>
+
+			<ion-item *ngIf="creditDetail.creditAmount">
+				<h2>Costo de los créditos</h2>
+				<p>{{ creditDetail.creditAmount }} créditos = {{ creditDetail.creditAmount/10 }} U.S. dólar</p>
+			</ion-item>
+			<ion-item>
+				<h2 align="justify">
+					<ion-note text-wrap>
+						{{ 'CREDITS_COLLECT_INFO' | translate }}
+					</ion-note>
+				</h2>
+			</ion-item>
+		</ion-list>
+	</form>
 </ion-content>

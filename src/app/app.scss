@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -25,4 +24,9 @@
 
 html {
 	font-size: 9px;
+}
+
+.error-message {
+	color: red;
+	padding-left: 16px;
 }

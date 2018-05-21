@@ -171,17 +171,26 @@
 	"COLLECT_CREDITS_TITLE": "Collect credits",
 
 	"CREDITS_TO_BUY": "Credits to buy",
+	"CREDITS_BUY_INFO": "<TEXT>",
+
 	"CREDITS_TO_COLLECT": "Credits to collect",
+	"CREDITS_COLLECT_INFO": "<TEXT>",
 
+	"CREDIT_ADD_CONFIRM_TITLE": "Confirm purchase",
+	"CREDIT_ADD_CONFIRM_MESSAGE": "Do you want to buy credits?",
 	"CREDIT_ADD_SUCCESS": "Credit added",
-	"CREDIT_ADD_ERROR": "The action to collect credits is not equal to type of transaction with code 1.",
-	"CREDIT_ADD_ERROR2": "You can not buy more than the maximum allowed in the application. Enter an amount to buy no greater than 5000.",
-	"CREDIT_ADD_ERROR3": "There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
+	"CREDIT_TO_BUY_REQUIRED_ERROR": "Credits to buy is required.",
+	"CREDIT_ADD_ERROR": "You can not buy more than the maximum allowed in the application. Enter an amount to buy no greater than 5000.",
+	"CREDIT_ADD_ERROR2": "There is a purchase transaction pending approval. Wait for it to be processed, to proceed with a new purchase.",
 
+	"CREDIT_COLLECT_CONFIRM_TITLE": "Confirm collect",
+	"CREDIT_COLLECT_CONFIRM_MESSAGE": "Do you want to collect credits?",
 	"CREDIT_COLLECT_SUCCESS": "Request registered",
+	"CREDIT_TO_COLLECT_REQUIRED_ERROR": "Credits to collect is required.",
 	"CREDIT_COLLECT_ERROR":
 		"You do not have the minimum of sufficient credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
 	"CREDIT_COLLECT_ERROR2": "You are wanting to collect more credits than you currently have. Please enter a lower amount.",
+	"CREDIT_COLLECT_ERROR3": "The action to collect credits is not equal to type of transaction with code 1.",
 
 	"FOLLOW_SUCCESS": "Friend registered",
 	"UNFOLLOW_SUCCESS": "Friend deleted",

@@ -172,19 +172,28 @@
 	"COLLECT_CREDITS_TITLE": "Cobrar créditos",
 
 	"CREDITS_TO_BUY": "Créditos a comprar",
+	"CREDITS_BUY_INFO": "<TEXT>",
+
 	"CREDITS_TO_COLLECT": "Créditos a cobrar",
+	"CREDITS_COLLECT_INFO": "<TEXT>",
 
 	"ACCOUNT_NUMBER": "Número de cuenta",
 
+	"CREDIT_ADD_CONFIRM_TITLE": "Confirmar compra",
+	"CREDIT_ADD_CONFIRM_MESSAGE": "¿Quieres comprar créditos?",
 	"CREDIT_ADD_SUCCESS": "Crédito adicionado",
-	"CREDIT_ADD_ERROR": "La acción cobrar creditos no es igual a tipo de transacción con código 1.",
-	"CREDIT_ADD_ERROR2": "No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
-	"CREDIT_ADD_ERROR3": "Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
+	"CREDIT_TO_BUY_REQUIRED_ERROR": "Créditos a comprar es requerido.",
+	"CREDIT_ADD_ERROR": "No se puede comprar más del máximo permitido en la aplicación. Ingrese un monto a comprar no mayor a 5000.",
+	"CREDIT_ADD_ERROR2": "Existe una transacción de compra pendiente de aprobación. Espere a que se procese, para proceder con una nueva compra.",
 
+	"CREDIT_COLLECT_CONFIRM_TITLE": "Confirmar cobro",
+	"CREDIT_COLLECT_CONFIRM_MESSAGE": "¿Quieres cobrar créditos?",
 	"CREDIT_COLLECT_SUCCESS": "Solicitud registrada",
+	"CREDIT_TO_COLLECT_REQUIRED_ERROR": "Créditos a cobrar es requerido.",
 	"CREDIT_COLLECT_ERROR":
 		"Ud. no cuenta con el mínimo de créditos suficientes para realizar la transacción de cobro. Debe tener al menos 1000 créditos para hacer una transacción de tipo cobro.",
 	"CREDIT_COLLECT_ERROR2": "Ud. esta queriendo cobrar más créditos de los que cuenta actualmente. Por favor, ingrese un monto menor.",
+	"CREDIT_COLLECT_ERROR3": "La acción cobrar créditos no es igual a tipo de transacción con código 1.",
 
 	"FOLLOW_SUCCESS": "Amigo registrado",
 	"UNFOLLOW_SUCCESS": "Amigo eliminado",

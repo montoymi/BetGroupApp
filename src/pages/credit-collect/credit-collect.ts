@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
@@ -17,9 +18,19 @@ export class CreditCollectPage {
 	credit: Credit;
 	creditDetail: CreditDetail;
 
+	private confirmTitle: string;
+	private confirmMessage: string;
+	private cancelButton: string;
+	private okButton: string;
 	private creditCollectSuccess: string;
+	private creditAmountRequiredError: string;
 	private creditCollectError: string;
 	private creditCollectError2: string;
+	private creditCollectError3: string;
+
+	form: FormGroup;
+
+	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -27,21 +38,49 @@ export class CreditCollectPage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
+		private alertCtrl: AlertController,
 		public userProvider: UserProvider,
 		public creditProvider: CreditProvider,
+		public formBuilder: FormBuilder,
 		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController
 	) {
 		this.translate
-			.get(['CREDIT_COLLECT_SUCCESS', 'CREDIT_COLLECT_ERROR', 'CREDIT_COLLECT_ERROR2'])
+			.get([
+				'CREDIT_COLLECT_CONFIRM_TITLE',
+				'CREDIT_COLLECT_CONFIRM_MESSAGE',
+				'CANCEL_BUTTON',
+				'OK_BUTTON',
+				'CREDIT_COLLECT_SUCCESS',
+				'CREDIT_TO_COLLECT_REQUIRED_ERROR',
+				'CREDIT_COLLECT_ERROR',
+				'CREDIT_COLLECT_ERROR2',
+				'CREDIT_COLLECT_ERROR3'
+			])
 			.subscribe(values => {
+				this.confirmTitle = values['CREDIT_COLLECT_CONFIRM_TITLE'];
+				this.confirmMessage = values['CREDIT_COLLECT_CONFIRM_MESSAGE'];
+				this.cancelButton = values['CANCEL_BUTTON'];
+				this.okButton = values['OK_BUTTON'];
 				this.creditCollectSuccess = values['CREDIT_COLLECT_SUCCESS'];
+				this.creditAmountRequiredError = values['CREDIT_TO_COLLECT_REQUIRED_ERROR'];
 				this.creditCollectError = values['CREDIT_COLLECT_ERROR'];
 				this.creditCollectError2 = values['CREDIT_COLLECT_ERROR2'];
+				this.creditCollectError3 = values['CREDIT_COLLECT_ERROR3'];
 			});
 
 		this.credit = navParams.get('credit');
 		this.creditDetail = new CreditDetail();
+
+		this.validationMessages = {
+			creditAmount: [{ type: 'required', message: this.creditAmountRequiredError }]
+		};
+	}
+
+	ionViewWillLoad() {
+		this.form = this.formBuilder.group({
+			creditAmount: new FormControl('', Validators.required)
+		});
 	}
 
 	saveCreditTransaction() {
@@ -75,6 +114,9 @@ export class CreditCollectPage {
 					case RESPONSE_ERROR.CREDIT_COLLECT_ERROR2:
 						presentToast(this.toastCtrl, this.creditCollectError2);
 						break;
+					case RESPONSE_ERROR.CREDIT_COLLECT_ERROR3:
+						presentToast(this.toastCtrl, this.creditCollectError3);
+						break;
 					default:
 						presentToast(this.toastCtrl, err.message);
 						break;
@@ -83,7 +125,30 @@ export class CreditCollectPage {
 		);
 	}
 
+	presentConfirm() {
+		let alert = this.alertCtrl.create({
+			title: this.confirmTitle,
+			message: this.confirmMessage,
+			buttons: [
+				{
+					text: this.cancelButton,
+					role: 'cancel',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: this.okButton,
+					handler: data => {
+						this.saveCreditTransaction();
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
 	done() {
-		this.saveCreditTransaction();
+		this.presentConfirm();
 	}
 }
