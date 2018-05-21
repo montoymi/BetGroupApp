@@ -64,7 +64,7 @@
 	"BET_MATCH_LIST_SUBTITLE": "List of available events from where you can enter the forecasts of various reigstered games",
 	"FRIEND_LIST_SUBTITLE": "List of friends to whom I can see its registered games that are in progress",
 	"CREDIT_LIST_SUBTITLE": "Where you can see your account and manage credit operations",
-	"CONTACT_US_SUBTITLE": "Consultations and suggestions",
+	"CONTACT_US_SUBTITLE": "Where you can send us anyquestions, comments or suggestions about the app",
 	"SETTINGS_SUBTITLE": "User preferences",
 	"TUTORIAL_SUBTITLE": "Help documentation",
 	"LOG_OUT_SUBTITLE": "Exit the application",
@@ -129,8 +129,8 @@
 	"TEMPLATE_MATCH_LIST_BUTTON": "Events",
 
 	"GAME_STEP3_TITLE": "Select the game mode",
-	"GAME_MODALITY_TOTAL_POLLA": "Total well",
-	"GAME_MODALITY_TINY_POLLA": "Well by date",
+	"GAME_MODALITY_TOTAL_POLLA": "Total pool",
+	"GAME_MODALITY_TINY_POLLA": "Pool by date",
 	"GAME_MODALITY_WILDCARD": "Wildcards",
 
 	"GAME_STEP4_TITLE": "Game rules",
@@ -138,7 +138,7 @@
 
 	"GAME_INFO_TAB": "Info",
 	"PARTICIPANTS_TAB": "Members",
-	"INVITE_TAB": "Friends",
+	"INVITE_TAB": "Invite",
 	"RULES_TAB": "Rules",
 	"RANKING_TAB": "Ranking",
 
