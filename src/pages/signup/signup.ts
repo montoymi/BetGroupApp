@@ -19,6 +19,7 @@ export class SignupPage {
 
 	private signupSuccess: string;
 	private usernameRequiredError: string;
+	private usernameMaxlengthError: string;
 	private emailRequiredError: string;
 	private emailPatternError: string;
 	private passwordRequiredError: string;
@@ -53,6 +54,7 @@ export class SignupPage {
 			.get([
 				'SIGNUP_SUCCESS',
 				'USERNAME_REQUIRED_ERROR',
+				'USERNAME_MAXLENGTH_ERROR',
 				'EMAIL_REQUIRED_ERROR',
 				'EMAIL_PATTERN_ERROR',
 				'PASSWORD_REQUIRED_ERROR',
@@ -69,6 +71,7 @@ export class SignupPage {
 			.subscribe(values => {
 				this.signupSuccess = values['SIGNUP_SUCCESS'];
 				this.usernameRequiredError = values['USERNAME_REQUIRED_ERROR'];
+				this.usernameMaxlengthError = values['USERNAME_MAXLENGTH_ERROR'];
 				this.emailRequiredError = values['EMAIL_REQUIRED_ERROR'];
 				this.emailPatternError = values['EMAIL_PATTERN_ERROR'];
 				this.passwordRequiredError = values['PASSWORD_REQUIRED_ERROR'];
@@ -80,7 +83,7 @@ export class SignupPage {
 				this.signupNicknameError = values['SIGNUP_NICKNAME_ERROR'];
 				this.signupEmailError = values['SIGNUP_EMAIL_ERROR'];
 				this.inviteTermsAlertTitle = values['TERMS_ALERT_TITLE'];
-				this.okButton = values['OK_BUTTON']
+				this.okButton = values['OK_BUTTON'];
 			});
 
 		this.user = new User();
@@ -88,7 +91,7 @@ export class SignupPage {
 		this.loadTerms();
 
 		this.validationMessages = {
-			username: [{ type: 'required', message: this.usernameRequiredError }],
+			username: [{ type: 'required', message: this.usernameRequiredError }, { type: 'maxlength', message: this.usernameMaxlengthError }],
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }],
 			password: [
 				{ type: 'required', message: this.passwordRequiredError },
@@ -116,7 +119,7 @@ export class SignupPage {
 		);
 
 		this.form = this.formBuilder.group({
-			username: new FormControl('', Validators.required),
+			username: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(15)])),
 			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
 			passwords: this.passwords,
 			terms: new FormControl(false, Validators.pattern('true'))
@@ -125,7 +128,7 @@ export class SignupPage {
 
 	doSignup(values) {
 		this.user.preferredLang = this.translate.store.currentLang;
-		
+
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.signup(this.user).subscribe(
 			(res: any) => {

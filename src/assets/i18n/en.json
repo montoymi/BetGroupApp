@@ -31,6 +31,7 @@
 	"USER_SAVE_SUCCESS": "Your profile has been updated",
 
 	"USERNAME_REQUIRED_ERROR": "Username is required.",
+	"USERNAME_MAXLENGTH_ERROR": "The username must have a maximum of 15 characters.",
 	"EMAIL_REQUIRED_ERROR": "Email is required.",
 	"EMAIL_PATTERN_ERROR": "Enter a valid email.",
 	"PASSWORD_REQUIRED_ERROR": "Password is required.",
