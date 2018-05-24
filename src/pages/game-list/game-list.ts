@@ -13,6 +13,8 @@ import { presentToast, presentLoading } from '../pages';
 export class GameListPage {
 	pollaHeaderList: PollaHeader[];
 
+	userType: string;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -21,6 +23,7 @@ export class GameListPage {
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
+		this.userType = userProvider.user.userType;
 	}
 
 	// Runs when the page is about to enter and become the active page.

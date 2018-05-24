@@ -4,7 +4,7 @@
 			<ion-icon name="menu"></ion-icon>
 		</button>
 		<ion-title>{{ 'GAME_LIST_TITLE' | translate }}</ion-title>
-		<ion-buttons end>
+		<ion-buttons end *ngIf="userType=='ADMIN'">
 			<button ion-button icon-only (click)="openGameSavePage()">
 				<ion-icon name="add"></ion-icon>
 			</button>

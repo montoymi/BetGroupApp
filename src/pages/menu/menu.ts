@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, Nav, NavController, Events } from 'ionic-angular';
+import { IonicPage, Nav, NavController, MenuController, Events } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
@@ -10,7 +10,6 @@ interface PageInterface {
 	component: any;
 	icon: string;
 }
-type PageList = PageInterface[];
 
 @IonicPage()
 @Component({
@@ -21,40 +20,52 @@ export class MenuPage {
 	// A reference to the ion-nav in our component
 	@ViewChild(Nav) nav: Nav;
 
+	adminPageList: PageInterface[] = [
+		{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
+		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
+		{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
+		{ title: 'GAME_SAVE_TITLE', subtitle: 'GAME_SAVE_SUBTITLE', component: 'GameSavePage', icon: 'add-circle' },
+		{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
+		{ title: 'CREDIT_LIST_TITLE', subtitle: 'CREDIT_LIST_SUBTITLE', component: 'CreditListPage', icon: 'cash' }
+	];
+
+	userPageList: PageInterface[] = [
+		{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
+		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
+		{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
+		{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
+		{ title: 'CREDIT_LIST_TITLE', subtitle: 'CREDIT_LIST_SUBTITLE', component: 'CreditListPage', icon: 'cash' }
+	];
+
+	secondaryPageList: PageInterface[] = [
+		{ title: 'CONTACT_US_TITLE', subtitle: 'CONTACT_US_SUBTITLE', component: 'ContactUsPage', icon: 'help-circle' },
+		{ title: 'SETTINGS_TITLE', subtitle: 'SETTINGS_SUBTITLE', component: 'SettingsPage', icon: 'settings' },
+		{ title: 'TUTORIAL_TITLE', subtitle: 'TUTORIAL_SUBTITLE', component: 'TutorialPage', icon: 'school' },
+		{ title: 'LOG_OUT_TITLE', subtitle: 'LOG_OUT_SUBTITLE', component: 'WelcomePage', icon: 'exit' }
+	];
+
 	rootPage: any = 'GameListPage';
-	pageList1: PageList;
-	pageList2: PageList;
 
 	user: User;
 
-	constructor(
-		public navCtrl: NavController,
-		private userProvider: UserProvider,
-		public events: Events
-	) {
-		this.pageList1 = [
-			{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
-			{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
-			{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
-			{ title: 'GAME_SAVE_TITLE', subtitle: 'GAME_SAVE_SUBTITLE', component: 'GameSavePage', icon: 'add-circle' },
-			{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
-			{ title: 'CREDIT_LIST_TITLE', subtitle: 'CREDIT_LIST_SUBTITLE', component: 'CreditListPage', icon: 'cash' }
-		];
-
-		this.pageList2 = [
-			{ title: 'CONTACT_US_TITLE', subtitle: 'CONTACT_US_SUBTITLE', component: 'ContactUsPage', icon: 'help-circle' },
-			{ title: 'SETTINGS_TITLE', subtitle: 'SETTINGS_SUBTITLE', component: 'SettingsPage', icon: 'settings' },
-			{ title: 'TUTORIAL_TITLE', subtitle: 'TUTORIAL_SUBTITLE', component: 'TutorialPage', icon: 'school' },
-			{ title: 'LOG_OUT_TITLE', subtitle: 'LOG_OUT_SUBTITLE', component: 'WelcomePage', icon: 'exit' }
-		];
-
+	constructor(public navCtrl: NavController, private userProvider: UserProvider, public menu: MenuController, public events: Events) {
 		this.user = userProvider.user;
+
+		/* 
+		 * Muestra el menu según el tipo de usuario.
+		 */
+
+		if (this.user.userType == 'ADMIN') {
+			this.menu.enable(true, 'adminMenu');
+		} else {
+			this.menu.enable(true, 'userMenu');
+		}
 
 		/*
 		 * Eventos para actualizar la sección del perfil.
 		 */
 
-		events.subscribe('user:login', (user) => {
+		events.subscribe('user:login', user => {
 			this.user = user;
 		});
 

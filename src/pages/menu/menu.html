@@ -1,5 +1,6 @@
 <ion-split-pane>
-	<ion-menu [content]="content">
+	<!-- admin menu -->
+	<ion-menu id="adminMenu" [content]="content">
 		<ion-header>
 			<ion-toolbar>
 				<ion-list-header no-lines style="background-color: transparent">
@@ -19,13 +20,49 @@
 
 		<ion-content>
 			<ion-list>
-				<button ion-item no-lines menuClose *ngFor="let p of pageList1" (click)="openPage(p)">
+				<button ion-item no-lines menuClose *ngFor="let p of adminPageList" (click)="openPage(p)">
 					<ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
 					<h2>{{ p.title | translate }}</h2>
 					<p text-wrap>{{ p.subtitle | translate }}</p>
 				</button>
 				<hr>
-				<button ion-item no-lines menuClose *ngFor="let p of pageList2" (click)="openPage(p)">
+				<button ion-item no-lines menuClose *ngFor="let p of secondaryPageList" (click)="openPage(p)">
+					<ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+					<h2>{{ p.title | translate }}</h2>
+					<p text-wrap>{{ p.subtitle | translate }}</p>
+				</button>
+			</ion-list>
+		</ion-content>
+	</ion-menu>
+
+	<!-- user menu -->
+	<ion-menu id="userMenu" [content]="content">
+		<ion-header>
+			<ion-toolbar>
+				<ion-list-header no-lines style="background-color: transparent">
+					<!--<ion-avatar item-start>
+							<img src="assets/img/speakers/duck.jpg" style="width: 60px; height: 60px;">
+						</ion-avatar>-->
+					<div class="profile-image-placeholder" item-start text-center>
+						<ion-icon name="person"></ion-icon>
+					</div>
+					<h1 *ngIf="user">{{ user.username }}</h1>
+					<div menuClose>
+						<a href (click)="openUserDetailPage(); false">{{ 'MY_PROFILE' | translate }}</a>
+					</div>
+				</ion-list-header>
+			</ion-toolbar>
+		</ion-header>
+
+		<ion-content>
+			<ion-list>
+				<button ion-item no-lines menuClose *ngFor="let p of userPageList" (click)="openPage(p)">
+					<ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+					<h2>{{ p.title | translate }}</h2>
+					<p text-wrap>{{ p.subtitle | translate }}</p>
+				</button>
+				<hr>
+				<button ion-item no-lines menuClose *ngFor="let p of secondaryPageList" (click)="openPage(p)">
 					<ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
 					<h2>{{ p.title | translate }}</h2>
 					<p text-wrap>{{ p.subtitle | translate }}</p>
