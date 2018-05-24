@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { BetMatchSavePage } from './bet-match-save';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -10,7 +11,8 @@ import { BetMatchSavePage } from './bet-match-save';
 	],
 	imports: [
 		IonicPageModule.forChild(BetMatchSavePage),
-		TranslateModule.forChild()
+		TranslateModule.forChild(),
+		PipesModule
 	],
 	exports: [
 		BetMatchSavePage

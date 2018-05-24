@@ -1,4 +1,5 @@
 import { User } from "../account/user";
+import { TemplateHeader } from "../template/template-header";
 
 export class PollaHeader {
 	pollaId: number;
@@ -24,6 +25,7 @@ export class PollaHeader {
     numParticipants: number;
     numEvents: number;
 	numMatchs: number;
+	templateHeader: TemplateHeader;
 	
 	lang: string;
 }

@@ -45,7 +45,7 @@ export class MenuPage {
 			{ title: 'CONTACT_US_TITLE', subtitle: 'CONTACT_US_SUBTITLE', component: 'ContactUsPage', icon: 'help-circle' },
 			{ title: 'SETTINGS_TITLE', subtitle: 'SETTINGS_SUBTITLE', component: 'SettingsPage', icon: 'settings' },
 			{ title: 'TUTORIAL_TITLE', subtitle: 'TUTORIAL_SUBTITLE', component: 'TutorialPage', icon: 'school' },
-			{ title: 'LOG_OUT_TITLE', subtitle: 'LOG_OUT_SUBTITLE', component: 'LoginPage', icon: 'exit' }
+			{ title: 'LOG_OUT_TITLE', subtitle: 'LOG_OUT_SUBTITLE', component: 'WelcomePage', icon: 'exit' }
 		];
 
 		this.user = userProvider.user;
@@ -64,7 +64,7 @@ export class MenuPage {
 	}
 
 	openPage(page: PageInterface) {
-		if (page.component == 'LoginPage') {
+		if (page.component == 'WelcomePage') {
 			// Cierra la sessión actual.
 			this.userProvider.logout();
 		}

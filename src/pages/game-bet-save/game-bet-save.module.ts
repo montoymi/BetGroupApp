@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { GameBetSavePage } from './game-bet-save';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -10,7 +11,8 @@ import { GameBetSavePage } from './game-bet-save';
 	],
 	imports: [
 		IonicPageModule.forChild(GameBetSavePage),
-		TranslateModule.forChild()
+		TranslateModule.forChild(),
+		PipesModule
 	],
 	exports: [
 		GameBetSavePage

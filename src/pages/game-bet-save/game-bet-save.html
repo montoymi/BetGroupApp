@@ -15,10 +15,13 @@
 <ion-content>
 	<ion-grid>
 		<ion-row>
-			<ion-col col-3>
+			<ion-col>
 				<p text-center>{{ pollaBet.pollaMatch.match.localTeam.teamName }}</p>
 			</ion-col>
-			<ion-col col-3 offset-6>
+			<ion-col>
+				<p text-center>{{ pollaBet.pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
+			</ion-col>
+			<ion-col>
 				<p text-center>{{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</p>
 			</ion-col>
 		</ion-row>
@@ -52,12 +55,12 @@
 
 	<ion-list>
 		<ion-item>
-			<h2>{{ 'GAME_NAME' | translate }}</h2>
-			<p></p>
+			<h2>{{ 'GAME_TEMPLATE_NAME' | translate }}</h2>
+			<p>{{ pollaBet.pollaMatch.pollaHeader.templateHeader.templateName }}</p>
 		</ion-item>
 		<ion-item>
-			<h2>{{ 'GAME_TEMPLATE_NAME' | translate }}</h2>
-			<p></p>
+			<h2>{{ 'GAME_NAME' | translate }}</h2>
+			<p>{{ pollaBet.pollaParticipant.pollaHeader.pollaName }}</p>
 		</ion-item>
 		<ion-item>
 			<h2>{{ 'GAME_BET_EVENT' | translate }}</h2>
