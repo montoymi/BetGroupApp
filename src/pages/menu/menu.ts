@@ -55,7 +55,8 @@ export class MenuPage {
 		 * Muestra el menu según el tipo de usuario.
 		 */
 
-		if (this.user.userType == 'ADMIN') {
+		//TODO: Poner validacion del user ...this.user &&
+		if (this.user && this.user.userType == 'ADMIN') {
 			this.menu.enable(true, 'adminMenu');
 		} else {
 			this.menu.enable(true, 'userMenu');

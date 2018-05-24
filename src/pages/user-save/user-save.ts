@@ -34,7 +34,23 @@ export class UserSavePage {
 			this.signupEmailError = values['SIGNUP_EMAIL_ERROR'];
 		});
 
-		this.user = userProvider.user;
+		this.loadUser();
+	}
+
+	loadUser() {
+		let userId: number = this.userProvider.user.userId;
+
+		let loading = presentLoading(this.loadingCtrl);
+		this.userProvider.getUserById(userId).subscribe(
+			(res: any) => {
+				loading.dismiss();
+				this.user = res.body;
+			},
+			err => {
+				loading.dismiss();
+				presentToast(this.toastCtrl, err.message);
+			}
+		);
 	}
 
 	updateUser() {

@@ -23,7 +23,10 @@ export class GameListPage {
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
-		this.userType = userProvider.user.userType;
+		//TODO: Poner validacion del user
+		if (userProvider.user) {
+			this.userType = userProvider.user.userType;
+		}
 	}
 
 	// Runs when the page is about to enter and become the active page.

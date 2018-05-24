@@ -90,6 +90,23 @@ export class UserProvider {
 		return seq;
 	}
 
+	getUserById(id: number) {
+		let seq = this.api.get('users/' + id).share();
+
+		seq.subscribe(
+			(res: any) => {
+				if (res.status != RESPONSE_STATUS.OK) {
+					console.info('status', res.status);
+				}
+			},
+			err => {
+				console.error('ERROR', err);
+			}
+		);
+
+		return seq;
+	}
+
 	updateUser(user: User) {
 		let seq = this.api.put('users', user).share();
 
