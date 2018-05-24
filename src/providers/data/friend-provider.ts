@@ -49,11 +49,6 @@ export class FriendProvider {
 
 		seq.subscribe(
 			(res: any) => {
-				let friendList: Friend[] = res.body;
-				for (let friend of friendList) {
-					friend.amigo.photo = 'assets/img/speakers/duck.jpg';
-				}
-
 				if (res.status != RESPONSE_STATUS.OK) {
 					console.info('status', res.status);
 				}

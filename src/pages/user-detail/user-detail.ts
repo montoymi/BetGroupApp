@@ -79,7 +79,7 @@ export class UserDetailPage {
 		);
 	}
 
-	presentChangePasswordPrompt() {
+	presentPrompt() {
 		let alert = this.alertCtrl.create({
 			title: this.changePasswordTitle,
 			inputs: [

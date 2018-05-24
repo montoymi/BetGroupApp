@@ -160,6 +160,9 @@
 	"GAME_BET_STATUS_CLOSED": "Cerrado",
 	"GAME_BET_STATUS_OPENED": "Abierto",
 
+	"BET_SCORE_REQUIRED_ERROR": "La puntuación es requerida.",
+	"COPY_TO_ALL": "Copiar pronóstico del primer partido a los demás",
+
 	"BET_SAVE_SUCCESS": "Pronóstico actualizado",
 	"BET_SAVE_ERROR": "Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
 
@@ -195,11 +198,20 @@
 	"CREDIT_COLLECT_ERROR2": "Ud. esta queriendo cobrar más créditos de los que cuenta actualmente. Por favor, ingrese un monto menor.",
 	"CREDIT_COLLECT_ERROR3": "La acción cobrar créditos no es igual a tipo de transacción con código 1.",
 
+	"CREDIT_STATUS_PENDING": "Pendiente",
+	"CREDIT_STATUS_APPROVED": "Aprobado",
+	"CREDIT_STATUS_CANCELLED": "Cancelado",
+
 	"FOLLOW_SUCCESS": "Amigo registrado",
 	"UNFOLLOW_SUCCESS": "Amigo eliminado",
 
+	"FOLLOW_FRIEND_ERROR": "Seleccione otro usuario a seguir que no sea usted mismo.",
+	"FOLLOW_FRIEND_ERROR2": "Ud. ya tiene agregado a este usuario como amigo.",
+
 	"INVITE_FRIEND_SUCCESS": "Amigo invitado",
 	"INVITE_FRIEND_ERROR": "Este usuario ya está inscrito en este juego.",
+	"INVITE_FRIEND_ERROR2": "No se puede invitar a usted mismo a un juego.",
+	"INVITE_FRIEND_ERROR3": "Este usuario ya ha sido invitado.",
 
 	"INVITE_FRIEND_ALERT_TITLE": "Aviso",
 	"INVITE_FRIEND_ALERT_SUBTITLE": "Para porder invitar a un amigo primero debe inscribirse en un juego",

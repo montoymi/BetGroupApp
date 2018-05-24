@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, MenuController, NavController, Platform, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, ToastController, LoadingController, Slides } from 'ionic-angular';
 
 import { ParamValueProvider, UserProvider, EventLoggerProvider, Settings } from '../../providers/providers';
 import { presentToast, presentLoading } from '../pages';
@@ -83,14 +83,14 @@ export class TutorialPage {
 		}
 	}
 
-	onSlideChangeStart(slider) {
-		this.showSkip = !slider.isEnd();
+	onSlideChangeStart(slides: Slides) {
+		this.showSkip = !slides.isEnd();
 
-		switch (slider._activeIndex) {
+		switch (slides.getActiveIndex()) {
 			case 1: // El primero es el cero, pero se cuenta el primer cambio de slide.
 				this.logger.logEvent(this.navCtrl.getActive().name, 'tutorial_begin', null);
 				break;
-			case slider._slides.length - 1:
+			case slides.length() - 1:
 				this.logger.logEvent(this.navCtrl.getActive().name, 'tutorial_complete', null);
 				break;
 		}

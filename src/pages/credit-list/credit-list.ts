@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
@@ -13,15 +14,26 @@ import { presentToast, presentLoading } from '../pages';
 export class CreditListPage {
 	credit: Credit;
 
+	private creditStatusPending: string;
+	private creditStatusApproved: string;
+	private creditStatusCancelled: string;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
+		public translate: TranslateService,
 		public userProvider: UserProvider,
 		public creditProvider: CreditProvider,
 		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController
 	) {
+		this.translate.get(['CREDIT_STATUS_PENDING', 'CREDIT_STATUS_APPROVED', 'CREDIT_STATUS_CANCELLED']).subscribe(values => {
+			this.creditStatusPending = values['CREDIT_STATUS_PENDING'];
+			this.creditStatusApproved = values['CREDIT_STATUS_APPROVED'];
+			this.creditStatusCancelled = values['CREDIT_STATUS_CANCELLED'];
+		});
+
 		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
 	}
 
@@ -37,6 +49,23 @@ export class CreditListPage {
 			(res: any) => {
 				loading.dismiss();
 				this.credit = res.body;
+
+				// Se asigna la descripción del estado.
+				if (this.credit.creditDetailList) {
+					for (const creditDetail of this.credit.creditDetailList) {
+						switch (creditDetail.status) {
+							case 0:
+								creditDetail.statusDescription = this.creditStatusPending;
+								break;
+							case 1:
+								creditDetail.statusDescription = this.creditStatusApproved;
+								break;
+							case 2:
+								creditDetail.statusDescription = this.creditStatusCancelled;
+								break;
+						}
+					}
+				}
 			},
 			err => {
 				loading.dismiss();

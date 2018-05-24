@@ -29,8 +29,8 @@
 				<ion-col col-10>
 					<ion-item>
 						<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-						<ion-select [(ngModel)]="friend.amigo.userId" name="userId" [disabled]="byEmail">
-							<ion-option *ngFor="let friend of friendList" [value]="friend.amigo.userId">{{ friend.amigo.username }}</ion-option>
+						<ion-select [(ngModel)]="friend.amigo" name="amigo" [disabled]="byEmail">
+							<ion-option *ngFor="let friend of friendList" [value]="friend.amigo">{{ friend.amigo.username }}</ion-option>
 						</ion-select>
 					</ion-item>
 				</ion-col>

@@ -17,5 +17,7 @@ export class CreditDetail {
 	lastUpdatedDate: any;
 	user: User;
 	credit: Credit;
+
+	statusDescription: string;
 }
 

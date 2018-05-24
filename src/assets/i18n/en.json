@@ -159,6 +159,9 @@
 	"GAME_BET_STATUS_CLOSED": "Closed",
 	"GAME_BET_STATUS_OPENED": "Opened",
 
+	"BET_SCORE_REQUIRED_ERROR": "The score is required.",
+	"COPY_TO_ALL": "Copy forecast of the first match to others",
+
 	"BET_SAVE_SUCCESS": "Forecast updated",
 	"BET_SAVE_ERROR": "This forecast can not be updated, since the event has already started according to the current date and time defined",
 
@@ -192,11 +195,20 @@
 	"CREDIT_COLLECT_ERROR2": "You are wanting to collect more credits than you currently have. Please enter a lower amount.",
 	"CREDIT_COLLECT_ERROR3": "The action to collect credits is not equal to type of transaction with code 1.",
 
+	"CREDIT_STATUS_PENDING": "Pending",
+	"CREDIT_STATUS_APPROVED": "Approved",
+	"CREDIT_STATUS_CANCELLED": "Cancelled",
+
 	"FOLLOW_SUCCESS": "Friend registered",
 	"UNFOLLOW_SUCCESS": "Friend deleted",
 
+	"FOLLOW_FRIEND_ERROR": "Select another user to follow other than yourself.",
+	"FOLLOW_FRIEND_ERROR2": "You have already added this user as a friend.",
+
 	"INVITE_FRIEND_SUCCESS": "Friend invited",
 	"INVITE_FRIEND_ERROR": "This user is already enrolled in this game.",
+	"INVITE_FRIEND_ERROR2": "You can not invite yourself to a game.",
+	"INVITE_FRIEND_ERROR3": "This user has already been invited.",
 
 	"INVITE_FRIEND_ALERT_TITLE": "Warning",
 	"INVITE_FRIEND_ALERT_SUBTITLE": "To be able to invite a friend you must first sign up for a game",

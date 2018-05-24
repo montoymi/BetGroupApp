@@ -85,6 +85,8 @@ export class SignupPage {
 
 		this.user = new User();
 
+		this.loadTerms();
+
 		this.validationMessages = {
 			username: [{ type: 'required', message: this.usernameRequiredError }],
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }],
@@ -97,11 +99,9 @@ export class SignupPage {
 			passwords: [{ type: 'areEqual', message: this.confirmPasswordAreEqualError }],
 			terms: [{ type: 'pattern', message: this.termsPatternError }]
 		};
-
-		this.loadTerms();
 	}
 
-	ionViewWillLoad() {
+	ngOnInit() {
 		this.passwords = new FormGroup(
 			{
 				password: new FormControl(
@@ -170,7 +170,7 @@ export class SignupPage {
 		);
 	}
 
-	presentTermsAlert(ev) {
+	presentAlert(ev) {
 		if (!ev.checked) {
 			return;
 		}

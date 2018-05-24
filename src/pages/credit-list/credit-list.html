@@ -21,13 +21,16 @@
 			<p>{{ 'HISTORY_OF_CREDITS' | translate }}</p>
 		</ion-item>
 		<ion-item *ngFor="let creditDetail of credit.creditDetailList">
-			<h2>{{ creditDetail.creditTransationType.description }}</h2>
+			<h2 text-wrap>{{ creditDetail.comments }}</h2>
 			<ion-grid no-padding>
 				<ion-row>
-					<ion-col col-6>
+					<ion-col col-4>
 						<p>{{ creditDetail.transactionDate | moment:'DD/MM/YY H:mm' }}</p>
 					</ion-col>
-					<ion-col col-6>
+					<ion-col col-4>
+							<p>{{ creditDetail.statusDescription }}</p>
+						</ion-col>
+					<ion-col col-4>
 						<p style="float: right">{{ creditDetail.creditTransationType.transactionSign }} {{ creditDetail.creditAmount }}</p>
 					</ion-col>
 				</ion-row>

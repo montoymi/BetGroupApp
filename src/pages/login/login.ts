@@ -123,7 +123,7 @@ export class LoginPage {
 		);
 	}
 
-	presentForgotPasswordPrompt() {
+	presentPrompt() {
 		let alert = this.alertCtrl.create({
 			title: this.forgotPasswordTitle,
 			subTitle: this.forgotPasswordSubtitle,

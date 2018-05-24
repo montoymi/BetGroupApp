@@ -24,6 +24,7 @@ export class FriendInvitePage {
 	private inviteFriendSuccess: string;
 	private inviteFriendError: string;
 	private inviteFriendError2: string;
+	private inviteFriendError3: string;
 	private inviteFriendAlertTitle: string;
 	private inviteFriendAlertSubtitle: string;
 	private okButton: string;
@@ -39,11 +40,20 @@ export class FriendInvitePage {
 		public loadingCtrl: LoadingController
 	) {
 		this.translate
-			.get(['INVITE_FRIEND_SUCCESS', 'INVITE_FRIEND_ERROR', 'INVITE_FRIEND_ERROR2', 'INVITE_FRIEND_ALERT_TITLE', 'INVITE_FRIEND_ALERT_SUBTITLE', 'OK_BUTTON'])
+			.get([
+				'INVITE_FRIEND_SUCCESS',
+				'INVITE_FRIEND_ERROR',
+				'INVITE_FRIEND_ERROR2',
+				'INVITE_FRIEND_ERROR3',
+				'INVITE_FRIEND_ALERT_TITLE',
+				'INVITE_FRIEND_ALERT_SUBTITLE',
+				'OK_BUTTON'
+			])
 			.subscribe(values => {
 				this.inviteFriendSuccess = values['INVITE_FRIEND_SUCCESS'];
 				this.inviteFriendError = values['INVITE_FRIEND_ERROR'];
 				this.inviteFriendError2 = values['INVITE_FRIEND_ERROR2'];
+				this.inviteFriendError3 = values['INVITE_FRIEND_ERROR3'];
 				this.inviteFriendAlertTitle = values['INVITE_FRIEND_ALERT_TITLE'];
 				this.inviteFriendAlertSubtitle = values['INVITE_FRIEND_ALERT_SUBTITLE'];
 				this.okButton = values['OK_BUTTON'];
@@ -81,19 +91,12 @@ export class FriendInvitePage {
 
 	inviteFriend() {
 		let myPollas: boolean = this.navParams.get('myPollas');
-		console.info('myPollas: ' + myPollas);
 		if (!myPollas) {
-			this.presentFriendAlert();
+			this.presentAlert();
 			return;
 		}
 
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
-
-		if (this.byEmail) {
-			this.friend.amigo.userId = null;
-		} else {
-			this.friend.amigo.email = null;
-		}
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.friendProvider.inviteFriend(pollaHeader.pollaId, this.friend).subscribe(
@@ -111,6 +114,9 @@ export class FriendInvitePage {
 					case RESPONSE_ERROR.INVITE_FRIEND_ERROR2:
 						presentToast(this.toastCtrl, this.inviteFriendError2);
 						break;
+					case RESPONSE_ERROR.INVITE_FRIEND_ERROR3:
+						presentToast(this.toastCtrl, this.inviteFriendError3);
+						break;
 					default:
 						presentToast(this.toastCtrl, err.message);
 						break;
@@ -119,7 +125,7 @@ export class FriendInvitePage {
 		);
 	}
 
-	presentFriendAlert() {
+	presentAlert() {
 		let alert = this.alertCtrl.create({
 			title: this.inviteFriendAlertTitle,
 			subTitle: this.inviteFriendAlertSubtitle,

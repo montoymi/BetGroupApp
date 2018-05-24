@@ -11,4 +11,10 @@ page-bet-match-save {
 	ion-slide.swiper-slide {
 		align-items: flex-start;
 	}
+
+	.error-message {
+		color: red;
+		padding-left: 16px;
+		font-size: 13px;
+	}
 }

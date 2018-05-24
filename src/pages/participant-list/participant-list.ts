@@ -8,6 +8,7 @@ import { PollaHeader } from '../../models/polla/polla-header';
 import { Friend } from '../../models/account/friend';
 import { User } from '../../models/account/user';
 import { presentToast, presentLoading } from '../pages';
+import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,8 @@ export class ParticipantListPage {
 	pollaParticipantList: PollaParticipant[];
 
 	private followSuccess: string;
+	private followFriendError: string;
+	private followFriendError2: string;
 
 	constructor(
 		public navCtrl: NavController,
@@ -31,8 +34,10 @@ export class ParticipantListPage {
 		public friendProvider: FriendProvider,
 		public loadingCtrl: LoadingController
 	) {
-		this.translate.get(['FOLLOW_SUCCESS']).subscribe(values => {
+		this.translate.get(['FOLLOW_SUCCESS', 'FOLLOW_FRIEND_ERROR', 'FOLLOW_FRIEND_ERROR2']).subscribe(values => {
 			this.followSuccess = values['FOLLOW_SUCCESS'];
+			this.followFriendError = values['FOLLOW_FRIEND_ERROR'];
+			this.followFriendError2 = values['FOLLOW_FRIEND_ERROR2'];
 		});
 
 		this.loadParticipants();
@@ -74,7 +79,17 @@ export class ParticipantListPage {
 			},
 			err => {
 				loading.dismiss();
-				presentToast(this.toastCtrl, err.message);
+				switch (err.error) {
+					case RESPONSE_ERROR.FOLLOW_FRIEND_ERROR:
+						presentToast(this.toastCtrl, this.followFriendError);
+						break;
+					case RESPONSE_ERROR.FOLLOW_FRIEND_ERROR2:
+						presentToast(this.toastCtrl, this.followFriendError2);
+						break;
+					default:
+						presentToast(this.toastCtrl, err.message);
+						break;
+				}
 			}
 		);
 	}

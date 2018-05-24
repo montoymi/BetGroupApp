@@ -82,13 +82,8 @@ export class GameAvailableDetailPage {
 				loading.dismiss();
 				presentToast(this.toastCtrl, this.registerSuccess);
 
-				// Redirecciona al detalle mis juegos para ver el nuevo
-				// juego al que el usuario de ha inscrito.
-				this.navCtrl.setRoot('GameListPage');
-				this.navCtrl.push('GameTabsPage', {
-					pollaHeader: this.pollaHeader,
-					myPollas: true
-				});
+				// Cierra la ventana.
+				this.navCtrl.parent.viewCtrl.dismiss();
 			},
 			err => {
 				loading.dismiss();
@@ -110,13 +105,13 @@ export class GameAvailableDetailPage {
 	registerInGame() {
 		// Si es polla privada valida password.
 		if (this.pollaHeader.accessFlag == 1) {
-			this.presentAccessPrompt();
+			this.presentPrompt();
 		} else {
 			this.createParticipant();
 		}
 	}
 
-	presentAccessPrompt() {
+	presentPrompt() {
 		let alert = this.alertCtrl.create({
 			title: this.password,
 			inputs: [

@@ -77,7 +77,7 @@ export class CreditCollectPage {
 		};
 	}
 
-	ionViewWillLoad() {
+	ngOnInit() {
 		this.form = this.formBuilder.group({
 			creditAmount: new FormControl('', Validators.required)
 		});
