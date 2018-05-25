@@ -43,14 +43,24 @@ export class GameAvailableDetailPage {
 			this.cancelButton = values['CANCEL_BUTTON'];
 			this.okButton = values['OK_BUTTON'];
 		});
-
-		this.loadPolla();
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadPolla();
 	}
 
 	loadPolla() {

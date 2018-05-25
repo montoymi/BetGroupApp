@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
+	<ion-list *ngIf="user">
 		<ion-item>
 			<h2>{{ 'USERNAME' | translate }}</h2>
 			<p>{{ user.username }}</p>
@@ -43,7 +43,7 @@
 			<p *ngIf="user.flagNotification">{{ user.flagNotification == 1 ? ('YES' | translate) : ('NO' | translate) }}</p>
 		</ion-item>
 		<div padding>
-			<button type="button" ion-button small color="light" (click)="presentChangePasswordPrompt()">{{ 'CHANGE_PASSWORD_BUTTON' | translate }}</button>
+			<button type="button" ion-button small color="light" (click)="openChangePasswordPage()">{{ 'CHANGE_PASSWORD_BUTTON' | translate }}</button>
 		</div>
 	</ion-list>
 </ion-content>

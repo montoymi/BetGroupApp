@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
-import { PollaProvider } from '../../providers/providers';
+import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaBet } from '../../models/polla/polla-bet';
 import { presentToast, getFlagValue, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
@@ -24,6 +24,7 @@ export class GameBetSavePage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
+		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
@@ -33,6 +34,14 @@ export class GameBetSavePage {
 		});
 
 		this.pollaBet = navParams.get('pollaBet');
+	}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
 	}
 
 	updateGameBet() {

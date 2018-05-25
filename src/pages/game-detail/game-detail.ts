@@ -6,7 +6,6 @@ import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { presentToast, presentLoading } from '../pages';
 
-
 @IonicPage()
 @Component({
 	selector: 'page-game-detail',
@@ -25,14 +24,24 @@ export class GameDetailPage {
 		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
-	) {
-		this.loadPolla();
+	) {}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
 	}
 
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadPolla();
 	}
 
 	loadPolla() {

@@ -36,7 +36,8 @@
 	"EMAIL_PATTERN_ERROR": "Enter a valid email.",
 	"PASSWORD_REQUIRED_ERROR": "Password is required.",
 	"PASSWORD_MINLENGTH_ERROR": "Password must be at least 5 characters long.",
-	"PASSWORD_PATTERN_ERROR": "Your password must contain at least one uppercase, one lowercase, and one number.",
+	"PASSWORD_PATTERN_ERROR":
+		"Your password must contain at least one uppercase, one lowercase, and one number. The following characters are not supported:  !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
 	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirm password is required.",
 	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "The passwords do not match.",
 	"TERMS_PATTERN_ERROR": "You must accept terms and conditions.",
@@ -192,7 +193,8 @@
 	"CREDIT_COLLECT_CONFIRM_MESSAGE": "Do you want to collect credits?",
 	"CREDIT_COLLECT_SUCCESS": "Request registered",
 	"CREDIT_TO_COLLECT_REQUIRED_ERROR": "Credits to collect is required.",
-	"CREDIT_COLLECT_ERROR":	"You don't have the minimum credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
+	"CREDIT_COLLECT_ERROR":
+		"You don't have the minimum credits to carry out the collection transaction. You must have at least 1000 credits to make a transaction of collect type.",
 	"CREDIT_COLLECT_ERROR2": "You are wanting to collect more credits than you currently have. Please enter a lower amount.",
 	"CREDIT_COLLECT_ERROR3": "The action to collect credits is not equal to type of transaction with code 1.",
 

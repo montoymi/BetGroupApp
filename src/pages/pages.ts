@@ -30,7 +30,6 @@ export function presentToast(toastCtrl: ToastController, message: string) {
 
 export function presentLoading(loadingCtrl: LoadingController) {
 	let loading = loadingCtrl.create();
-
 	loading.present();
 	return loading;
 }

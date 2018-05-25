@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -14,126 +12,33 @@ import { presentToast, presentLoading } from '../pages';
 export class UserDetailPage {
 	user: User;
 
-	private changePasswordTitle: string;
-	private currentPassword: string;
-	private newPassword: string;
-	private confirmPassword: string;
-	private changePasswordSuccess: string;
-	private currentPasswordError: string;
-	private confirmPasswordError: string;
-	private cancelButton: string;
-	private okButton: string;
-
 	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		public toastCtrl: ToastController,
-		public translate: TranslateService,
-		private alertCtrl: AlertController,
-		public userProvider: UserProvider,
-		public loadingCtrl: LoadingController
-	) {
-		this.translate
-			.get([
-				'CHANGE_PASSWORD_TITLE',
-				'CURRENT_PASSWORD',
-				'NEW_PASSWORD',
-				'CONFIRM_PASSWORD',
-				'CHANGE_PASSWORD_SUCCESS',
-				'CURRENT_PASSWORD_ERROR',
-				'CONFIRM_PASSWORD_ERROR',
-				'CANCEL_BUTTON',
-				'OK_BUTTON'
-			])
-			.subscribe(values => {
-				this.changePasswordTitle = values['CHANGE_PASSWORD_TITLE'];
-				this.currentPassword = values['CURRENT_PASSWORD'];
-				this.newPassword = values['NEW_PASSWORD'];
-				this.confirmPassword = values['CONFIRM_PASSWORD'];
-				this.changePasswordSuccess = values['CHANGE_PASSWORD_SUCCESS'];
-				this.currentPasswordError = values['CURRENT_PASSWORD_ERROR'];
-				this.confirmPasswordError = values['CONFIRM_PASSWORD_ERROR'];
-				this.cancelButton = values['CANCEL_BUTTON'];
-				this.okButton = values['OK_BUTTON'];
-			});
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		public modalCtrl: ModalController, 
+		public userProvider: UserProvider
+	) {}
 
-		this.user = userProvider.user;
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.user = this.userProvider.user;
 	}
 
 	openUserSavePage() {
 		this.navCtrl.push('UserSavePage');
 	}
 
-	changePassword() {
-		let loading = presentLoading(this.loadingCtrl);
-		this.userProvider.changePassword(this.user).subscribe(
-			(res: any) => {
-				loading.dismiss();
-				presentToast(this.toastCtrl, this.changePasswordSuccess);
-				this.user = res.body;
-			},
-			err => {
-				loading.dismiss();
-				presentToast(this.toastCtrl, err.message);
-			}
-		);
-	}
-
-	presentPrompt() {
-		let alert = this.alertCtrl.create({
-			title: this.changePasswordTitle,
-			inputs: [
-				{
-					name: 'currentPassword',
-					placeholder: this.currentPassword,
-					type: 'password'
-				},
-				{
-					name: 'newPassword',
-					placeholder: this.newPassword,
-					type: 'password'
-				},
-				{
-					name: 'confirmPassword',
-					placeholder: this.confirmPassword,
-					type: 'password'
-				}
-			],
-			buttons: [
-				{
-					text: this.cancelButton,
-					role: 'cancel',
-					handler: data => {
-						console.log('Cancel clicked');
-					}
-				},
-				{
-					text: this.okButton,
-					handler: data => {
-						if (this.validatePassword(data)) {
-							this.user.password = data.newPassword;
-							this.changePassword();
-						} else {
-							return false;
-						}
-					}
-				}
-			]
-		});
-		alert.present();
-	}
-
-	validatePassword(data) {
-		if (data.currentPassword != this.user.password) {
-			presentToast(this.toastCtrl, this.currentPasswordError);
-			return false;
-		}
-
-		if (data.newPassword == "" || data.newPassword != data.confirmPassword) {
-			presentToast(this.toastCtrl, this.confirmPasswordError);
-			return false;
-		}
-
-		return true;
+	openChangePasswordPage() {
+		let modal = this.modalCtrl.create('ChangePasswordPage');
+		modal.present();
 	}
 }

@@ -5,7 +5,7 @@
 		</button>
 		<ion-title>{{ 'USER_EDIT_TITLE' | translate }}</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="done()">
+			<button ion-button icon-only [disabled]="!form.valid" (click)="done()">
 				<ion-icon name="checkmark"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -13,37 +13,55 @@
 </ion-header>
 
 <ion-content>
-	<ion-list *ngIf="user">
-		<ion-item>
-			<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-			<ion-input disabled type="text" [(ngModel)]="user.username" name="username"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'FIRST_NAME' | translate }}</ion-label>
-			<ion-input type="text" [(ngModel)]="user.firstName" name="firstName"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'LAST_NAME' | translate }}</ion-label>
-			<ion-input type="text" [(ngModel)]="user.lastName" name="lastName"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'SEX' | translate }}</ion-label>
-			<ion-select [(ngModel)]="user.sex" name="sex">
-				<ion-option value="M">{{ 'SEX_MALE' | translate }}</ion-option>
-				<ion-option value="F">{{ 'SEX_FEMALE' | translate }}</ion-option>
-			</ion-select>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'BIRTHDATE' | translate }}</ion-label>
-			<ion-datetime [(ngModel)]="user.dateOfBirthday" name="dateOfBirthday" displayFormat="DD/MM/YYYY"></ion-datetime>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{ 'EMAIL' | translate }}</ion-label>
-			<ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label text-wrap>{{ 'FLAG_NOTIFICATION' | translate }}</ion-label>
-			<ion-checkbox [(ngModel)]="user.flagNotification" name="flagNotification"></ion-checkbox>
-		</ion-item>
-	</ion-list>
+	<form [formGroup]="form">
+		<ion-list *ngIf="user">
+			<ion-item>
+				<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+				<ion-input type="text" [(ngModel)]="user.username" formControlName="username"></ion-input>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let validation of validationMessages.username">
+					<div class="error-message" *ngIf="form.get('username').hasError(validation.type) && (form.get('username').dirty || form.get('username').touched)">
+						{{ validation.message }}
+					</div>
+				</ng-container>
+			</div>
+
+			<ion-item>
+				<ion-label floating>{{ 'FIRST_NAME' | translate }}</ion-label>
+				<ion-input type="text" [(ngModel)]="user.firstName" formControlName="firstName"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>{{ 'LAST_NAME' | translate }}</ion-label>
+				<ion-input type="text" [(ngModel)]="user.lastName" formControlName="lastName"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>{{ 'SEX' | translate }}</ion-label>
+				<ion-select [(ngModel)]="user.sex" formControlName="sex">
+					<ion-option value="M">{{ 'SEX_MALE' | translate }}</ion-option>
+					<ion-option value="F">{{ 'SEX_FEMALE' | translate }}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>{{ 'BIRTHDATE' | translate }}</ion-label>
+				<ion-datetime [(ngModel)]="user.dateOfBirthday" formControlName="dateOfBirthday" displayFormat="DD/MM/YYYY"></ion-datetime>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>{{ 'EMAIL' | translate }}</ion-label>
+				<ion-input type="email" [(ngModel)]="user.email" formControlName="email"></ion-input>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let validation of validationMessages.email">
+					<div class="error-message" *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+						{{ validation.message }}
+					</div>
+				</ng-container>
+			</div>
+
+			<ion-item>
+				<ion-label text-wrap>{{ 'FLAG_NOTIFICATION' | translate }}</ion-label>
+				<ion-checkbox [(ngModel)]="user.flagNotification" formControlName="flagNotification"></ion-checkbox>
+			</ion-item>
+		</ion-list>
+	</form>
 </ion-content>

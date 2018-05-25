@@ -62,8 +62,6 @@ export class BetMatchSavePage {
 
 		this.match = this.navParams.get('match');
 
-		this.loadBets();
-
 		this.validationMessages = {
 			score: [{ type: 'required', message: this.betScoreRequiredError }]
 		};
@@ -73,9 +71,6 @@ export class BetMatchSavePage {
 	ngAfterViewChecked() {
 		this.cdRef.detectChanges();
 	}
-
-	// Pendiente: poner las condiciones colocadas en la otra pagina bet, pero al estilo forms
-	// ver/corregir error al cargar la pagina con pronosticos previos.
 
 	ngOnInit() {
 		this.form = this.formBuilder.group({
@@ -132,6 +127,20 @@ export class BetMatchSavePage {
 		if (isValid) {
 			this.hasError = false;
 		}
+	}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.loadBets();
 	}
 
 	loadBets() {

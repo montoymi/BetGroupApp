@@ -36,7 +36,8 @@
 	"EMAIL_PATTERN_ERROR": "Ingrese un correo electrónico válido.",
 	"PASSWORD_REQUIRED_ERROR": "La contraseña es requerida.",
 	"PASSWORD_MINLENGTH_ERROR": "La contraseña debe tener al menos 5 caracteres de longitud.",
-	"PASSWORD_PATTERN_ERROR": "Su contraseña debe contener al menos una letra mayúscula, una minúscula y un número.",
+	"PASSWORD_PATTERN_ERROR":
+		"Su contraseña debe contener al menos una letra mayúscula, una minúscula y un número. No se admiten los siguientes caracteres: !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
 	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirmar contraseña es requerido.",
 	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "Las contraseñas no coinciden.",
 	"TERMS_PATTERN_ERROR": "Debe aceptar los términos y condiciones.",

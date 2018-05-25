@@ -28,7 +28,19 @@ export class FriendListPage {
 		this.translate.get(['UNFOLLOW_SUCCESS']).subscribe(values => {
 			this.unfollowSuccess = values['UNFOLLOW_SUCCESS'];
 		});
+	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.loadFriends();
 	}
 
