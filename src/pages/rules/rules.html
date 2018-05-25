@@ -7,7 +7,7 @@
 <ion-content>
 	<ion-list>
 		<ion-item no-lines *ngIf="pollaHeader && pollaHeader.rules" text-wrap>
-			<p style="white-space: pre-line">{{ pollaHeader.rules }}</p>
+			<p innerHTML="{{ pollaHeader.rules }}"></p>
 		</ion-item>
 	</ion-list>
 </ion-content>
