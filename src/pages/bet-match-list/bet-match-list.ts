@@ -20,7 +20,19 @@ export class BetMatchListPage {
 		public userProvider: UserProvider,
 		public matchProvider: MatchProvider,
 		public loadingCtrl: LoadingController
-	) {
+	) {}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.loadMatchsWithBets();
 	}
 

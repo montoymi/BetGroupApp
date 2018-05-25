@@ -77,6 +77,14 @@ export class CreditAddPage {
 		});
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
 	saveCreditTransaction() {
 		this.creditDetail.userId = this.userProvider.user.userId;
 		this.creditDetail.createdBy = this.userProvider.user.userId;

@@ -26,25 +26,15 @@ export class SettingsPage {
 		public translate: TranslateService
 	) {}
 
-	buildForm() {
-		let group: any = {
-			lang: [this.options.lang]
-		};
-
-		this.form = this.formBuilder.group(group);
-
-		// Watch the form for changes, and save.
-		this.form.valueChanges.subscribe(v => {
-			this.settings.merge(this.form.value);
-		});
-	}
-
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	// Solo la primera vez que carga la opción y sub opciones.
 	ionViewDidLoad() {
 		// Build an empty form for the template to render
 		this.form = this.formBuilder.group({});
 	}
 
+	// Runs when the page is about to enter and become the active page.
 	// Cada vez que carga la opción y sub opciones.
 	ionViewWillEnter() {
 		// Build an empty form for the template to render
@@ -55,6 +45,19 @@ export class SettingsPage {
 			this.options = this.settings.allSettings;
 
 			this.buildForm();
+		});
+	}
+
+	buildForm() {
+		let group: any = {
+			lang: [this.options.lang]
+		};
+
+		this.form = this.formBuilder.group(group);
+
+		// Watch the form for changes, and save.
+		this.form.valueChanges.subscribe(v => {
+			this.settings.merge(this.form.value);
 		});
 	}
 

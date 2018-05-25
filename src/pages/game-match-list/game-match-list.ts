@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
-import { PollaProvider } from '../../providers/providers';
+import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaMatch } from '../../models/polla/polla-match';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { presentToast, presentLoading } from '../pages';
@@ -13,23 +13,34 @@ import { presentToast, presentLoading } from '../pages';
 })
 export class GameMatchListPage {
 	@ViewChild(Navbar) navBar: Navbar;
-	
+
 	pollaMatchList: PollaMatch[];
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
+		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
-	) {
-		this.loadPollaMatches();
+	) {}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
 	}
 
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadPollaMatches();
 	}
 
 	loadPollaMatches() {

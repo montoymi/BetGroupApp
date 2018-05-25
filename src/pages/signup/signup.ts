@@ -88,8 +88,6 @@ export class SignupPage {
 
 		this.user = new User();
 
-		this.loadTerms();
-
 		this.validationMessages = {
 			username: [{ type: 'required', message: this.usernameRequiredError }, { type: 'maxlength', message: this.usernameMaxlengthError }],
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }],
@@ -121,6 +119,20 @@ export class SignupPage {
 			passwords: this.passwords,
 			terms: new FormControl(false, Validators.pattern('true'))
 		});
+	}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.loadTerms();
 	}
 
 	doSignup(values) {

@@ -39,14 +39,24 @@ export class ParticipantListPage {
 			this.followFriendError = values['FOLLOW_FRIEND_ERROR'];
 			this.followFriendError2 = values['FOLLOW_FRIEND_ERROR2'];
 		});
-
-		this.loadParticipants();
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadParticipants();
 	}
 
 	loadParticipants() {

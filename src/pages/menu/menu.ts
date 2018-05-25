@@ -51,17 +51,6 @@ export class MenuPage {
 	constructor(public navCtrl: NavController, private userProvider: UserProvider, public menu: MenuController, public events: Events) {
 		this.user = userProvider.user;
 
-		/* 
-		 * Muestra el menu según el tipo de usuario.
-		 */
-
-		//TODO: Poner validacion del user ...this.user &&
-		if (this.user && this.user.userType == 'ADMIN') {
-			this.menu.enable(true, 'adminMenu');
-		} else {
-			this.menu.enable(true, 'userMenu');
-		}
-
 		/*
 		 * Eventos para actualizar la sección del perfil.
 		 */
@@ -73,6 +62,17 @@ export class MenuPage {
 		events.subscribe('user:logout', () => {
 			this.user = null;
 		});
+	}
+
+	// Runs when the page is about to enter and become the active page.
+	// Necesario para actualizar el menú.
+	ionViewWillEnter() {
+		// Muestra el menu según el tipo de usuario.
+		if (this.user && this.user.userType == 'ADMIN') {
+			this.menu.enable(true, 'adminMenu');
+		} else {
+			this.menu.enable(true, 'userMenu');
+		}
 	}
 
 	openPage(page: PageInterface) {

@@ -58,17 +58,28 @@ export class FriendInvitePage {
 				this.inviteFriendAlertSubtitle = values['INVITE_FRIEND_ALERT_SUBTITLE'];
 				this.okButton = values['OK_BUTTON'];
 			});
-
-		this.friend = new Friend();
-		this.friend.user = userProvider.user;
-		this.friend.amigo = new User();
-		this.loadFriends();
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.friend = new Friend();
+		this.friend.user = this.userProvider.user;
+		this.friend.amigo = new User();
+		
+		this.loadFriends();
 	}
 
 	setByEmail(byEmail) {

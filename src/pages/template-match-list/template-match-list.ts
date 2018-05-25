@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
-import { TemplateProvider } from '../../providers/providers';
+import { UserProvider, TemplateProvider } from '../../providers/providers';
 import { TemplateDetail } from '../../models/template/template-detail';
 import { presentToast, presentLoading } from '../pages';
 
@@ -18,9 +18,22 @@ export class TemplateMatchListPage {
 		public navParams: NavParams,
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
+		public userProvider: UserProvider,
 		public templateProvider: TemplateProvider,
 		public loadingCtrl: LoadingController
-	) {
+	) {}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.loadTemplateDetails();
 	}
 

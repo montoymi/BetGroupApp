@@ -1,16 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {
-	IonicPage,
-	NavController,
-	NavParams,
-	ViewController,
-	ModalController,
-	ToastController,
-	TextInput,
-	Checkbox,
-	LoadingController
-} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController, TextInput, Checkbox, LoadingController } from 'ionic-angular';
 import { IonicStepperComponent, IonicStepComponent } from 'ionic-stepper';
 
 import { TemplateProvider, UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
@@ -56,26 +46,29 @@ export class GameSavePage {
 		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController
 	) {
-		this.translate
-			.get([
-				'GAME_STEP1_TITLE',
-				'GAME_STEP2_TITLE',
-				'GAME_STEP3_TITLE',
-				'GAME_STEP4_TITLE',
-				'GAME_SAVE_SUCCESS',
-				'GAME_SAVE_ERROR'
-			])
-			.subscribe(values => {
-				this.gameStep1Title = values['GAME_STEP1_TITLE'];
-				this.gameStep2Title = values['GAME_STEP2_TITLE'];
-				this.gameStep3Title = values['GAME_STEP3_TITLE'];
-				this.gameStep4Title = values['GAME_STEP4_TITLE'];
-				this.gameSuccess = values['GAME_SAVE_SUCCESS'];
-				this.gameSaveError = values['GAME_SAVE_ERROR'];
-			});
+		this.translate.get(['GAME_STEP1_TITLE', 'GAME_STEP2_TITLE', 'GAME_STEP3_TITLE', 'GAME_STEP4_TITLE', 'GAME_SAVE_SUCCESS', 'GAME_SAVE_ERROR']).subscribe(values => {
+			this.gameStep1Title = values['GAME_STEP1_TITLE'];
+			this.gameStep2Title = values['GAME_STEP2_TITLE'];
+			this.gameStep3Title = values['GAME_STEP3_TITLE'];
+			this.gameStep4Title = values['GAME_STEP4_TITLE'];
+			this.gameSuccess = values['GAME_SAVE_SUCCESS'];
+			this.gameSaveError = values['GAME_SAVE_ERROR'];
+		});
 
 		this.pollaHeader = new PollaHeader();
+	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.loadTemplateHeaders();
 	}
 
@@ -164,12 +157,8 @@ export class GameSavePage {
 		this.pollaHeader.accessFlag = getFlagValue(this.pollaHeader.accessFlag);
 		this.pollaHeader.pollaCost = this.pollaCost.disabled ? null : this.pollaHeader.pollaCost;
 		this.pollaHeader.modePollaFlag = this.modePollaFlag.disabled ? 0 : getFlagValue(this.pollaHeader.modePollaFlag);
-		this.pollaHeader.modePollitaFlag = this.modePollitaFlag.disabled
-			? 0
-			: getFlagValue(this.pollaHeader.modePollitaFlag);
-		this.pollaHeader.modeWildcardFlag = this.modeWildcardFlag.disabled
-			? 0
-			: getFlagValue(this.pollaHeader.modeWildcardFlag);
+		this.pollaHeader.modePollitaFlag = this.modePollitaFlag.disabled ? 0 : getFlagValue(this.pollaHeader.modePollitaFlag);
+		this.pollaHeader.modeWildcardFlag = this.modeWildcardFlag.disabled ? 0 : getFlagValue(this.pollaHeader.modeWildcardFlag);
 		this.pollaHeader.numEvents = this.selectedTemplateHeader.numEvents;
 		this.pollaHeader.numMatchs = this.selectedTemplateHeader.numMatchs;
 		this.pollaHeader.lang = this.translate.store.currentLang;

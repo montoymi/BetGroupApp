@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
-import { PollaProvider } from '../../providers/providers';
+import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { presentToast, presentLoading } from '../pages';
@@ -16,26 +16,37 @@ export class RankingListPage {
 	@ViewChild(Navbar) navBar: Navbar;
 
 	segment: string;
-	
+
 	pollaParticipantList: PollaParticipant[];
-	
+
 	constructor(
-		public navCtrl: NavController, 
+		public navCtrl: NavController,
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
+		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
 		this.segment = 'polla';
-		
-		this.loadRanking();
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
 	ionViewDidLoad() {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadRanking();
 	}
 
 	loadRanking() {
@@ -54,7 +65,5 @@ export class RankingListPage {
 		);
 	}
 
-	segmentChanged() {
-
-	}
+	segmentChanged() {}
 }

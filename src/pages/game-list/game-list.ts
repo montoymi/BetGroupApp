@@ -22,16 +22,21 @@ export class GameListPage {
 		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
-	) {
-		//TODO: Poner validacion del user
-		if (userProvider.user) {
-			this.userType = userProvider.user.userType;
+	) {}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
 		}
+
+		return true;
 	}
 
 	// Runs when the page is about to enter and become the active page.
-	// Se actualiza la lista por la opción crear juego.
+	// Actualiza la lista por la opción crear juego.
 	ionViewWillEnter() {
+		this.userType = this.userProvider.user.userType;
+
 		this.loadPollas();
 	}
 

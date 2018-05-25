@@ -90,6 +90,14 @@ export class ChangePasswordPage {
 		});
 	}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
 	changePassword() {
 		let user: User = new User();
 		user.userId = this.userProvider.user.userId;

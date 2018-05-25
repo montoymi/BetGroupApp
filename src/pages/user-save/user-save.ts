@@ -58,8 +58,6 @@ export class UserSavePage {
 				this.signupEmailError = values['SIGNUP_EMAIL_ERROR'];
 			});
 
-		this.loadUser();
-
 		this.validationMessages = {
 			username: [{ type: 'required', message: this.usernameRequiredError }, { type: 'maxlength', message: this.usernameMaxlengthError }],
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }]
@@ -76,6 +74,20 @@ export class UserSavePage {
 			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])),
 			flagNotification: new FormControl('')
 		});
+	}
+
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.loadUser();
 	}
 
 	loadUser() {

@@ -22,8 +22,16 @@ export class GameAvailableListPage {
 		public loadingCtrl: LoadingController
 	) {}
 
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
+	}
+
 	// Runs when the page is about to enter and become the active page.
-	// Se actualiza la lista por la opción inscribirse en juego.
+	// Actualiza la lista por la opción inscribirse en juego.
 	ionViewWillEnter() {
 		this.loadPollas();
 	}

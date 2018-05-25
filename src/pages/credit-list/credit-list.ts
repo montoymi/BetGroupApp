@@ -33,13 +33,21 @@ export class CreditListPage {
 			this.creditStatusApproved = values['CREDIT_STATUS_APPROVED'];
 			this.creditStatusCancelled = values['CREDIT_STATUS_CANCELLED'];
 		});
+	}
 
-		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
+	ionViewCanEnter(): boolean {
+		if (!this.userProvider.user) {
+			return false;
+		}
+
+		return true;
 	}
 
 	// Runs when the page is about to enter and become the active page.
-	// Se actualiza la lista por las opciones adicionar créditos y cobrar créditos.
+	// Actualiza la lista por las opciones adicionar créditos y cobrar créditos.
 	ionViewWillEnter() {
+		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
+
 		this.loadCreditSummary();
 	}
 
