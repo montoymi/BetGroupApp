@@ -6,7 +6,7 @@ import { IonicPage, NavController, ToastController, AlertController, LoadingCont
 import { UserProvider, ParamValueProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
 import { MainPage, presentToast, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { RESPONSE_ERROR, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constants/constants';
 import { PasswordValidator } from '../../validators/password.validator';
 
 @IonicPage()
@@ -107,10 +107,7 @@ export class SignupPage {
 	ngOnInit() {
 		this.passwords = new FormGroup(
 			{
-				password: new FormControl(
-					'',
-					Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')])
-				),
+				password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(PASSWORD_PATTERN)])),
 				confirmPassword: new FormControl('', Validators.required)
 			},
 			(formGroup: FormGroup) => {
@@ -120,7 +117,7 @@ export class SignupPage {
 
 		this.form = this.formBuilder.group({
 			username: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(15)])),
-			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])),
 			passwords: this.passwords,
 			terms: new FormControl(false, Validators.pattern('true'))
 		});
