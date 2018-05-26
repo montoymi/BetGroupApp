@@ -17,7 +17,7 @@
 		<ion-list *ngIf="user">
 			<ion-item>
 				<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-				<ion-input type="text" [(ngModel)]="user.username" formControlName="username"></ion-input>
+				<ion-input disabled type="text" [(ngModel)]="user.username" formControlName="username"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.username">
