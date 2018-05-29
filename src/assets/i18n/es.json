@@ -178,10 +178,10 @@
 	"COLLECT_CREDITS_TITLE": "Cobrar créditos",
 
 	"CREDITS_TO_BUY": "Créditos a comprar",
-	"CREDITS_BUY_INFO": "<TEXT>",
+	"CREDITS_BUY_INFO": "Desde esta pantalla, usted podrá indicar el número de créditos que desea comprar. Esta compra será notificada al administrador de Kiniela Sports, el cual se pondrá en contacto con usted vía correo electrónico para confirmar la transacción e indicarle los siguientes pasos. Una vez sus créditos son aprobados, estos serán transferidos a su cuenta para que usted pueda inscribirse en cualquier juego que requiera algún costo de inscripción desde la app. ",
 
 	"CREDITS_TO_COLLECT": "Créditos a cobrar",
-	"CREDITS_COLLECT_INFO": "<TEXT>",
+	"CREDITS_COLLECT_INFO": "Para cobrar creditos usted debe tener un mínimo de 1,000 créditos para que podamos hacerle la transferencia a su cuenta bancaria. Esta compra será notificada al administrador de Kiniela Sports, el cual se pondrá en contacto con usted vía correo electrónico para confirmar la transacción e indicarle los siguientes pasos a seguir. Una vez la transacción es aprobada, los créditos solicitados serán transferidos a su cuenta bancaria. ",
 
 	"ACCOUNT_NUMBER": "Número de cuenta",
 
