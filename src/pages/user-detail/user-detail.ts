@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider } from '../../providers/providers';
+import { UserProvider, formatISO8601 } from '../../providers/providers';
 import { User } from '../../models/account/user';
+import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,9 @@ export class UserDetailPage {
 		public navCtrl: NavController, 
 		public navParams: NavParams, 
 		public modalCtrl: ModalController, 
-		public userProvider: UserProvider
+		public userProvider: UserProvider,
+		public toastCtrl: ToastController,
+		public loadingCtrl: LoadingController
 	) {}
 
 	ionViewCanEnter(): boolean {
@@ -27,10 +30,29 @@ export class UserDetailPage {
 		return true;
 	}
 
-	// Runs when the page has loaded. This event is NOT fired on
-	// entering a view that is already cached.
-	ionViewDidLoad() {
-		this.user = this.userProvider.user;
+	// Runs when the page is about to enter and become the active page.
+	// Actualiza la página por las opción editar perfil.
+	ionViewWillEnter() {
+		this.loadUser();
+	}
+
+	loadUser() {
+		let userId: number = this.userProvider.user.userId;
+
+		let loading = presentLoading(this.loadingCtrl);
+		this.userProvider.getUserById(userId).subscribe(
+			(res: any) => {
+				loading.dismiss();
+
+				let user: User = res.body;
+				user.dateOfBirthday = formatISO8601(user.dateOfBirthday);
+				this.user = user;
+			},
+			err => {
+				loading.dismiss();
+				presentToast(this.toastCtrl, err.message);
+			}
+		);
 	}
 
 	openUserSavePage() {

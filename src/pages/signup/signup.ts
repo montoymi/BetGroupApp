@@ -86,8 +86,6 @@ export class SignupPage {
 				this.okButton = values['OK_BUTTON'];
 			});
 
-		this.user = new User();
-
 		this.validationMessages = {
 			username: [{ type: 'required', message: this.usernameRequiredError }, { type: 'maxlength', message: this.usernameMaxlengthError }],
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }],
@@ -100,9 +98,11 @@ export class SignupPage {
 			passwords: [{ type: 'areEqual', message: this.confirmPasswordAreEqualError }],
 			terms: [{ type: 'pattern', message: this.termsPatternError }]
 		};
+
+		this.createForm();
 	}
 
-	ngOnInit() {
+	createForm() {
 		this.passwords = new FormGroup(
 			{
 				password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(PASSWORD_PATTERN)])),
@@ -114,11 +114,23 @@ export class SignupPage {
 		);
 
 		this.form = this.formBuilder.group({
-			username: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(15)])),
-			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])),
+			username: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+			email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])],
 			passwords: this.passwords,
-			terms: new FormControl(false, Validators.pattern('true'))
+			terms: [false, Validators.pattern('true')]
 		});
+	}
+
+	prepareSaveUser(): User {
+		const formModel = this.form.value;
+
+		const user: User = new User();
+		user.username = formModel.username;
+		user.email = formModel.email;
+		user.password = formModel.passwords.password;
+		user.preferredLang = this.translate.store.currentLang;
+
+		return user;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -136,7 +148,7 @@ export class SignupPage {
 	}
 
 	doSignup(values) {
-		this.user.preferredLang = this.translate.store.currentLang;
+		this.user = this.prepareSaveUser();
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.signup(this.user).subscribe(

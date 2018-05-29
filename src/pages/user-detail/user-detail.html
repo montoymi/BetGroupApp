@@ -32,7 +32,7 @@
 		</ion-item>
 		<ion-item>
 			<h2>{{ 'BIRTHDATE' | translate }}</h2>
-			<p>{{ user.dateOfBirthday | moment:'DD/MM/YYYY' }}</p>
+			<p *ngIf="user.dateOfBirthday">{{ user.dateOfBirthday | moment:'DD/MM/YYYY' }}</p>
 		</ion-item>
 		<ion-item>
 			<h2>{{ 'EMAIL' | translate }}</h2>

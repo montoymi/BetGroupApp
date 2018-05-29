@@ -31,7 +31,7 @@ export class GameAvailableListPage {
 	}
 
 	// Runs when the page is about to enter and become the active page.
-	// Actualiza la lista por la opción inscribirse en juego.
+	// Actualiza la página por la opción inscribirse en juego.
 	ionViewWillEnter() {
 		this.loadPollas();
 	}

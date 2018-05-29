@@ -44,7 +44,7 @@ export class CreditListPage {
 	}
 
 	// Runs when the page is about to enter and become the active page.
-	// Actualiza la lista por las opciones adicionar créditos y cobrar créditos.
+	// Actualiza la página por las opciones adicionar créditos y cobrar créditos.
 	ionViewWillEnter() {
 		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
 

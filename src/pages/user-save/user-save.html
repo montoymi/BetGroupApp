@@ -17,7 +17,7 @@
 		<ion-list *ngIf="user">
 			<ion-item>
 				<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-				<ion-input disabled type="text" [(ngModel)]="user.username" formControlName="username"></ion-input>
+				<ion-input type="text" formControlName="username"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.username">
@@ -29,26 +29,26 @@
 
 			<ion-item>
 				<ion-label floating>{{ 'FIRST_NAME' | translate }}</ion-label>
-				<ion-input type="text" [(ngModel)]="user.firstName" formControlName="firstName"></ion-input>
+				<ion-input type="text" formControlName="firstName"></ion-input>
 			</ion-item>
 			<ion-item>
 				<ion-label floating>{{ 'LAST_NAME' | translate }}</ion-label>
-				<ion-input type="text" [(ngModel)]="user.lastName" formControlName="lastName"></ion-input>
+				<ion-input type="text" formControlName="lastName"></ion-input>
 			</ion-item>
 			<ion-item>
 				<ion-label floating>{{ 'SEX' | translate }}</ion-label>
-				<ion-select [(ngModel)]="user.sex" formControlName="sex">
+				<ion-select formControlName="sex">
 					<ion-option value="M">{{ 'SEX_MALE' | translate }}</ion-option>
 					<ion-option value="F">{{ 'SEX_FEMALE' | translate }}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>
 				<ion-label floating>{{ 'BIRTHDATE' | translate }}</ion-label>
-				<ion-datetime [(ngModel)]="user.dateOfBirthday" formControlName="dateOfBirthday" displayFormat="DD/MM/YYYY"></ion-datetime>
+				<ion-datetime formControlName="dateOfBirthday" displayFormat="DD/MM/YYYY"></ion-datetime>
 			</ion-item>
 			<ion-item>
 				<ion-label floating>{{ 'EMAIL' | translate }}</ion-label>
-				<ion-input type="email" [(ngModel)]="user.email" formControlName="email"></ion-input>
+				<ion-input type="email" formControlName="email"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.email">
@@ -60,7 +60,7 @@
 
 			<ion-item>
 				<ion-label text-wrap>{{ 'FLAG_NOTIFICATION' | translate }}</ion-label>
-				<ion-checkbox [(ngModel)]="user.flagNotification" formControlName="flagNotification"></ion-checkbox>
+				<ion-checkbox formControlName="flagNotification"></ion-checkbox>
 			</ion-item>
 		</ion-list>
 	</form>

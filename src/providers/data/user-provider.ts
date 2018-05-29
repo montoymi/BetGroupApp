@@ -8,7 +8,6 @@ import { Api } from '../api/api';
 import { Settings } from '../settings/settings';
 import { User } from '../../models/account/user';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601 } from '../providers';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -179,7 +178,6 @@ export class UserProvider {
 	loggedIn(user: User, password: string, keepSession: boolean) {
 		console.info('loggedIn: ' + user.username);
 		this.user = user;
-		this.user.dateOfBirthday = formatISO8601(this.user.dateOfBirthday);
 		this.user.password = password;
 		this.user.preferredLang = this.translate.store.currentLang;
 

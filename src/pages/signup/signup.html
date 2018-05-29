@@ -9,7 +9,7 @@
 		<ion-list>
 			<ion-item>
 				<ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-				<ion-input type="text" [(ngModel)]="user.username" formControlName="username"></ion-input>
+				<ion-input type="text" formControlName="username"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.username">
@@ -21,7 +21,7 @@
 
 			<ion-item>
 				<ion-label floating>{{ 'EMAIL' | translate }}</ion-label>
-				<ion-input type="email" [(ngModel)]="user.email" formControlName="email"></ion-input>
+				<ion-input type="email" formControlName="email"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.email">
@@ -34,7 +34,7 @@
 			<div formGroupName="passwords">
 				<ion-item>
 					<ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-					<ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+					<ion-input type="password" formControlName="password"></ion-input>
 				</ion-item>
 				<div class="validation-errors">
 					<ng-container *ngFor="let validation of validationMessages.password">
@@ -46,7 +46,7 @@
 
 				<ion-item>
 					<ion-label floating>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
-					<ion-input type="password" [(ngModel)]="user.confirmPassword" formControlName="confirmPassword"></ion-input>
+					<ion-input type="password" formControlName="confirmPassword"></ion-input>
 				</ion-item>
 				<div class="validation-errors">
 					<ng-container *ngFor="let validation of validationMessages.confirmPassword">
@@ -67,7 +67,7 @@
 
 			<ion-item>
 				<ion-label><a href="#">{{ 'ACCEPT_CONDITIONS' | translate }}</a></ion-label>
-				<ion-checkbox formControlName="terms" (ionChange)="presentTermsAlert($event)"></ion-checkbox>
+				<ion-checkbox formControlName="terms" (ionChange)="presentAlert($event)"></ion-checkbox>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.terms">

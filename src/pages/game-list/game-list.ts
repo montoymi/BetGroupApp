@@ -33,7 +33,7 @@ export class GameListPage {
 	}
 
 	// Runs when the page is about to enter and become the active page.
-	// Actualiza la lista por la opción crear juego.
+	// Actualiza la página por la opción crear juego.
 	ionViewWillEnter() {
 		this.userType = this.userProvider.user.userType;
 
