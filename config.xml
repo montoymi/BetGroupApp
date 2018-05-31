@@ -88,6 +88,4 @@
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
-    <allow-navigation href="http://192.168.0.4:8101" />
-    <allow-navigation href="http://192.168.0.4:8100" />
 </widget>

@@ -21,6 +21,8 @@ export class GameAvailableDetailPage {
 	private password: string;
 	private gamePasswordError: string;
 	private gameSaveError: string;
+	private confirmTitle: string;
+	private confirmMessage: string;
 	private registerSuccess: string;
 	private cancelButton: string;
 	private okButton: string;
@@ -35,14 +37,18 @@ export class GameAvailableDetailPage {
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
-		this.translate.get(['PASSWORD', 'GAME_PASSWORD_ERROR', 'GAME_SAVE_ERROR', 'REGISTER_SUCCESS', 'CANCEL_BUTTON', 'OK_BUTTON']).subscribe(values => {
-			this.password = values['PASSWORD'];
-			this.gamePasswordError = values['GAME_PASSWORD_ERROR'];
-			this.gameSaveError = values['GAME_SAVE_ERROR'];
-			this.registerSuccess = values['REGISTER_SUCCESS'];
-			this.cancelButton = values['CANCEL_BUTTON'];
-			this.okButton = values['OK_BUTTON'];
-		});
+		this.translate
+			.get(['PASSWORD', 'GAME_PASSWORD_ERROR', 'GAME_SAVE_ERROR', 'REGISTER_CONFIRM_TITLE', 'REGISTER_CONFIRM_MESSAGE', 'REGISTER_SUCCESS', 'CANCEL_BUTTON', 'OK_BUTTON'])
+			.subscribe(values => {
+				this.password = values['PASSWORD'];
+				this.gamePasswordError = values['GAME_PASSWORD_ERROR'];
+				this.gameSaveError = values['GAME_SAVE_ERROR'];
+				this.confirmTitle = values['REGISTER_CONFIRM_TITLE'];
+				this.confirmMessage = values['REGISTER_CONFIRM_MESSAGE'];
+				this.registerSuccess = values['REGISTER_SUCCESS'];
+				this.cancelButton = values['CANCEL_BUTTON'];
+				this.okButton = values['OK_BUTTON'];
+			});
 	}
 
 	ionViewCanEnter(): boolean {
@@ -77,6 +83,59 @@ export class GameAvailableDetailPage {
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
+	}
+
+	presentPrompt() {
+		let alert = this.alertCtrl.create({
+			title: this.password,
+			inputs: [
+				{
+					name: 'password',
+					placeholder: this.password,
+					type: 'password'
+				}
+			],
+			buttons: [
+				{
+					text: this.cancelButton,
+					role: 'cancel',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: this.okButton,
+					handler: data => {
+						this.pollaHeader.password = data.password;
+						this.createParticipant();
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	presentConfirm() {
+		let alert = this.alertCtrl.create({
+			title: this.confirmTitle,
+			message: this.confirmMessage,
+			buttons: [
+				{
+					text: this.cancelButton,
+					role: 'cancel',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: this.okButton,
+					handler: data => {
+						this.registerInGame();
+					}
+				}
+			]
+		});
+		alert.present();
 	}
 
 	createParticipant() {
@@ -121,34 +180,8 @@ export class GameAvailableDetailPage {
 		}
 	}
 
-	presentPrompt() {
-		let alert = this.alertCtrl.create({
-			title: this.password,
-			inputs: [
-				{
-					name: 'password',
-					placeholder: this.password,
-					type: 'password'
-				}
-			],
-			buttons: [
-				{
-					text: this.cancelButton,
-					role: 'cancel',
-					handler: data => {
-						console.log('Cancel clicked');
-					}
-				},
-				{
-					text: this.okButton,
-					handler: data => {
-						this.pollaHeader.password = data.password;
-						this.createParticipant();
-					}
-				}
-			]
-		});
-		alert.present();
+	done() {
+		this.presentConfirm();
 	}
 
 	openParticipantListPage() {

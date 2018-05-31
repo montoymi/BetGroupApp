@@ -169,6 +169,8 @@
 	"BET_SAVE_SUCCESS": "Pronóstico actualizado",
 	"BET_SAVE_ERROR": "Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
 
+	"REGISTER_CONFIRM_TITLE": "Confirmar inscripción",
+	"REGISTER_CONFIRM_MESSAGE": "¿Quieres inscribirte?",
 	"REGISTER_SUCCESS": "Inscripción creada",
 
 	"AVAILABLE_CREDITS": "Créditos disponibles",

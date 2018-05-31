@@ -168,6 +168,8 @@
 	"BET_SAVE_SUCCESS": "Forecast updated",
 	"BET_SAVE_ERROR": "This forecast can not be updated, since the event has already started according to the current date and time defined",
 
+	"REGISTER_CONFIRM_TITLE": "Confirm register",
+	"REGISTER_CONFIRM_MESSAGE": "Do you want to register?",
 	"REGISTER_SUCCESS": "Registration created",
 
 	"AVAILABLE_CREDITS": "Available credits",
