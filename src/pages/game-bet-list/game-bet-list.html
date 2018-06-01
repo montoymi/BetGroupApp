@@ -16,20 +16,15 @@
 			<h2 text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</h2>
 			<ion-grid no-padding>
 				<ion-row>
-					<ion-col col-12>
+					<ion-col>
 						<p>{{ pollaBet.pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
 					</ion-col>
 				</ion-row>
-				<!--<ion-row>
-						<ion-col col-12>
-							<p>Resultado: 2 - 1</p>
-						</ion-col>
-					</ion-row>
-					<ion-row>
-						<ion-col col-12>
-							<p>Puntos: 5</p>
-						</ion-col>
-					</ion-row>-->
+				<ion-row>
+					<ion-col>
+						<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
+					</ion-col>
+				</ion-row>
 			</ion-grid>
 			<ion-thumbnail item-end>
 				<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />

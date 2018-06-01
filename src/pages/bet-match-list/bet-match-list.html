@@ -19,20 +19,10 @@
 			<h2 text-wrap>{{ match.localTeam.teamName }} vs. {{ match.visitorTeam.teamName }}</h2>
 			<ion-grid no-padding>
 				<ion-row>
-					<ion-col col-12>
+					<ion-col>
 						<p>{{ match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
 					</ion-col>
 				</ion-row>
-				<!--<ion-row>
-							<ion-col col-12>
-								<p>Resultado: 2 - 1</p>
-							</ion-col>
-						</ion-row>
-						<ion-row>
-							<ion-col col-12>
-								<p>Puntos: 5</p>
-							</ion-col>
-						</ion-row>-->
 			</ion-grid>
 			<ion-thumbnail item-end>
 				<img [src]="match.visitorTeam.image" />
