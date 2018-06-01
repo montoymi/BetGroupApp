@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
@@ -12,6 +12,8 @@ import { presentToast, presentLoading } from '../pages';
 	templateUrl: 'game-bet-list.html'
 })
 export class GameBetListPage {
+	@ViewChild(Navbar) navBar: Navbar;
+	
 	pollaBetList: PollaBet[];
 
 	constructor(
@@ -34,6 +36,10 @@ export class GameBetListPage {
 	// Runs when the page has loaded. This event is NOT fired on
 	// entering a view that is already cached.
 	ionViewDidLoad() {
+		this.navBar.backButtonClick = (e: UIEvent) => {
+			this.navCtrl.parent.viewCtrl.dismiss();
+		};
+
 		this.loadGameBets();
 	}
 
