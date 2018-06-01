@@ -101,7 +101,7 @@ export class ParticipantSavePage {
 
 	loadGameRules() {
 		this.pollaHeader = this.navParams.get('pollaHeader');
-		this.pollaHeader.lang = this.translate.store.currentLang;
+		this.pollaHeader.lang = this.userProvider.user.preferredLang;
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getGameRules(this.pollaHeader).subscribe(
@@ -115,8 +115,6 @@ export class ParticipantSavePage {
 			}
 		);
 	}
-
-	///
 
 	presentPrompt() {
 		let alert = this.alertCtrl.create({

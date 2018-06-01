@@ -161,7 +161,7 @@ export class GameSavePage {
 		this.pollaHeader.modeWildcardFlag = this.modeWildcardFlag.disabled ? 0 : getFlagValue(this.pollaHeader.modeWildcardFlag);
 		this.pollaHeader.numEvents = this.selectedTemplateHeader.numEvents;
 		this.pollaHeader.numMatchs = this.selectedTemplateHeader.numMatchs;
-		this.pollaHeader.lang = this.translate.store.currentLang;
+		this.pollaHeader.lang = this.userProvider.user.preferredLang;
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getGameRules(this.pollaHeader).subscribe(

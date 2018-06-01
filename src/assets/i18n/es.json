@@ -49,6 +49,7 @@
 
 	"MY_PROFILE": "Mi perfil",
 
+	"HOME_TITLE": "Inicio",
 	"GAME_SAVE_TITLE": "Crear juego",
 	"GAME_LIST_TITLE": "Mis juegos",
 	"GAME_AVAILABLE_LIST_TITLE": "Juegos disponibles",
@@ -60,6 +61,7 @@
 	"TUTORIAL_TITLE": "Tutorial",
 	"LOG_OUT_TITLE": "Cerrar sesión",
 
+	"HOME_SUBTITLE": "Noticias",
 	"GAME_SAVE_SUBTITLE": "Donde podrás crear juegos según tus reglas",
 	"GAME_LIST_SUBTITLE": "Listado de tus juegos inscritos desde donde podrás ingresar los pronósticos de un juego",
 	"GAME_AVAILABLE_LIST_SUBTITLE": "Listado de juegos disponibles desde donde podrás inscribirte a un juego",

@@ -10,7 +10,7 @@ import { RESPONSE_STATUS } from '../../constants/constants';
 export class ParamValueProvider {
 	constructor(public api: Api) {}
 
-	getSlides(lang: string) {
+	getTutorial(lang: string) {
 		let seq = this.api.get('params/tutorial', { lang: lang }).share();
 
 		seq.subscribe(
@@ -36,6 +36,23 @@ export class ParamValueProvider {
 
 	getTerms(lang: string) {
 		let seq = this.api.get('params/terms', { lang: lang }).share();
+
+		seq.subscribe(
+			(res: any) => {
+				if (res.status != RESPONSE_STATUS.OK) {
+					console.info('status', res.status);
+				}
+			},
+			err => {
+				console.error('ERROR', err);
+			}
+		);
+
+		return seq;
+	}
+
+	getHome(userId: number, lang: string) {
+		let seq = this.api.get('params/home', { userId: userId, lang: lang }).share();
 
 		seq.subscribe(
 			(res: any) => {

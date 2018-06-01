@@ -1,0 +1,20 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'HOME_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card *ngFor="let card of cardList">
+		<ion-card-header>
+			{{card.title}}
+		</ion-card-header>
+		<img [src]="card.image1">
+		<ion-card-content>
+			<p>{{card.content1}}</p>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
