@@ -68,11 +68,11 @@ export class ParticipantSavePage {
 				this.okButton = values['OK_BUTTON'];
 			});
 
-			this.validationMessages = {
-				accept: [{ type: 'pattern', message: this.acceptPatternError }]
-			};
+		this.validationMessages = {
+			accept: [{ type: 'pattern', message: this.acceptPatternError }]
+		};
 
-			this.createForm();
+		this.createForm();
 	}
 
 	createForm() {
@@ -92,6 +92,10 @@ export class ParticipantSavePage {
 	// Runs when the page has loaded. This event is NOT fired on
 	// entering a view that is already cached.
 	ionViewDidLoad() {
+		this.navBar.backButtonClick = (e: UIEvent) => {
+			this.navCtrl.parent.viewCtrl.dismiss();
+		};
+
 		this.loadGameRules();
 	}
 

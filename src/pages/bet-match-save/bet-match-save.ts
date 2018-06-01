@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Validators, FormBuilder, FormGroup, AbstractControl, FormArray } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, Slides } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { Match } from '../../models/tournament/match';
 import { PollaBet } from '../../models/polla/polla-bet';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading, getFlagValue } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
 
 @IonicPage()
@@ -113,7 +113,7 @@ export class BetMatchSavePage {
 			const pollaBet: PollaBet = this.pollaBetList[i];
 			pollaBet.localBetScore = formModel.localBetScore;
 			pollaBet.visitorBetScore = formModel.visitorBetScore;
-			pollaBet.flagWildcard = formModel.flagWildcard;
+			pollaBet.flagWildcard = getFlagValue(formModel.flagWildcard);
 		}
 
 		return this.pollaBetList;
