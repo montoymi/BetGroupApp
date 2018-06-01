@@ -30,7 +30,7 @@ export class SignupPage {
 	private termsPatternError: string;
 	private signupNicknameError: string;
 	private signupEmailError: string;
-	private inviteTermsAlertTitle: string;
+	private termsAlertTitle: string;
 	private okButton: string;
 
 	private terms: string;
@@ -82,7 +82,7 @@ export class SignupPage {
 				this.termsPatternError = values['TERMS_PATTERN_ERROR'];
 				this.signupNicknameError = values['SIGNUP_NICKNAME_ERROR'];
 				this.signupEmailError = values['SIGNUP_EMAIL_ERROR'];
-				this.inviteTermsAlertTitle = values['TERMS_ALERT_TITLE'];
+				this.termsAlertTitle = values['TERMS_ALERT_TITLE'];
 				this.okButton = values['OK_BUTTON'];
 			});
 
@@ -192,7 +192,7 @@ export class SignupPage {
 		}
 
 		let alert = this.alertCtrl.create({
-			title: this.inviteTermsAlertTitle,
+			title: this.termsAlertTitle,
 			subTitle: this.terms,
 			buttons: [this.okButton]
 		});

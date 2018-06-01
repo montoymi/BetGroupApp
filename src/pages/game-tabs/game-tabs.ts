@@ -31,27 +31,16 @@ export class GameTabsPage {
 
 	tabParams;
 
-	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
-		public translateService: TranslateService
-	) {
-		translateService
-			.get(['GAME_INFO_TAB', 'PARTICIPANTS_TAB', 'INVITE_TAB', 'EVENTS_TAB', 'RULES_TAB', 'RANKING_TAB'])
-			.subscribe(values => {
-				this.tab1Title = values['GAME_INFO_TAB'];
-				this.tab2Title = values['PARTICIPANTS_TAB'];
-				this.tab3Title = values['INVITE_TAB'];
-				this.tab4Title = values['EVENTS_TAB'];
-				this.tab5Title = values['RULES_TAB'];
-				this.tab6Title = values['RANKING_TAB'];
-			});
+	constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService) {
+		translateService.get(['GAME_INFO_TAB', 'PARTICIPANTS_TAB', 'INVITE_TAB', 'FORECASTS_TAB', 'AWARDS_TAB', 'RANKING_TAB']).subscribe(values => {
+			this.tab1Title = values['GAME_INFO_TAB'];
+			this.tab2Title = values['PARTICIPANTS_TAB'];
+			this.tab3Title = values['INVITE_TAB'];
+			this.tab4Title = values['FORECASTS_TAB'];
+			this.tab5Title = values['AWARDS_TAB'];
+			this.tab6Title = values['RANKING_TAB'];
+		});
 
-		let myPollas: boolean = this.navParams.get('myPollas');
-		if (!myPollas) {
-			this.tab1Root = 'GameAvailableDetailPage';
-		}
-
-		this.tabParams = { pollaHeader: this.navParams.get('pollaHeader'), myPollas: this.navParams.get('myPollas') };
+		this.tabParams = { pollaHeader: this.navParams.get('pollaHeader') };
 	}
 }

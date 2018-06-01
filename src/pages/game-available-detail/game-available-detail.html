@@ -42,9 +42,18 @@
 			<p>{{ pollaHeader.numEvents }}</p>
 		</ion-item>
 	</ion-list>
+
 	<ion-fab right bottom>
-		<button ion-fab (click)="done()">
-			<ion-icon name="star"></ion-icon>
+		<button ion-fab color="light">
+			<ion-icon name="arrow-dropup"></ion-icon>
 		</button>
+		<ion-fab-list side="top">
+			<button ion-fab (click)="openGameMatchListPage()">
+				<ion-icon name="calendar"></ion-icon>
+			</button>
+			<button ion-fab (click)="openRulesPage()">
+				<ion-icon name="paper"></ion-icon>
+			</button>
+		</ion-fab-list>
 	</ion-fab>
 </ion-content>

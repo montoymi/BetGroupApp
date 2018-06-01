@@ -11,9 +11,16 @@ export const MainPage = 'MenuPage';
 export const GameTab1Root = 'GameDetailPage';
 export const GameTab2Root = 'ParticipantListPage';
 export const GameTab3Root = 'FriendInvitePage';
-export const GameTab4Root = 'GameMatchListPage';
-export const GameTab5Root = 'RulesPage';
+export const GameTab4Root = 'GameBetListPage';
+export const GameTab5Root = 'AwardsPage';
 export const GameTab6Root = 'RankingListPage';
+
+// Tabs del detalle del juego disponible.
+export const GameAvailableTab1Root = 'GameAvailableDetailPage';
+export const GameAvailableTab2Root = 'ParticipantListPage';
+export const GameAvailableTab3Root = 'FriendInvitePage';
+export const GameAvailableTab4Root = 'ParticipantSavePage';
+export const GameAvailableTab5Root = 'AwardsPage';
 
 export function presentToast(toastCtrl: ToastController, message: string) {
 	if (message.search("Http failure") == 0) {

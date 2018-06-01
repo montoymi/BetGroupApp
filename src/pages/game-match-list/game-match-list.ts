@@ -36,10 +36,6 @@ export class GameMatchListPage {
 	// Runs when the page has loaded. This event is NOT fired on
 	// entering a view that is already cached.
 	ionViewDidLoad() {
-		this.navBar.backButtonClick = (e: UIEvent) => {
-			this.navCtrl.parent.viewCtrl.dismiss();
-		};
-
 		this.loadPollaMatches();
 	}
 

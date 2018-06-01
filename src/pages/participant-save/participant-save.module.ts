@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
-import { RankingListPage } from './ranking-list';
+import { ParticipantSavePage } from './participant-save';
 
 @NgModule({
 	declarations: [
-		RankingListPage
+		ParticipantSavePage
 	],
 	imports: [
-		IonicPageModule.forChild(RankingListPage),
+		IonicPageModule.forChild(ParticipantSavePage),
 		TranslateModule.forChild()
 	],
 	exports: [
-		RankingListPage
+		ParticipantSavePage
 	]
 })
-export class RankingListPageModule {}
+export class ParticipantSavePageModule {}

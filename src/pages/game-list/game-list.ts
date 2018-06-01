@@ -76,9 +76,6 @@ export class GameListPage {
 	}
 
 	openGameTabsPage(pollaHeader: PollaHeader) {
-		this.navCtrl.push('GameTabsPage', {
-			pollaHeader: pollaHeader,
-			myPollas: true
-		});
+		this.navCtrl.push('GameTabsPage', { pollaHeader: pollaHeader });
 	}
 }

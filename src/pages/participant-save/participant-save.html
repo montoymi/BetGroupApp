@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'REGISTER_TAB' | translate }}</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only [disabled]="!form.valid" (click)="done()">
+				<ion-icon name="checkmark"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form [formGroup]="form">
+		<ion-list>
+			<ion-item no-lines *ngIf="pollaHeader && pollaHeader.rules" text-wrap>
+				<p innerHTML="{{ pollaHeader.rules }}"></p>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{ 'ACCEPT_RULES' | translate }}</ion-label>
+				<ion-checkbox formControlName="accept"></ion-checkbox>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let validation of validationMessages.accept">
+					<div class="error-message" *ngIf="form.get('accept').hasError(validation.type) && (form.get('accept').dirty || form.get('accept').touched)">
+						{{ validation.message }}
+					</div>
+				</ng-container>
+			</div>
+		</ion-list>
+	</form>
+</ion-content>

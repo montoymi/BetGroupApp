@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
+import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaBet } from '../../models/polla/polla-bet';
 import { presentToast, presentLoading } from '../pages';
 
@@ -37,11 +38,11 @@ export class GameBetListPage {
 	}
 
 	loadGameBets() {
-		let pollaId: number = this.navParams.get('pollaId');
+		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 		let userId: number = this.userProvider.user.userId;
 
 		let loading = presentLoading(this.loadingCtrl);
-		this.pollaProvider.getGameBetsByPollaIdAndUserId(pollaId, userId).subscribe(
+		this.pollaProvider.getGameBetsByPollaIdAndUserId(pollaHeader.pollaId, userId).subscribe(
 			(res: any) => {
 				loading.dismiss();
 				this.pollaBetList = res.body;

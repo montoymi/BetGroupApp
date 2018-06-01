@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
-import { RankingListPage } from './ranking-list';
+import { GameAvailableTabsPage } from './game-available-tabs';
 
 @NgModule({
 	declarations: [
-		RankingListPage
+		GameAvailableTabsPage
 	],
 	imports: [
-		IonicPageModule.forChild(RankingListPage),
+		IonicPageModule.forChild(GameAvailableTabsPage),
 		TranslateModule.forChild()
 	],
 	exports: [
-		RankingListPage
+		GameAvailableTabsPage
 	]
 })
-export class RankingListPageModule {}
+export class GameAvailableTabsPageModule {}

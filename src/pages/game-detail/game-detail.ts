@@ -62,7 +62,11 @@ export class GameDetailPage {
 		);
 	}
 
-	openBetListPage() {
-		this.navCtrl.push('GameBetListPage', { pollaId: this.pollaHeader.pollaId });
+	openRulesPage() {
+		this.navCtrl.push('RulesPage', { pollaHeader: this.pollaHeader });
+	}
+
+	openGameMatchListPage() {
+		this.navCtrl.push('GameMatchListPage', { pollaHeader: this.pollaHeader });
 	}
 }
