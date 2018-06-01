@@ -79,7 +79,7 @@ export class TutorialPage {
 				}
 			);
 		} else {
-			this.navCtrl.setRoot('GameListPage');
+			this.navCtrl.setRoot('HomePage');
 		}
 	}
 
