@@ -38,8 +38,7 @@
 			<ion-item>
 				<ion-label floating>{{ 'SEX' | translate }}</ion-label>
 				<ion-select formControlName="sex">
-					<ion-option value="M">{{ 'SEX_MALE' | translate }}</ion-option>
-					<ion-option value="F">{{ 'SEX_FEMALE' | translate }}</ion-option>
+					<ion-option *ngFor="let sex of sexList" [value]="sex.value">{{ sex.description }}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>

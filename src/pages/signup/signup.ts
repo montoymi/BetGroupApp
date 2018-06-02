@@ -99,10 +99,10 @@ export class SignupPage {
 			terms: [{ type: 'pattern', message: this.termsPatternError }]
 		};
 
-		this.createForm();
+		this.buildForm();
 	}
 
-	createForm() {
+	buildForm() {
 		this.passwords = new FormGroup(
 			{
 				password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(PASSWORD_PATTERN)])),
@@ -121,7 +121,7 @@ export class SignupPage {
 		});
 	}
 
-	prepareSaveUser(): User {
+	prepareSave(): User {
 		const formModel = this.form.value;
 
 		const user: User = new User();
@@ -140,7 +140,7 @@ export class SignupPage {
 	}
 
 	doSignup(values) {
-		this.user = this.prepareSaveUser();
+		this.user = this.prepareSave();
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.signup(this.user).subscribe(

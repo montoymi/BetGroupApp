@@ -40,7 +40,7 @@
 		</ion-item>
 		<ion-item>
 			<h2 text-wrap>{{ 'FLAG_NOTIFICATION' | translate }}</h2>
-			<p *ngIf="user.flagNotification">{{ user.flagNotification == 1 ? ('YES' | translate) : ('NO' | translate) }}</p>
+			<p>{{ user.flagNotification == 1 ? ('YES' | translate) : ('NO' | translate) }}</p>
 		</ion-item>
 		<div padding>
 			<button type="button" ion-button small color="light" (click)="openChangePasswordPage()">{{ 'CHANGE_PASSWORD_BUTTON' | translate }}</button>

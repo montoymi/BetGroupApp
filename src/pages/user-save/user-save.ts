@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController, L
 
 import { UserProvider, formatISO8601 } from '../../providers/providers';
 import { User } from '../../models/account/user';
+import { Item } from '../../models/item';
 import { RESPONSE_ERROR, EMAIL_PATTERN } from '../../constants/constants';
 import { presentToast, getFlagValue, presentLoading } from '../pages';
 
@@ -23,10 +24,14 @@ export class UserSavePage {
 	private emailPatternError: string;
 	private signupNicknameError: string;
 	private signupEmailError: string;
+	private sexMale: string;
+	private sexFemale: string;
 
 	form: FormGroup;
 
 	validationMessages;
+
+	sexList: Item[];
 
 	constructor(
 		public navCtrl: NavController,
@@ -46,7 +51,9 @@ export class UserSavePage {
 				'EMAIL_REQUIRED_ERROR',
 				'EMAIL_PATTERN_ERROR',
 				'SIGNUP_NICKNAME_ERROR',
-				'SIGNUP_EMAIL_ERROR'
+				'SIGNUP_EMAIL_ERROR',
+				'SEX_MALE',
+				'SEX_FEMALE'
 			])
 			.subscribe(values => {
 				this.userSaveSuccess = values['USER_SAVE_SUCCESS'];
@@ -56,6 +63,8 @@ export class UserSavePage {
 				this.emailPatternError = values['EMAIL_PATTERN_ERROR'];
 				this.signupNicknameError = values['SIGNUP_NICKNAME_ERROR'];
 				this.signupEmailError = values['SIGNUP_EMAIL_ERROR'];
+				this.sexMale = values['SEX_MALE'];
+				this.sexFemale = values['SEX_FEMALE'];
 			});
 
 		this.validationMessages = {
@@ -63,50 +72,45 @@ export class UserSavePage {
 			email: [{ type: 'required', message: this.emailRequiredError }, { type: 'pattern', message: this.emailPatternError }]
 		};
 
-		this.createForm();
+		this.sexList = [
+			{
+				value: 'M',
+				description: this.sexMale
+			},
+			{
+				value: 'F',
+				description: this.sexFemale
+			}
+		];
 
-		this.user = userProvider.user;
-		this.setFormValues();
+		this.user = navParams.get('user');
+		this.buildForm();
 	}
 
-	createForm() {
+	buildForm() {
 		this.form = this.formBuilder.group({
-			username: [{ value: '', disabled: true }, Validators.compose([Validators.required, Validators.maxLength(15)])],
-			firstName: [''],
-			lastName: [''],
-			sex: [''],
-			dateOfBirthday: [''],
-			email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])],
-			flagNotification: ['']
+			username: [{ value: this.user.username, disabled: true }, Validators.compose([Validators.required, Validators.maxLength(15)])],
+			firstName: [this.user.firstName],
+			lastName: [this.user.lastName],
+			sex: [this.user.sex],
+			dateOfBirthday: [this.user.dateOfBirthday],
+			email: [this.user.email, Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])],
+			flagNotification: [this.user.flagNotification]
 		});
 	}
 
-	setFormValues() {
-		this.form.patchValue({
-			username: this.user.username,
-			firstName: this.user.firstName,
-			lastName: this.user.lastName,
-			sex: this.user.sex,
-			dateOfBirthday: this.user.dateOfBirthday,
-			email: this.user.email,
-			flagNotification: this.user.flagNotification
-		});
-	}
-
-	prepareSaveUser(): User {
+	prepareSave(): User {
 		const formModel = this.form.value;
 
-		const user: User = new User();
-		user.userId = this.userProvider.user.userId;
-		user.username = formModel.username;
-		user.firstName = formModel.firstName;
-		user.lastName = formModel.lastName;
-		user.sex = formModel.sex;
-		user.dateOfBirthday = formatISO8601(formModel.dateOfBirthday);
-		user.email = formModel.email;
-		this.user.flagNotification = getFlagValue(this.user.flagNotification);
+		this.user.username = formModel.username;
+		this.user.firstName = formModel.firstName;
+		this.user.lastName = formModel.lastName;
+		this.user.sex = formModel.sex;
+		this.user.dateOfBirthday = formatISO8601(formModel.dateOfBirthday);
+		this.user.email = formModel.email;
+		this.user.flagNotification = getFlagValue(formModel.flagNotification);
 
-		return user;
+		return this.user;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -118,7 +122,7 @@ export class UserSavePage {
 	}
 
 	updateUser() {
-		this.user = this.prepareSaveUser();
+		this.prepareSave();
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.updateUser(this.user).subscribe(

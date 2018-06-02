@@ -47,10 +47,10 @@ export class GameBetSavePage {
 			score: [{ type: 'required', message: this.betScoreRequiredError }]
 		};
 
-		this.createForm();
+		this.buildForm();
 	}
 
-	createForm() {
+	buildForm() {
 		let disabledScore: boolean = this.pollaBet.status == 0;
 		let disabledWildcard: boolean = this.pollaBet.status == 0 || this.pollaBet.pollaMatch.pollaHeader.modeWildcardFlag != 1;
 
@@ -61,7 +61,7 @@ export class GameBetSavePage {
 		});
 	}
 
-	prepareSavePollaBet(): PollaBet {
+	prepareSave(): PollaBet {
 		const formModel = this.form.value;
 
 		this.pollaBet.localBetScore = formModel.localBetScore;
@@ -80,7 +80,7 @@ export class GameBetSavePage {
 	}
 
 	updateGameBet() {
-		this.prepareSavePollaBet();
+		this.prepareSave();
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.updateGameBet(this.pollaBet).subscribe(

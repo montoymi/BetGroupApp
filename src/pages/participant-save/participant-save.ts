@@ -72,10 +72,10 @@ export class ParticipantSavePage {
 			accept: [{ type: 'pattern', message: this.acceptPatternError }]
 		};
 
-		this.createForm();
+		this.buildForm();
 	}
 
-	createForm() {
+	buildForm() {
 		this.form = this.formBuilder.group({
 			accept: [false, Validators.pattern('true')]
 		});

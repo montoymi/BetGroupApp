@@ -14,9 +14,9 @@ export class UserDetailPage {
 	user: User;
 
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
-		public modalCtrl: ModalController, 
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public modalCtrl: ModalController,
 		public userProvider: UserProvider,
 		public toastCtrl: ToastController,
 		public loadingCtrl: LoadingController
@@ -56,7 +56,7 @@ export class UserDetailPage {
 	}
 
 	openUserSavePage() {
-		this.navCtrl.push('UserSavePage');
+		this.navCtrl.push('UserSavePage', { user: this.user });
 	}
 
 	openChangePasswordPage() {

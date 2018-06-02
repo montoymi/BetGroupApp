@@ -57,10 +57,10 @@ export class BetMatchSavePage {
 			score: [{ type: 'required', message: this.betScoreRequiredError }]
 		};
 
-		this.createForm();
+		this.buildForm();
 	}
 
-	createForm() {
+	buildForm() {
 		this.form = this.formBuilder.group({
 			formArray: this.formBuilder.array([])
 		});
@@ -101,7 +101,7 @@ export class BetMatchSavePage {
 		this.form.setControl('formArray', formArray);
 	}
 
-	prepareSavePollaBets(): PollaBet[] {
+	prepareSave(): PollaBet[] {
 		let formArray = this.formArray.value;
 
 		for (let formModel of formArray) {
@@ -190,7 +190,7 @@ export class BetMatchSavePage {
 	}
 
 	updateBets() {
-		if (!this.prepareSavePollaBets()) {
+		if (!this.prepareSave()) {
 			return;
 		}
 
