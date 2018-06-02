@@ -101,11 +101,19 @@ export class FriendInvitePage {
 	}
 
 	inviteFriend() {
+		// Se retira esta opción del tab de juegos disponibles.
+		// pero se mantiene el código de validación comentado.
+		// Si se habilita, ver la forma de mostrar el alert sin
+		// usar el flag myPollas, ya que este ya no se pasa entre 
+		// las paginas.
+
+		/*
 		let myPollas: boolean = this.navParams.get('myPollas');
 		if (!myPollas) {
 			this.presentAlert();
 			return;
 		}
+		*/
 
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 
