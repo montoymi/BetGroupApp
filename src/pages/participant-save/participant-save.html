@@ -1,11 +1,6 @@
 <ion-header>
 	<ion-navbar class="force-back-button">
 		<ion-title>{{ 'REGISTER_TAB' | translate }}</ion-title>
-		<ion-buttons end>
-			<button ion-button icon-only (click)="done()">
-				<ion-icon name="checkmark"></ion-icon>
-			</button>
-		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 
@@ -13,7 +8,7 @@
 	<form [formGroup]="form">
 		<ion-list>
 			<ion-item no-lines *ngIf="pollaHeader && pollaHeader.rules" text-wrap>
-				<p innerHTML="{{ pollaHeader.rules }}"></p>
+				<p style="height: 360px; overflow-y: scroll" innerHTML="{{ pollaHeader.rules }}"></p>
 			</ion-item>
 			<ion-item>
 				<ion-label>{{ 'ACCEPT_RULES' | translate }}</ion-label>
@@ -25,6 +20,10 @@
 						{{ validation.message }}
 					</div>
 				</ng-container>
+			</div>
+
+			<div padding>
+				<button type="submit" ion-button small (click)="done()">{{ 'OK_BUTTON' | translate }}</button>
 			</div>
 		</ion-list>
 	</form>
