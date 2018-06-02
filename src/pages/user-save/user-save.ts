@@ -15,7 +15,11 @@ import { presentToast, getFlagValue, presentLoading } from '../pages';
 	templateUrl: 'user-save.html'
 })
 export class UserSavePage {
+	form: FormGroup;
+	validationMessages;
+
 	user: User;
+	sexList: Item[];
 
 	private userSaveSuccess: string;
 	private usernameRequiredError: string;
@@ -26,12 +30,6 @@ export class UserSavePage {
 	private signupEmailError: string;
 	private sexMale: string;
 	private sexFemale: string;
-
-	form: FormGroup;
-
-	validationMessages;
-
-	sexList: Item[];
 
 	constructor(
 		public navCtrl: NavController,
@@ -94,23 +92,40 @@ export class UserSavePage {
 			lastName: [this.user.lastName],
 			sex: [this.user.sex],
 			dateOfBirthday: [this.user.dateOfBirthday],
-			email: [this.user.email, Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])],
+			email: [{ value: this.user.email, disabled: true }, Validators.compose([Validators.required, Validators.pattern(EMAIL_PATTERN)])],
 			flagNotification: [this.user.flagNotification]
 		});
 	}
 
 	prepareSave(): User {
+		if (!this.validateForm()) {
+			return null;
+		}
+
 		const formModel = this.form.value;
 
-		this.user.username = formModel.username;
+		this.user.username = formModel.username != undefined ? formModel.username : this.user.username;
 		this.user.firstName = formModel.firstName;
 		this.user.lastName = formModel.lastName;
 		this.user.sex = formModel.sex;
 		this.user.dateOfBirthday = formatISO8601(formModel.dateOfBirthday);
-		this.user.email = formModel.email;
+		this.user.email = formModel.email != undefined ? formModel.email : this.user.email;
 		this.user.flagNotification = getFlagValue(formModel.flagNotification);
 
 		return this.user;
+	}
+
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -122,7 +137,9 @@ export class UserSavePage {
 	}
 
 	updateUser() {
-		this.prepareSave();
+		if (!this.prepareSave()) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.updateUser(this.user).subscribe(

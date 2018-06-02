@@ -15,6 +15,8 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 	templateUrl: 'participant-save.html'
 })
 export class ParticipantSavePage {
+	form: FormGroup;
+	validationMessages;
 	@ViewChild(Navbar) navBar: Navbar;
 
 	pollaHeader: PollaHeader;
@@ -28,10 +30,6 @@ export class ParticipantSavePage {
 	private registerSuccess: string;
 	private cancelButton: string;
 	private okButton: string;
-
-	form: FormGroup;
-
-	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -79,6 +77,33 @@ export class ParticipantSavePage {
 		this.form = this.formBuilder.group({
 			accept: [false, Validators.pattern('true')]
 		});
+	}
+
+	prepareSave(): PollaParticipant {
+		if (!this.validateForm()) {
+			return null;
+		}
+
+		let pollaParticipant: PollaParticipant = new PollaParticipant();
+		pollaParticipant.pollaHeader = this.pollaHeader;
+		pollaParticipant.pollaHeaderId = this.pollaHeader.pollaId;
+		pollaParticipant.user = this.userProvider.user;
+		pollaParticipant.userId = this.userProvider.user.userId;
+
+		return pollaParticipant;
+	}
+
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -170,11 +195,10 @@ export class ParticipantSavePage {
 	}
 
 	createParticipant() {
-		let pollaParticipant: PollaParticipant = new PollaParticipant();
-		pollaParticipant.pollaHeader = this.pollaHeader;
-		pollaParticipant.pollaHeaderId = this.pollaHeader.pollaId;
-		pollaParticipant.user = this.userProvider.user;
-		pollaParticipant.userId = this.userProvider.user.userId;
+		let pollaParticipant: PollaParticipant = this.prepareSave();
+		if (!pollaParticipant) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.createParticipant(pollaParticipant).subscribe(

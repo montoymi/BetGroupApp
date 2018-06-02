@@ -15,6 +15,10 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 	templateUrl: 'bet-match-save.html'
 })
 export class BetMatchSavePage {
+	form: FormGroup;
+	validationMessages;
+	@ViewChild('slides') slides: Slides;
+
 	match: Match;
 	pollaBetList: PollaBet[];
 	dir: string = 'ltr';
@@ -22,12 +26,6 @@ export class BetMatchSavePage {
 	private betSaveSuccess: string;
 	private betScoreRequiredError: string;
 	private betSaveError: string;
-
-	@ViewChild('slides') slides: Slides;
-
-	form: FormGroup;
-
-	validationMessages;
 
 	// Flag del checkbox copytoall.
 	isCopyChecked: boolean;
@@ -119,21 +117,17 @@ export class BetMatchSavePage {
 		return this.pollaBetList;
 	}
 
-	validateForm(index: number) {
+	validateForm(index: number): boolean {
 		let formGroup: any = this.formArray.controls[index];
-		let localBetScore: AbstractControl = formGroup.controls.localBetScore;
-		let visitorBetScore: AbstractControl = formGroup.controls.visitorBetScore;
 
-		if (!localBetScore.valid || !visitorBetScore.valid) {
+		if (!formGroup.valid) {
 			// Se posiciona en el slide con error.
 			this.slides.slideTo(index);
 
-			// Lo marca el control como modificado para mostrar el mensaje de error.
-			if (!localBetScore.valid) {
-				localBetScore.markAsDirty();
-			} else {
-				visitorBetScore.markAsDirty();
-			}
+			// Marca los controles como modificados para mostrar el mensaje de error.
+			Object.keys(formGroup.controls).forEach(key => {
+				formGroup.get(key).markAsDirty();
+			});
 
 			return false;
 		}

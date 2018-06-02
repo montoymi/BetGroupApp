@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
@@ -14,7 +14,10 @@ import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../cons
 	templateUrl: 'credit-add.html'
 })
 export class CreditAddPage {
-	creditDetail: CreditDetail;
+	form: FormGroup;
+	validationMessages;
+
+	creditAmount: number;
 
 	private confirmTitle: string;
 	private confirmMessage: string;
@@ -24,10 +27,6 @@ export class CreditAddPage {
 	private creditAmountRequiredError: string;
 	private creditAddError: string;
 	private creditAddError2: string;
-
-	form: FormGroup;
-
-	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -64,17 +63,48 @@ export class CreditAddPage {
 				this.creditAddError2 = values['CREDIT_ADD_ERROR2'];
 			});
 
-		this.creditDetail = new CreditDetail();
-
 		this.validationMessages = {
 			creditAmount: [{ type: 'required', message: this.creditAmountRequiredError }]
 		};
+
+		this.buildForm();
 	}
 
-	ngOnInit() {
+	buildForm() {
 		this.form = this.formBuilder.group({
-			creditAmount: new FormControl('', Validators.required)
+			creditAmount: ['', Validators.required]
 		});
+	}
+
+	prepareSave(): CreditDetail {
+		if (!this.validateForm()) {
+			return null;
+		}
+
+		const formModel = this.form.value;
+
+		let creditDetail = new CreditDetail();
+		creditDetail.userId = this.userProvider.user.userId;
+		creditDetail.createdBy = this.userProvider.user.userId;
+		creditDetail.comments = 'Créditos comprados';
+		creditDetail.transactionTypeId = TRANSACTION_TYPE.ADD_CREDIT;
+		creditDetail.status = TRANSACTION_STATUS.PENDING;
+		creditDetail.creditAmount = formModel.creditAmount;
+
+		return creditDetail;
+	}
+
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -86,23 +116,22 @@ export class CreditAddPage {
 	}
 
 	saveCreditTransaction() {
-		this.creditDetail.userId = this.userProvider.user.userId;
-		this.creditDetail.createdBy = this.userProvider.user.userId;
-		this.creditDetail.comments = 'Créditos comprados';
-		this.creditDetail.transactionTypeId = TRANSACTION_TYPE.ADD_CREDIT;
-		this.creditDetail.status = TRANSACTION_STATUS.PENDING;
+		let creditDetail = this.prepareSave();
+		if (!creditDetail) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
-		this.creditProvider.addCredit(this.creditDetail).subscribe(
+		this.creditProvider.addCredit(creditDetail).subscribe(
 			(res: any) => {
 				loading.dismiss();
 				presentToast(this.toastCtrl, this.creditAddSuccess);
-				this.creditDetail = res.body;
+				creditDetail = res.body;
 				this.viewCtrl.dismiss(true);
 
 				let params = {
-					item_name: this.creditDetail.comments,
-					value: this.creditDetail.creditAmount
+					item_name: creditDetail.comments,
+					value: creditDetail.creditAmount
 				};
 				this.logger.logEvent(this.navCtrl.getActive().name, 'spend_virtual_currency', params);
 			},

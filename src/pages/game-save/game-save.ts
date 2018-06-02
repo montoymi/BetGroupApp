@@ -15,6 +15,13 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 	templateUrl: 'game-save.html'
 })
 export class GameSavePage {
+	@ViewChild('stepper') stepper: IonicStepperComponent;
+	@ViewChild('pollaCost') pollaCost: TextInput;
+	@ViewChild('modePollaFlag') modePollaFlag: Checkbox;
+	@ViewChild('modePollitaFlag') modePollitaFlag: Checkbox;
+	@ViewChild('modeWildcardFlag') modeWildcardFlag: Checkbox;
+	@ViewChild('accept') accept: Checkbox;
+
 	templateHeaderList: TemplateHeader[];
 	selectedTemplateHeader: TemplateHeader;
 	pollaHeader: PollaHeader;
@@ -25,13 +32,6 @@ export class GameSavePage {
 	private gameStep4Title: string;
 	private gameSuccess: string;
 	private gameSaveError: string;
-
-	@ViewChild('stepper') stepper: IonicStepperComponent;
-	@ViewChild('pollaCost') pollaCost: TextInput;
-	@ViewChild('modePollaFlag') modePollaFlag: Checkbox;
-	@ViewChild('modePollitaFlag') modePollitaFlag: Checkbox;
-	@ViewChild('modeWildcardFlag') modeWildcardFlag: Checkbox;
-	@ViewChild('accept') accept: Checkbox;
 
 	constructor(
 		public navCtrl: NavController,

@@ -15,9 +15,9 @@ import { PasswordValidator } from '../../validators/password.validator';
 	templateUrl: 'change-password.html'
 })
 export class ChangePasswordPage {
-	currentPassword: string;
-	newPassword: string;
-	confirmPassword: string;
+	form: FormGroup;
+	passwords: FormGroup;
+	validationMessages;
 
 	private changePasswordSuccess: string;
 	private currentPasswordError: string;
@@ -26,11 +26,6 @@ export class ChangePasswordPage {
 	private passwordPatternError: string;
 	private confirmPasswordRequiredError: string;
 	private confirmPasswordAreEqualError: string;
-
-	form: FormGroup;
-	passwords: FormGroup;
-
-	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -71,9 +66,11 @@ export class ChangePasswordPage {
 			confirmPassword: [{ type: 'required', message: this.confirmPasswordRequiredError }],
 			passwords: [{ type: 'areEqual', message: this.confirmPasswordAreEqualError }]
 		};
+
+		this.buildForm();
 	}
 
-	ngOnInit() {
+	buildForm() {
 		this.passwords = new FormGroup(
 			{
 				newPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(PASSWORD_PATTERN)])),
@@ -85,9 +82,39 @@ export class ChangePasswordPage {
 		);
 
 		this.form = this.formBuilder.group({
-			currentPassword: new FormControl('', Validators.compose([Validators.required, Validators.pattern(this.userProvider.user.password)])),
+			currentPassword: ['', Validators.compose([Validators.required, Validators.pattern(this.userProvider.user.password)])],
 			passwords: this.passwords
 		});
+	}
+
+	prepareSave(): User {
+		if (!this.validateForm()) {
+			return null;
+		}
+
+		const formModel = this.form.value;
+
+		const user: User = new User();
+		user.userId = this.userProvider.user.userId;
+		user.password = formModel.passwords.newPassword;
+
+		return user;
+	}
+
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+			Object.keys(this.passwords.controls).forEach(key => {
+				this.passwords.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -99,9 +126,10 @@ export class ChangePasswordPage {
 	}
 
 	changePassword() {
-		let user: User = new User();
-		user.userId = this.userProvider.user.userId;
-		user.password = this.newPassword;
+		let user = this.prepareSave();
+		if (!user) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.userProvider.changePassword(user).subscribe(

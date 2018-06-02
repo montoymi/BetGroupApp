@@ -14,15 +14,14 @@ import { RESPONSE_ERROR } from '../../constants/constants';
 	templateUrl: 'game-bet-save.html'
 })
 export class GameBetSavePage {
+	form: FormGroup;
+	validationMessages;
+
 	pollaBet: PollaBet;
 
 	private betSaveSuccess: string;
 	private betScoreRequiredError: string;
 	private betSaveError: string;
-
-	form: FormGroup;
-
-	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -62,6 +61,10 @@ export class GameBetSavePage {
 	}
 
 	prepareSave(): PollaBet {
+		if (!this.validateForm()) {
+			return null;
+		}
+
 		const formModel = this.form.value;
 
 		this.pollaBet.localBetScore = formModel.localBetScore;
@@ -69,6 +72,19 @@ export class GameBetSavePage {
 		this.pollaBet.flagWildcard = getFlagValue(formModel.flagWildcard);
 
 		return this.pollaBet;
+	}
+
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
 	}
 
 	ionViewCanEnter(): boolean {
@@ -80,7 +96,9 @@ export class GameBetSavePage {
 	}
 
 	updateGameBet() {
-		this.prepareSave();
+		if (!this.prepareSave()) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.updateGameBet(this.pollaBet).subscribe(

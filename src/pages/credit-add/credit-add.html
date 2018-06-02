@@ -5,7 +5,7 @@
 		</button>
 		<ion-title>{{ 'ADD_CREDITS_TITLE' | translate }}</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only [disabled]="!form.valid" (click)="done()">
+			<button ion-button icon-only (click)="done()">
 				<ion-icon name="checkmark"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -21,7 +21,7 @@
 			</ion-item>
 			<ion-item>
 				<ion-label floating>{{ 'CREDITS_TO_BUY' | translate }}</ion-label>
-				<ion-input type="number" [(ngModel)]="creditDetail.creditAmount" formControlName="creditAmount"></ion-input>
+				<ion-input type="number" [(ngModel)]="creditAmount" formControlName="creditAmount"></ion-input>
 			</ion-item>
 			<div class="validation-errors">
 				<ng-container *ngFor="let validation of validationMessages.creditAmount">
@@ -31,9 +31,9 @@
 				</ng-container>
 			</div>
 
-			<ion-item *ngIf="creditDetail.creditAmount">
+			<ion-item *ngIf="creditAmount">
 				<h2>Costo de los créditos</h2>
-				<p>{{ creditDetail.creditAmount }} créditos = {{ creditDetail.creditAmount/10 }} U.S. dólar</p>
+				<p>{{ creditAmount }} créditos = {{ creditAmount/10 }} U.S. dólar</p>
 			</ion-item>
 			<ion-item>
 				<h2 align="justify">

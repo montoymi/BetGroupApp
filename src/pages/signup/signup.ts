@@ -15,7 +15,9 @@ import { PasswordValidator } from '../../validators/password.validator';
 	templateUrl: 'signup.html'
 })
 export class SignupPage {
-	user: User;
+	form: FormGroup;
+	passwords: FormGroup;
+	validationMessages;
 
 	private signupSuccess: string;
 	private usernameRequiredError: string;
@@ -34,11 +36,6 @@ export class SignupPage {
 	private okButton: string;
 
 	private terms: string;
-
-	form: FormGroup;
-	passwords: FormGroup;
-
-	validationMessages;
 
 	constructor(
 		public navCtrl: NavController,
@@ -122,6 +119,10 @@ export class SignupPage {
 	}
 
 	prepareSave(): User {
+		if (!this.validateForm()) {
+			return null;
+		}
+
 		const formModel = this.form.value;
 
 		const user: User = new User();
@@ -133,6 +134,22 @@ export class SignupPage {
 		return user;
 	}
 
+	validateForm(): boolean {
+		if (!this.form.valid) {
+			// Marca los controles como modificados para mostrar los mensajes de error.
+			Object.keys(this.form.controls).forEach(key => {
+				this.form.get(key).markAsDirty();
+			});
+			Object.keys(this.passwords.controls).forEach(key => {
+				this.passwords.get(key).markAsDirty();
+			});
+
+			return false;
+		}
+
+		return true;
+	}
+
 	// Runs when the page has loaded. This event is NOT fired on
 	// entering a view that is already cached.
 	ionViewDidLoad() {
@@ -140,10 +157,13 @@ export class SignupPage {
 	}
 
 	doSignup(values) {
-		this.user = this.prepareSave();
+		let user: User = this.prepareSave();
+		if (!user) {
+			return;
+		}
 
 		let loading = presentLoading(this.loadingCtrl);
-		this.userProvider.signup(this.user).subscribe(
+		this.userProvider.signup(user).subscribe(
 			(res: any) => {
 				loading.dismiss();
 				presentToast(this.toastCtrl, this.signupSuccess);
