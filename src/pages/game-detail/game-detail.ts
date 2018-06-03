@@ -40,7 +40,11 @@ export class GameDetailPage {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+	}
 
+	// Runs when the page is about to enter and become the active page.
+	// Actualiza la página por la opción actualizar pronóstico.
+	ionViewWillEnter() {
 		this.loadPolla();
 	}
 
