@@ -22,6 +22,7 @@ export class GameBetSavePage {
 	private betSaveSuccess: string;
 	private betScoreRequiredError: string;
 	private betSaveError: string;
+	private betSaveError2: string;
 
 	constructor(
 		public navCtrl: NavController,
@@ -34,10 +35,11 @@ export class GameBetSavePage {
 		public formBuilder: FormBuilder,
 		public loadingCtrl: LoadingController
 	) {
-		this.translate.get(['BET_SAVE_SUCCESS', 'BET_SCORE_REQUIRED_ERROR', 'BET_SAVE_ERROR']).subscribe(values => {
+		this.translate.get(['BET_SAVE_SUCCESS', 'BET_SCORE_REQUIRED_ERROR', 'BET_SAVE_ERROR', 'BET_SAVE_ERROR2']).subscribe(values => {
 			this.betSaveSuccess = values['BET_SAVE_SUCCESS'];
 			this.betScoreRequiredError = values['BET_SCORE_REQUIRED_ERROR'];
 			this.betSaveError = values['BET_SAVE_ERROR'];
+			this.betSaveError2 = values['BET_SAVE_ERROR2'];
 		});
 
 		this.pollaBet = navParams.get('pollaBet');
@@ -113,6 +115,9 @@ export class GameBetSavePage {
 				switch (err.error) {
 					case RESPONSE_ERROR.BET_SAVE_ERROR:
 						presentToast(this.toastCtrl, this.betSaveError);
+						break;
+					case RESPONSE_ERROR.BET_SAVE_ERROR2:
+						presentToast(this.toastCtrl, this.betSaveError2);
 						break;
 					default:
 						presentToast(this.toastCtrl, err.message);
