@@ -32,7 +32,7 @@ page-welcome {
 		width: 128px;
 		height: 128px;
 	}
-	
+
 	.splash-intro {
 		font-size: 16px;
 		//font-weight: bold;
@@ -46,5 +46,10 @@ page-welcome {
 
 	hr {
 		height: 1px !important;
+	}
+
+	.cover {
+		width: auto; /*maintain aspect ratio*/
+		max-width: 300px;
 	}
 }
