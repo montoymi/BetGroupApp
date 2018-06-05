@@ -14,7 +14,11 @@
 	<ion-list>
 		<ion-item no-lines *ngFor="let friend of friendList">
 			<ion-avatar item-start>
-				<img [src]="friend.amigo.photo" />
+			<!--	<img [src]="friend.amigo.photo" /> -->
+			<div class="profile2-image-placeholder" item-start text-center>
+				<ion-icon name="person"></ion-icon>
+			</div>
+
 			</ion-avatar>
 			<h2 text-wrap>{{ friend.amigo.username }}</h2>
 			<ion-icon item-end name="trash" (click)="deleteFriend(friend.id)"></ion-icon>
