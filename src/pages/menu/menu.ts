@@ -23,7 +23,7 @@ export class MenuPage {
 	adminPageList: PageInterface[] = [
 		{ title: 'HOME_TITLE', subtitle: 'HOME_SUBTITLE', component: 'HomePage', icon: 'home' },
 		{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
-		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
+		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'search' },
 		{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
 		{ title: 'GAME_SAVE_TITLE', subtitle: 'GAME_SAVE_SUBTITLE', component: 'GameSavePage', icon: 'add-circle' },
 		{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
@@ -33,7 +33,7 @@ export class MenuPage {
 	userPageList: PageInterface[] = [
 		{ title: 'HOME_TITLE', subtitle: 'HOME_SUBTITLE', component: 'HomePage', icon: 'home' },
 		{ title: 'GAME_LIST_TITLE', subtitle: 'GAME_LIST_SUBTITLE', component: 'GameListPage', icon: 'star' },
-		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'star-outline' },
+		{ title: 'GAME_AVAILABLE_LIST_TITLE', subtitle: 'GAME_AVAILABLE_LIST_SUBTITLE', component: 'GameAvailableListPage', icon: 'search' },
 		{ title: 'BET_MATCH_LIST_TITLE', subtitle: 'BET_MATCH_LIST_SUBTITLE', component: 'BetMatchListPage', icon: 'trending-up' },
 		{ title: 'FRIEND_LIST_TITLE', subtitle: 'FRIEND_LIST_SUBTITLE', component: 'FriendListPage', icon: 'people' },
 		{ title: 'CREDIT_LIST_TITLE', subtitle: 'CREDIT_LIST_SUBTITLE', component: 'CreditListPage', icon: 'cash' }

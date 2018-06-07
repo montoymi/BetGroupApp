@@ -5,11 +5,6 @@
 			<div class="title-image"></div>
 		</button>
 		<ion-title>{{ 'GAME_LIST_TITLE' | translate }}</ion-title>
-		<ion-buttons end *ngIf="userType=='ADMIN'">
-			<button ion-button icon-only (click)="openGameSavePage()">
-				<ion-icon name="add"></ion-icon>
-			</button>
-		</ion-buttons>
 	</ion-navbar>
 	<ion-toolbar>
 		<ion-searchbar (ionInput)="filter($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
@@ -49,7 +44,7 @@
 						<ion-icon name="cash"></ion-icon>
 					</ion-col>
 					<ion-col>
-						<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>						
+						<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 					</ion-col>
 					<ion-col col-1>
 						<ion-icon name="trophy"></ion-icon>
@@ -75,5 +70,10 @@
 			</ion-grid>
 		</button>
 	</ion-list>
+	<ion-fab right bottom>
+		<button ion-fab (click)="openGameSavePage()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
 	<p padding *ngIf="pollaHeaderList && pollaHeaderList.length == 0">{{ 'GAME_NO_DATA_FOUND' | translate }}</p>
 </ion-content>

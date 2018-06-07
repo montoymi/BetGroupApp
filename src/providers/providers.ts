@@ -10,7 +10,7 @@ import { FriendProvider } from './data/friend-provider';
 import { MatchProvider } from './data/match-provider';
 
 import * as moment from 'moment';
-import { DATE_FORMAT_ISO8601 } from '../constants/constants';
+import { DATE_FORMAT_ISO8601, DATE_FORMAT_ISO8601_2 } from '../constants/constants';
 
 export {
     Api,
@@ -28,4 +28,8 @@ export {
 // Se asigna el formato ISO 8601 para poder manejar el dato como fecha.
 export function formatISO8601(value) {
 	return value != undefined ? moment(value, DATE_FORMAT_ISO8601).format() : value;
+}
+
+export function formatISO8601_2(value) {
+	return value != undefined ? moment(value, DATE_FORMAT_ISO8601_2).format() : value;
 }

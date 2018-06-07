@@ -25,6 +25,11 @@
 						<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
 					</ion-col>
 				</ion-row>
+				<ion-row>
+					<ion-col>
+						<p>Resultado: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
+					</ion-col>
+				</ion-row>
 			</ion-grid>
 			<ion-thumbnail item-end>
 				<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />

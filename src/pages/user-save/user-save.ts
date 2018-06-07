@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider, formatISO8601 } from '../../providers/providers';
+import { UserProvider, formatISO8601_2 } from '../../providers/providers';
 import { User } from '../../models/account/user';
 import { Item } from '../../models/item';
 import { RESPONSE_ERROR, EMAIL_PATTERN } from '../../constants/constants';
@@ -108,7 +108,7 @@ export class UserSavePage {
 		this.user.firstName = formModel.firstName;
 		this.user.lastName = formModel.lastName;
 		this.user.sex = formModel.sex;
-		this.user.dateOfBirthday = formatISO8601(formModel.dateOfBirthday);
+		this.user.dateOfBirthday = formatISO8601_2(formModel.dateOfBirthday);
 		this.user.email = formModel.email != undefined ? formModel.email : this.user.email;
 		this.user.flagNotification = getFlagValue(formModel.flagNotification);
 

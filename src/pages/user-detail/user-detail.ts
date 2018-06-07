@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider, formatISO8601 } from '../../providers/providers';
+import { UserProvider, formatISO8601_2 } from '../../providers/providers';
 import { User } from '../../models/account/user';
 import { presentToast, presentLoading } from '../pages';
 
@@ -45,7 +45,7 @@ export class UserDetailPage {
 				loading.dismiss();
 
 				let user: User = res.body;
-				user.dateOfBirthday = formatISO8601(user.dateOfBirthday);
+				user.dateOfBirthday = formatISO8601_2(user.dateOfBirthday);
 				this.user = user;
 			},
 			err => {

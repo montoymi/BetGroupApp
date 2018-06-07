@@ -23,7 +23,13 @@
 }
 
 html {
-	font-size: 9px;
+	font-size: 10px;
+	color: white; // theme.dark
+}
+
+h2 {
+	color: white; // theme.dark
+	font-style: bold;
 }
 
 .error-message {
