@@ -35,11 +35,21 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+$alert-ios-background: color($colors, dark);
+$alert-ios-sub-title-text-color: white;
+$alert-ios-message-text-color:	white;
+$alert-ios-radio-label-text-color: white;
+
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
 $searchbar-md-input-box-shadow: none;
+
+$alert-md-background-color: color($colors, dark);
+$alert-md-sub-title-text-color: white;
+$alert-md-message-text-color:	white;
+$alert-md-radio-label-text-color: white;
 
 // App Windows Variables
 // --------------------------------------------------

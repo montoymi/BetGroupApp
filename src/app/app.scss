@@ -24,12 +24,6 @@
 
 html {
 	font-size: 10px;
-	color: white; // theme.dark
-}
-
-h2 {
-	color: white; // theme.dark
-	font-style: bold;
 }
 
 .error-message {
@@ -44,4 +38,13 @@ h2 {
 	height: 20px;
 	margin-left: 8px;
 	vertical-align: middle;
+}
+
+// Dark theme
+h1,
+h2,
+h3,
+h4,
+p {
+	color: white !important;
 }
