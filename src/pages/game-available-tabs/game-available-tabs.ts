@@ -18,24 +18,20 @@ export class GameAvailableTabsPage {
 	tab2Root: any = GameAvailableTab2Root;
 	tab3Root: any = GameAvailableTab3Root;
 	tab4Root: any = GameAvailableTab4Root;
-	tab5Root: any = GameAvailableTab5Root;
 
 	tab1Title = ' ';
 	tab2Title = ' ';
 	tab3Title = ' ';
 	tab4Title = ' ';
-	tab5Title = ' ';
-	tab6Title = ' ';
 
 	tabParams;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public translateService: TranslateService) {
-		translateService.get(['GAME_INFO_TAB', 'PARTICIPANTS_TAB', 'INVITE_TAB', 'REGISTER_TAB', 'AWARDS_TAB']).subscribe(values => {
-			this.tab1Title = values['GAME_INFO_TAB'];
-			this.tab2Title = values['PARTICIPANTS_TAB'];
-			this.tab3Title = values['INVITE_TAB'];
+		translateService.get(['GAME_INFO_TAB', 'EVENTS_TITLE', 'PARTICIPANTS_TAB', 'REGISTER_TAB']).subscribe(values => {
+			this.tab1Title = values['GAME_INFO_TAB']
+			this.tab2Title = values['EVENTS_TITLE']
+			this.tab3Title = values['PARTICIPANTS_TAB'];
 			this.tab4Title = values['REGISTER_TAB'];
-			this.tab5Title = values['AWARDS_TAB'];
 		});
 
 		this.tabParams = { pollaHeader: this.navParams.get('pollaHeader') };
