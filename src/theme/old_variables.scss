@@ -1,14 +1,6 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
-
-// Font path is used to include ionicons,
-// roboto, and noto sans fonts
 $font-path: '../assets/fonts';
-
-// The app direction is used to include
-// rtl styles in your app. For more info, please see:
-// http://ionicframework.com/docs/theming/rtl-support/
-$app-direction: ltr;
 
 @import 'ionic.globals';
 
@@ -19,6 +11,10 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
+// ionic.theme.dark
+//$text-color: white;
+//$background-color: #fff;
+
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -28,50 +24,59 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-	primary: (
-		//base: #eeae15,
-		base: #70a73a,
-		contrast: #000
-	),
-	secondary: (
-		base: #03a9f4,
-		contrast: #000
-	),
-	danger: #f43e00,
-	light: (
-		base: #bdc3c7,
-		contrast: #000
-	),
-	dark: (
-		base: #d35400,
-		contrast: #000
-	),
-	alert: #f39c12,
-	favorite: #69bb7b,
-	twitter: #1da1f4,
-	google: #dc4a38,
-	vimeo: #23b6ea,
-	facebook: #3b5998,
-	_gray: #d3d3d3
+	primary: #488aff,
+	secondary: #32db64,
+	danger: #f53d3d,
+	light: #f4f4f4,
+	dark: #222,
+	_gray: #d3d3d3,
+	ctrBg: #242424
 );
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+/*
+// Inicio: ionic.theme.dark
+// Cambia el estilo del alert
+$alert-ios-background: color($colors, dark);
+$alert-ios-sub-title-text-color: white;
+$alert-ios-message-text-color: white;
 $alert-ios-radio-label-text-color: white;
+
+// Cambia el estilo del toolbar, tabs y ion-list.
+// Falta poner los colores finales.
+$toolbar-ios-background: color($colors, secondary);
+$tabs-ios-background: color($colors, secondary);
+$list-ios-background-color: color($colors, dark);
+// Fin: ionic.theme.dark
+*/
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
 $searchbar-md-input-box-shadow: none;
+/*
+// Inicio: ionic.theme.dark
+// Cambia el estilo del alert
+$alert-md-background-color: color($colors, dark);
+$alert-md-sub-title-text-color: white;
+$alert-md-message-text-color: white;
+$alert-md-radio-label-text-color: white;
+
+// Cambia el estilo del toolbar, tabs y ion-list.
+// Falta poner los colores finales.
+$toolbar-md-background: color($colors, secondary);
+$tabs-md-background: color($colors, secondary);
+$list-md-background-color: color($colors, dark);
+// Fin: ionic.theme.dark
+*/
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-$alert-md-radio-label-text-color: white;
 
 // App Theme
 // --------------------------------------------------
@@ -80,8 +85,8 @@ $alert-md-radio-label-text-color: white;
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-//@import "ionic.theme.default";
-@import './dark/dark.scss';
+@import "ionic.theme.default";
+//@import 'ionic.theme.dark';
 
 // Ionicons
 // --------------------------------------------------
