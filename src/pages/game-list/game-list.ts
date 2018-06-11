@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
+import { Item } from '../../models/item';
 import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
@@ -12,6 +13,7 @@ import { presentToast, presentLoading } from '../pages';
 })
 export class GameListPage {
 	pollaHeaderList: PollaHeader[];
+	groupArray;
 
 	userType: string;
 
@@ -48,6 +50,7 @@ export class GameListPage {
 			(res: any) => {
 				loading.dismiss();
 				this.pollaHeaderList = res.body;
+				this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 			},
 			err => {
 				loading.dismiss();
@@ -77,5 +80,59 @@ export class GameListPage {
 
 	openGameTabsPage(pollaHeader: PollaHeader) {
 		this.navCtrl.push('GameTabsPage', { pollaHeader: pollaHeader });
+	}
+
+	/*
+	 * Funciones para el agrupamiento.
+	 */
+
+	buildGroupArray(pollaHeaderList: PollaHeader[]) {
+		let groupArray = new Array<Item>();
+
+		// Crea el array de grupos.
+		for (let pollaHeader of pollaHeaderList) {
+			let status: number = pollaHeader.enabled_flag;
+
+			if (!this.contains(groupArray, status)) {
+				let group: Item = new Item({
+					status: status,
+					pollaHeaderArray: new Array<PollaHeader>(),
+					showDetails: true,
+					icon: 'ios-remove-circle-outline'
+				});
+				groupArray.push(group);
+			}
+		}
+
+		// Asigna los items a cada grupo.
+		for (let group of groupArray) {
+			for (let pollaHeader of pollaHeaderList) {
+				if (pollaHeader.enabled_flag == group.status) {
+					group.pollaHeaderArray.push(pollaHeader);
+				}
+			}
+		}
+
+		return groupArray;
+	}
+
+	contains(groupArray: Array<Item>, status: number) {
+		for (let group of groupArray) {
+			if (group.status == status) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	toggleDetails(group) {
+		if (group.showDetails) {
+			group.showDetails = false;
+			group.icon = 'ios-add-circle-outline';
+		} else {
+			group.showDetails = true;
+			group.icon = 'ios-remove-circle-outline';
+		}
 	}
 }

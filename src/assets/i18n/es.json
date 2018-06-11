@@ -265,10 +265,10 @@
 	"ADD_CREDITS_BUTTON": "Comprar créditos",
 	"COLLECT_CREDITS_BUTTON": "Cobrar créditos",
 
-	"MATCH_ENABLED_FLAG_0" : "Pronóstico cerrado",
-	"MATCH_ENABLED_FLAG_1" : "Pronóstico abierto",
+	"MATCH_ENABLED_FLAG_0" : "Pronósticos cerrados",
+	"MATCH_ENABLED_FLAG_1" : "Pronósticos abiertos",
 
 	"POLLA_ENABLED_FLAG_0" : "Eventos completados",
-	"POLLA_ENABLED_FLAG_1" : "Eventos en proceso",
-	"POLLA_ENABLED_FLAG_2" : "Eventos abiertos"
+	"POLLA_ENABLED_FLAG_2" : "Eventos en proceso",
+	"POLLA_ENABLED_FLAG_3" : "Eventos abiertos"
 }

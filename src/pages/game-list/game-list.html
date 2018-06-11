@@ -13,62 +13,71 @@
 
 <ion-content>
 	<ion-list>
-		<button ion-item *ngFor="let pollaHeader of pollaHeaderList" (click)="openGameTabsPage(pollaHeader)">
-			<ion-thumbnail item-start>
-				<img [src]="pollaHeader.image" />
-			</ion-thumbnail>
-			<ion-grid no-padding>
-				<ion-row align-items-center>
-					<ion-col>
-						<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
-					</ion-col>
-				</ion-row>
-				<ion-row align-items-center>
-					<ion-col col-1>
-						<ion-icon name="person"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.admin.username }}</p>
-					</ion-col>
-					<ion-col col-1>
-						<ion-icon name="{{ pollaHeader.accessFlag == 0 ? 'unlock' : 'lock' }}"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.accessFlag == 0 ? ('GAME_ACCESS_FLAG_PUBLIC' | translate) : ('GAME_ACCESS_FLAG_PRIVATE' | translate)
-							}}
-						</p>
-					</ion-col>
-				</ion-row>
-				<ion-row align-items-center>
-					<ion-col col-1>
-						<ion-icon name="cash"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
-					</ion-col>
-					<ion-col col-1>
-						<ion-icon name="trophy"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
-					</ion-col>
-				</ion-row>
-				<ion-row align-items-center>
-					<ion-col col-1>
-						<ion-icon name="calendar"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.startDate | moment:'DD/MM/YY' }}</p>
-					</ion-col>
-					<ion-col col-1>
-						<ion-icon name="people"></ion-icon>
-					</ion-col>
-					<ion-col>
-						<p>{{ pollaHeader.numParticipants }} {{ 'GAME_LIST_NUM_PARTICIPANTS' | translate }}</p>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</button>
+		<ion-item-group *ngFor="let group of groupArray">
+			<ion-item-divider sticky (click)="toggleDetails(group)">
+				<ion-icon color="primary" item-right [name]="group.icon"></ion-icon>
+				<ion-label>{{ group.status == 0 ? ('POLLA_ENABLED_FLAG_0' | translate) : (group.status == 2 ? ('POLLA_ENABLED_FLAG_2' | translate) : ('POLLA_ENABLED_FLAG_3' | translate)) }}</ion-label>
+			</ion-item-divider>
+
+			<div *ngIf="group.showDetails">
+				<button ion-item *ngFor="let pollaHeader of group.pollaHeaderArray" (click)="openGameTabsPage(pollaHeader)">
+					<ion-thumbnail item-start>
+						<img [src]="pollaHeader.image" />
+					</ion-thumbnail>
+					<ion-grid no-padding>
+						<ion-row align-items-center>
+							<ion-col>
+								<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
+							</ion-col>
+						</ion-row>
+						<ion-row align-items-center>
+							<ion-col col-1>
+								<ion-icon name="person"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.admin.username }}</p>
+							</ion-col>
+							<ion-col col-1>
+								<ion-icon name="{{ pollaHeader.accessFlag == 0 ? 'unlock' : 'lock' }}"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.accessFlag == 0 ? ('GAME_ACCESS_FLAG_PUBLIC' | translate) : ('GAME_ACCESS_FLAG_PRIVATE' | translate)
+									}}
+								</p>
+							</ion-col>
+						</ion-row>
+						<ion-row align-items-center>
+							<ion-col col-1>
+								<ion-icon name="cash"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
+							</ion-col>
+							<ion-col col-1>
+								<ion-icon name="trophy"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
+							</ion-col>
+						</ion-row>
+						<ion-row align-items-center>
+							<ion-col col-1>
+								<ion-icon name="calendar"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.startDate | moment:'DD/MM/YY' }}</p>
+							</ion-col>
+							<ion-col col-1>
+								<ion-icon name="people"></ion-icon>
+							</ion-col>
+							<ion-col>
+								<p>{{ pollaHeader.numParticipants }} {{ 'GAME_LIST_NUM_PARTICIPANTS' | translate }}</p>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</button>
+			</div>
+		</ion-item-group>
 	</ion-list>
 	<ion-fab right bottom>
 		<button ion-fab (click)="openGameSavePage()">
