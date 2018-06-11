@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingCo
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading, getFlagValue } from '../pages';
 
 @IonicPage()
 @Component({
@@ -19,6 +19,9 @@ export class RankingListPage {
 
 	pollaParticipantList: PollaParticipant[];
 
+	modePollitaFlag: boolean;
+	modePollaFlag: boolean;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -28,7 +31,11 @@ export class RankingListPage {
 		public pollaProvider: PollaProvider,
 		public loadingCtrl: LoadingController
 	) {
-		this.segment = 'polla';
+		// Habilita y seleciona el tab segun flags.
+		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
+		this.modePollitaFlag = getFlagValue(pollaHeader.modePollitaFlag) == 1;
+		this.modePollaFlag = getFlagValue(pollaHeader.modePollaFlag) == 1;
+		this.segment = this.modePollaFlag ? 'polla' : 'pollita';
 	}
 
 	ionViewCanEnter(): boolean {

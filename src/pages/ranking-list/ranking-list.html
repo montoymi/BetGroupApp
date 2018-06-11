@@ -7,11 +7,11 @@
 <ion-content>
 	<div padding>
 		<ion-segment [(ngModel)]="segment">
-			<ion-segment-button value="polla">
-				Polla general
+			<ion-segment-button value="polla" [disabled]="!modePollaFlag">
+				{{ 'GAME_MODALITY_TOTAL_POLLA' | translate }}
 			</ion-segment-button>
-			<ion-segment-button value="pollita">
-				Pollita
+			<ion-segment-button value="pollita" [disabled]="!modePollitaFlag">
+				{{ 'GAME_MODALITY_TINY_POLLA' | translate }}
 			</ion-segment-button>
 		</ion-segment>
 	</div>
@@ -46,7 +46,7 @@
 		</ion-list>
 		<ion-list *ngSwitchCase="'pollita'">
 			<ion-item>
-				Ranking Pollita
+				<p text-wrap></p>
 			</ion-item>
 		</ion-list>
 	</div>

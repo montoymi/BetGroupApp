@@ -59,12 +59,4 @@ export class GameAvailableDetailPage {
 			}
 		);
 	}
-
-	openRulesPage() {
-		this.navCtrl.push('RulesPage', { pollaHeader: this.pollaHeader });
-	}
-
-	openGameMatchListPage() {
-		this.navCtrl.push('GameMatchListPage', { pollaHeader: this.pollaHeader });
-	}
 }

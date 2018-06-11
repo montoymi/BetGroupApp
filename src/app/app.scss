@@ -39,13 +39,10 @@ html {
 	margin-left: 8px;
 	vertical-align: middle;
 }
-/*
-// Inicio: ionic.theme.dark
+
+// Inicio: Theme dark
 h1,
-h2,
-h3,
-h4,
-p {
+h2 {
 	color: white !important;
 }
 
@@ -53,10 +50,4 @@ hr {
     border-top: 1px solid color($colors, _gray);
     margin: 1em 0;
 }
-// Fin: ionic.theme.dark
-*/
-
-// Dark Theme
-h2 {
-	color: white !important;
-}
+// Fin: Theme dark
