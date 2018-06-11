@@ -260,5 +260,8 @@
 	"CURRENT_PASSWORD_ERROR": "Incorrect password",
 
 	"ADD_CREDITS_BUTTON": "Buy credits",
-	"COLLECT_CREDITS_BUTTON": "Collect credits"
+	"COLLECT_CREDITS_BUTTON": "Collect credits",
+
+	"MATCH_ENABLED_FLAG_0" : "Closed forecast",
+	"MATCH_ENABLED_FLAG_1" : "Opened forecast"
 }

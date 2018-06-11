@@ -97,9 +97,14 @@ export class GameBetListPage {
 		// Crea el array de grupos.
 		for (let pollaBet of pollaBetList) {
 			let status: string = pollaBet.pollaMatch.match.enabled_flag;
+
 			if (!this.containsStatus(groupArray, status)) {
-				let pollaBetArray = new Array<PollaBet>();
-				let group: Item = new Item({ status: status, pollaBetArray: pollaBetArray });
+				let group: Item = new Item({
+					status: status,
+					pollaBetArray: new Array<PollaBet>(),
+					showDetails: true,
+					icon: 'ios-remove-circle-outline'
+				});
 				groupArray.push(group);
 			}
 		}
@@ -124,5 +129,15 @@ export class GameBetListPage {
 		}
 
 		return false;
+	}
+
+	toggleDetails(group) {
+		if (group.showDetails) {
+			group.showDetails = false;
+			group.icon = 'ios-add-circle-outline';
+		} else {
+			group.showDetails = true;
+			group.icon = 'ios-remove-circle-outline';
+		}
 	}
 }

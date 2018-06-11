@@ -9,31 +9,40 @@
 
 <ion-content>
 	<ion-list>
-		<button ion-item no-lines class="bottom-border" *ngFor="let pollaBet of pollaBetList" (click)="openGameBetSavePage(pollaBet)">
-			<ion-thumbnail item-start>
-				<img [src]="pollaBet.pollaMatch.match.localTeam.image" />
-			</ion-thumbnail>
-			<h2 text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</h2>
-			<ion-grid no-padding>
-				<ion-row>
-					<ion-col>
-						<p>{{ pollaBet.pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col>
-						<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col>
-						<p>Resultado: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-			<ion-thumbnail item-end>
-				<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />
-			</ion-thumbnail>
-		</button>
+		<ion-item-group *ngFor="let group of groupArray">
+			<ion-item-divider sticky (click)="toggleDetails(group)">
+				<ion-icon color="primary" item-right [name]="group.icon"></ion-icon>
+				<ion-label>{{ group.status == 0 ? ('MATCH_ENABLED_FLAG_0' | translate) : ('MATCH_ENABLED_FLAG_1' | translate) }}</ion-label>
+			</ion-item-divider>
+
+			<div *ngIf="group.showDetails">
+				<button ion-item no-lines class="bottom-border" *ngFor="let pollaBet of group.pollaBetArray" (click)="openGameBetSavePage(pollaBet)">
+					<ion-thumbnail item-start>
+						<img [src]="pollaBet.pollaMatch.match.localTeam.image" />
+					</ion-thumbnail>
+					<h2 text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</h2>
+					<ion-grid no-padding>
+						<ion-row>
+							<ion-col>
+								<p>{{ pollaBet.pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
+							</ion-col>
+						</ion-row>
+						<ion-row>
+							<ion-col>
+								<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
+							</ion-col>
+						</ion-row>
+						<ion-row>
+							<ion-col>
+								<p>Resultado: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+					<ion-thumbnail item-end>
+						<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />
+					</ion-thumbnail>
+				</button>
+			</div>
+		</ion-item-group>
 	</ion-list>
 </ion-content>

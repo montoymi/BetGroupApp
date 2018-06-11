@@ -263,5 +263,8 @@
 	"CURRENT_PASSWORD_ERROR": "Contraseña incorrecta",
 
 	"ADD_CREDITS_BUTTON": "Comprar créditos",
-	"COLLECT_CREDITS_BUTTON": "Cobrar créditos"
+	"COLLECT_CREDITS_BUTTON": "Cobrar créditos",
+
+	"MATCH_ENABLED_FLAG_0" : "Pronóstico cerrado",
+	"MATCH_ENABLED_FLAG_1" : "Pronóstico abierto"
 }
