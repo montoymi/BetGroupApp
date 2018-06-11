@@ -263,5 +263,9 @@
 	"COLLECT_CREDITS_BUTTON": "Collect credits",
 
 	"MATCH_ENABLED_FLAG_0" : "Closed forecast",
-	"MATCH_ENABLED_FLAG_1" : "Opened forecast"
+	"MATCH_ENABLED_FLAG_1" : "Opened forecast",
+
+	"POLLA_ENABLED_FLAG_0" : "Completed events",
+	"POLLA_ENABLED_FLAG_1" : "Events in process",
+	"POLLA_ENABLED_FLAG_2" : "Open events"
 }

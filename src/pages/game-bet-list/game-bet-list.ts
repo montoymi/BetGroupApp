@@ -58,8 +58,7 @@ export class GameBetListPage {
 			(res: any) => {
 				loading.dismiss();
 				this.pollaBetList = res.body;
-
-				this.groupArray = this.buildPollaBetGroupArray(this.pollaBetList);
+				this.groupArray = this.buildGroupArray(this.pollaBetList);
 			},
 			err => {
 				loading.dismiss();
@@ -91,14 +90,14 @@ export class GameBetListPage {
 	 * Funciones para el agrupamiento.
 	 */
 
-	buildPollaBetGroupArray(pollaBetList: PollaBet[]) {
+	buildGroupArray(pollaBetList: PollaBet[]) {
 		let groupArray = new Array<Item>();
 
 		// Crea el array de grupos.
 		for (let pollaBet of pollaBetList) {
 			let status: string = pollaBet.pollaMatch.match.enabled_flag;
 
-			if (!this.containsStatus(groupArray, status)) {
+			if (!this.contains(groupArray, status)) {
 				let group: Item = new Item({
 					status: status,
 					pollaBetArray: new Array<PollaBet>(),
@@ -109,7 +108,7 @@ export class GameBetListPage {
 			}
 		}
 
-		// Asigna los pollaBet a cada grupo.
+		// Asigna los items a cada grupo.
 		for (let group of groupArray) {
 			for (let pollaBet of pollaBetList) {
 				if (pollaBet.pollaMatch.match.enabled_flag == group.status) {
@@ -121,7 +120,7 @@ export class GameBetListPage {
 		return groupArray;
 	}
 
-	containsStatus(groupArray: Array<Item>, status) {
+	contains(groupArray: Array<Item>, status: string) {
 		for (let group of groupArray) {
 			if (group.status == status) {
 				return true;

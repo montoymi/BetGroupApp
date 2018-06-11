@@ -13,22 +13,31 @@
 
 <ion-content>
 	<ion-list>
-		<button ion-item no-lines class="bottom-border" *ngFor="let match of matchList" (click)="openBetMatchSavePage(match)">
-			<ion-thumbnail item-start>
-				<img [src]="match.localTeam.image" />
-			</ion-thumbnail>
-			<h2 text-wrap>{{ match.localTeam.teamName }} vs. {{ match.visitorTeam.teamName }}</h2>
-			<ion-grid no-padding>
-				<ion-row>
-					<ion-col>
-						<p>{{ match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-			<ion-thumbnail item-end>
-				<img [src]="match.visitorTeam.image" />
-			</ion-thumbnail>
-		</button>
+		<ion-item-group *ngFor="let group of groupArray">
+			<ion-item-divider sticky (click)="toggleDetails(group)">
+				<ion-icon color="primary" item-right [name]="group.icon"></ion-icon>
+				<ion-label>{{ group.strDate }}</ion-label>
+			</ion-item-divider>
+
+			<div *ngIf="group.showDetails">
+				<button ion-item no-lines class="bottom-border" *ngFor="let match of group.matchArray" (click)="openBetMatchSavePage(match)">
+					<ion-thumbnail item-start>
+						<img [src]="match.localTeam.image" />
+					</ion-thumbnail>
+					<h2 text-wrap>{{ match.localTeam.teamName }} vs. {{ match.visitorTeam.teamName }}</h2>
+					<ion-grid no-padding>
+						<ion-row>
+							<ion-col>
+								<p>{{ match.matchDateWithTimezone | moment:'H:mm' }}</p>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+					<ion-thumbnail item-end>
+						<img [src]="match.visitorTeam.image" />
+					</ion-thumbnail>
+				</button>
+			</div>
+		</ion-item-group>
 	</ion-list>
 	<p padding *ngIf="matchList && matchList.length == 0">{{ 'GAME_NO_DATA_FOUND' | translate }}</p>
 </ion-content>
