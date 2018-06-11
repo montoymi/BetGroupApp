@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingCo
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaBet } from '../../models/polla/polla-bet';
+import { Item } from '../../models/item';
 import { presentToast, presentLoading } from '../pages';
 
 @IonicPage()
@@ -15,6 +16,7 @@ export class GameBetListPage {
 	@ViewChild(Navbar) navBar: Navbar;
 
 	pollaBetList: PollaBet[];
+	groupArray;
 
 	constructor(
 		public navCtrl: NavController,
@@ -56,6 +58,8 @@ export class GameBetListPage {
 			(res: any) => {
 				loading.dismiss();
 				this.pollaBetList = res.body;
+
+				this.groupArray = this.buildPollaBetGroupArray(this.pollaBetList);
 			},
 			err => {
 				loading.dismiss();
@@ -81,5 +85,44 @@ export class GameBetListPage {
 
 	openGameBetSavePage(pollaBet: PollaBet) {
 		this.navCtrl.push('GameBetSavePage', { pollaBet: pollaBet });
+	}
+
+	/*
+	 * Funciones para el agrupamiento.
+	 */
+
+	buildPollaBetGroupArray(pollaBetList: PollaBet[]) {
+		let groupArray = new Array<Item>();
+
+		// Crea el array de grupos.
+		for (let pollaBet of pollaBetList) {
+			let status: string = pollaBet.pollaMatch.match.enabled_flag;
+			if (!this.containsStatus(groupArray, status)) {
+				let pollaBetArray = new Array<PollaBet>();
+				let group: Item = new Item({ status: status, pollaBetArray: pollaBetArray });
+				groupArray.push(group);
+			}
+		}
+
+		// Asigna los pollaBet a cada grupo.
+		for (let group of groupArray) {
+			for (let pollaBet of pollaBetList) {
+				if (pollaBet.pollaMatch.match.enabled_flag == group.status) {
+					group.pollaBetArray.push(pollaBet);
+				}
+			}
+		}
+
+		return groupArray;
+	}
+
+	containsStatus(groupArray: Array<Item>, status) {
+		for (let group of groupArray) {
+			if (group.status == status) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

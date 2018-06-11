@@ -6,7 +6,6 @@ import { GameAvailableTab1Root } from '../pages';
 import { GameAvailableTab2Root } from '../pages';
 import { GameAvailableTab3Root } from '../pages';
 import { GameAvailableTab4Root } from '../pages';
-import { GameAvailableTab5Root } from '../pages';
 
 @IonicPage()
 @Component({
