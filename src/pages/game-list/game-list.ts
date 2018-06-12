@@ -68,6 +68,7 @@ export class GameListPage {
 			this.pollaHeaderList = this.pollaHeaderList.filter(pollaHeader => {
 				return pollaHeader.pollaName.toLowerCase().indexOf(name.toLowerCase()) > -1;
 			});
+			this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 		} else {
 			// Reset items back to all of the items
 			this.loadPollas();

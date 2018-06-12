@@ -66,6 +66,7 @@ export class BetMatchListPage {
 			this.matchList = this.matchList.filter(match => {
 				return match.localTeam.teamName.toLowerCase().indexOf(name.toLowerCase()) > -1;
 			});
+			this.groupArray = this.buildGroupArray(this.matchList);
 		} else {
 			// Reset items back to all of the items
 			this.loadMatchsWithBets();
