@@ -35,8 +35,8 @@ export enum TRANSACTION_STATUS {
 	PENDING = 0
 }
 
-export const DATE_FORMAT_ISO8601 = 'YYYY-MM-DDTHH:mm:ss Z';
-export const DATE_FORMAT_ISO8601_2 = 'YYYY-MM-DDTHH:mm:ss';
+export const DATE_FORMAT_ISO8601_Z = 'YYYY-MM-DDTHH:mm:ss Z';
+export const DATE_FORMAT_ISO8601 = 'YYYY-MM-DDTHH:mm:ss';
 export const DATE_FORMAT = 'DD/MM/YY';
 
 export const PASSWORD_PATTERN = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$';

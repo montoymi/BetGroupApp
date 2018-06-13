@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Api } from '../api/api';
 import { Match } from '../../models/tournament/match';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601 } from '../providers';
+import { formatISO8601_Z } from '../providers';
 
 @Injectable()
 export class MatchProvider {
@@ -18,7 +18,7 @@ export class MatchProvider {
 			(res: any) => {
 				let matchList: Match[] = res.body;
 				for (let match of matchList) {
-					match.matchDateWithTimezone = formatISO8601(match.matchDateWithTimezone);
+					match.matchDateWithTimezone = formatISO8601_Z(match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {

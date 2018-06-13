@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Api } from '../api/api';
 import { TemplateHeader } from '../../models/template/template-header';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601 } from '../providers';
+import { formatISO8601_Z } from '../providers';
 
 @Injectable()
 export class TemplateProvider {
@@ -18,8 +18,8 @@ export class TemplateProvider {
 			(res: any) => {
 				let templateHeaderList: TemplateHeader[] = res.body;
 				for (let templateHeader of templateHeaderList) {
-					templateHeader.startDate = formatISO8601(templateHeader.startDate);
-					templateHeader.endDate = formatISO8601(templateHeader.endDate);
+					templateHeader.startDate = formatISO8601_Z(templateHeader.startDate);
+					templateHeader.endDate = formatISO8601_Z(templateHeader.endDate);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {

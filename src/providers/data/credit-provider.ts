@@ -6,7 +6,7 @@ import { Api } from '../api/api';
 import { Credit } from '../../models/credit/credit';
 import { CreditDetail } from '../../models/credit/credit-detail';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601 } from '../providers';
+import { formatISO8601_Z } from '../providers';
 
 @Injectable()
 export class CreditProvider {
@@ -20,7 +20,7 @@ export class CreditProvider {
 				let credit: Credit = res.body;
 				if (credit.creditDetailList) {
 					for (const creditDetail of credit.creditDetailList) {
-						creditDetail.transactionDate = formatISO8601(creditDetail.transactionDate);
+						creditDetail.transactionDate = formatISO8601_Z(creditDetail.transactionDate);
 					}
 				}
 

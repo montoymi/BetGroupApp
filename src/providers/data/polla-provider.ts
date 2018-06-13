@@ -8,7 +8,7 @@ import { PollaBet } from '../../models/polla/polla-bet';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaMatch } from '../../models/polla/polla-match';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601 } from '../providers';
+import { formatISO8601_Z } from '../providers';
 
 @Injectable()
 export class PollaProvider {
@@ -42,7 +42,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaHeaderList: PollaHeader[] = res.body;
 				for (let pollaHeader of pollaHeaderList) {
-					pollaHeader.startDate = formatISO8601(pollaHeader.startDate);
+					pollaHeader.startDate = formatISO8601_Z(pollaHeader.startDate);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {
@@ -63,8 +63,8 @@ export class PollaProvider {
 		seq.subscribe(
 			(res: any) => {
 				let pollaHeader: PollaHeader = res.body;
-				pollaHeader.startDate = formatISO8601(pollaHeader.startDate);
-				pollaHeader.endDate = formatISO8601(pollaHeader.endDate);
+				pollaHeader.startDate = formatISO8601_Z(pollaHeader.startDate);
+				pollaHeader.endDate = formatISO8601_Z(pollaHeader.endDate);
 
 				if (res.status != RESPONSE_STATUS.OK) {
 					console.info('status', res.status);
@@ -105,9 +105,9 @@ export class PollaProvider {
 		seq.subscribe(
 			(res: any) => {
 				let pollaParticipant: PollaParticipant = res.body;
-				pollaParticipant.pollaHeader.startDate = formatISO8601(pollaParticipant.pollaHeader.startDate);
-				pollaParticipant.pollaHeader.endDate = formatISO8601(pollaParticipant.pollaHeader.endDate);
-				pollaParticipant.inscriptionDate = formatISO8601(pollaParticipant.inscriptionDate);
+				pollaParticipant.pollaHeader.startDate = formatISO8601_Z(pollaParticipant.pollaHeader.startDate);
+				pollaParticipant.pollaHeader.endDate = formatISO8601_Z(pollaParticipant.pollaHeader.endDate);
+				pollaParticipant.inscriptionDate = formatISO8601_Z(pollaParticipant.inscriptionDate);
 
 				if (res.status != RESPONSE_STATUS.OK) {
 					console.info('status', res.status);
@@ -183,7 +183,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaBetList: PollaBet[] = res.body;
 				for (let pollaBet of pollaBetList) {
-					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaBet.pollaMatch.match.matchDateWithTimezone);
+					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601_Z(pollaBet.pollaMatch.match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {
@@ -222,7 +222,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaBetList: PollaBet[] = res.body;
 				for (let pollaBet of pollaBetList) {
-					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaBet.pollaMatch.match.matchDateWithTimezone);
+					pollaBet.pollaMatch.match.matchDateWithTimezone = formatISO8601_Z(pollaBet.pollaMatch.match.matchDateWithTimezone);
 					pollaBet.pollaParticipant.userId = userId;
 				}
 
@@ -266,7 +266,7 @@ export class PollaProvider {
 			(res: any) => {
 				let pollaMatchList: PollaMatch[] = res.body;
 				for (let pollaMatch of pollaMatchList) {
-					pollaMatch.match.matchDateWithTimezone = formatISO8601(pollaMatch.match.matchDateWithTimezone);
+					pollaMatch.match.matchDateWithTimezone = formatISO8601_Z(pollaMatch.match.matchDateWithTimezone);
 				}
 
 				if (res.status != RESPONSE_STATUS.OK) {
