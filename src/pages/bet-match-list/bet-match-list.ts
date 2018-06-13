@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Refresher } from 'ionic-angular';
 import * as moment from 'moment';
 
 import { UserProvider, MatchProvider } from '../../providers/providers';
 import { Match } from '../../models/tournament/match';
 import { Item } from '../../models/item';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast } from '../pages';
 import { DATE_FORMAT } from '../../constants/constants';
 
 @IonicPage()
@@ -22,8 +22,7 @@ export class BetMatchListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public matchProvider: MatchProvider,
-		public loadingCtrl: LoadingController
+		public matchProvider: MatchProvider
 	) {}
 
 	ionViewCanEnter(): boolean {
@@ -37,21 +36,20 @@ export class BetMatchListPage {
 	// Runs when the page has loaded. This event is NOT fired on
 	// entering a view that is already cached.
 	ionViewDidLoad() {
-		this.loadMatchsWithBets();
+		this.loadMatchsWithBets(null);
 	}
 
-	loadMatchsWithBets() {
+	loadMatchsWithBets(refresher: Refresher) {
 		let userId: number = this.userProvider.user.userId;
 
-		let loading = presentLoading(this.loadingCtrl);
 		this.matchProvider.getMatchsWithBetsByUserId(userId).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.matchList = res.body;
 				this.groupArray = this.buildGroupArray(this.matchList);
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -69,7 +67,7 @@ export class BetMatchListPage {
 			this.groupArray = this.buildGroupArray(this.matchList);
 		} else {
 			// Reset items back to all of the items
-			this.loadMatchsWithBets();
+			this.loadMatchsWithBets(null);
 		}
 	}
 

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Refresher } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { Item } from '../../models/item';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast } from '../pages';
 
 @IonicPage()
 @Component({
@@ -22,8 +22,7 @@ export class GameListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider,
-		public loadingCtrl: LoadingController
+		public pollaProvider: PollaProvider
 	) {}
 
 	ionViewCanEnter(): boolean {
@@ -34,26 +33,25 @@ export class GameListPage {
 		return true;
 	}
 
-	// Runs when the page is about to enter and become the active page.
-	// Actualiza la página por la opción crear juego.
-	ionViewWillEnter() {
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.userType = this.userProvider.user.userType;
 
-		this.loadPollas();
+		this.loadPollas(null);
 	}
 
-	loadPollas() {
+	loadPollas(refresher: Refresher) {
 		let userId: number = this.userProvider.user.userId;
 
-		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollasByUserId(userId, true).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.pollaHeaderList = res.body;
 				this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -71,7 +69,7 @@ export class GameListPage {
 			this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 		} else {
 			// Reset items back to all of the items
-			this.loadPollas();
+			this.loadPollas(null);
 		}
 	}
 

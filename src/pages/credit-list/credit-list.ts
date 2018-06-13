@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Refresher } from 'ionic-angular';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast } from '../pages';
 
 @IonicPage()
 @Component({
@@ -25,8 +25,7 @@ export class CreditListPage {
 		public translate: TranslateService,
 		public userProvider: UserProvider,
 		public creditProvider: CreditProvider,
-		public logger: EventLoggerProvider,
-		public loadingCtrl: LoadingController
+		public logger: EventLoggerProvider
 	) {
 		this.translate.get(['CREDIT_STATUS_PENDING', 'CREDIT_STATUS_APPROVED', 'CREDIT_STATUS_CANCELLED']).subscribe(values => {
 			this.creditStatusPending = values['CREDIT_STATUS_PENDING'];
@@ -43,19 +42,18 @@ export class CreditListPage {
 		return true;
 	}
 
-	// Runs when the page is about to enter and become the active page.
-	// Actualiza la página por las opciones adicionar créditos y cobrar créditos.
-	ionViewWillEnter() {
-		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.loadCreditSummary(null);
 
-		this.loadCreditSummary();
+		this.logger.logEvent(this.navCtrl.getActive().name, 'credit_list', null);
 	}
 
-	loadCreditSummary() {
-		let loading = presentLoading(this.loadingCtrl);
+	loadCreditSummary(refresher: Refresher) {
 		this.creditProvider.getCreditSummaryByUserId(this.userProvider.user.userId).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.credit = res.body;
 
 				// Se asigna la descripción del estado.
@@ -76,7 +74,7 @@ export class CreditListPage {
 				}
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);

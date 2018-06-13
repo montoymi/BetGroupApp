@@ -12,6 +12,10 @@
 </ion-header>
 
 <ion-content>
+	<ion-refresher (ionRefresh)="loadPollas($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
 	<ion-list>
 		<ion-item-group *ngFor="let group of groupArray">
 			<ion-item-divider sticky (click)="toggleDetails(group)">

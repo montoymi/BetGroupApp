@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider, PollaProvider } from '../../providers/providers';
+import { UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
 import { PollaBet } from '../../models/polla/polla-bet';
 import { presentToast, getFlagValue, presentLoading } from '../pages';
 import { RESPONSE_ERROR } from '../../constants/constants';
@@ -33,6 +33,7 @@ export class GameBetSavePage {
 		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
 		public formBuilder: FormBuilder,
+		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController
 	) {
 		this.translate.get(['BET_SAVE_SUCCESS', 'BET_SCORE_REQUIRED_ERROR', 'BET_SAVE_ERROR', 'BET_SAVE_ERROR2']).subscribe(values => {
@@ -109,6 +110,8 @@ export class GameBetSavePage {
 				presentToast(this.toastCtrl, this.betSaveSuccess);
 				this.pollaBet = res.body;
 				this.viewCtrl.dismiss();
+
+				this.logger.logEvent(this.navCtrl.getActive().name, 'game_bet_save', null);
 			},
 			err => {
 				loading.dismiss();

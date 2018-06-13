@@ -9,6 +9,10 @@
 </ion-header>
 
 <ion-content>
+	<ion-refresher (ionRefresh)="loadCreditSummary($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
 	<ion-list *ngIf="credit">
 		<ion-item>
 			<h2>{{ 'AVAILABLE_CREDITS' | translate }}</h2>
@@ -29,8 +33,8 @@
 						<p>{{ creditDetail.transactionDate | moment:'DD/MM/YY H:mm' }}</p>
 					</ion-col>
 					<ion-col col-4>
-							<p>{{ creditDetail.statusDescription }}</p>
-						</ion-col>
+						<p>{{ creditDetail.statusDescription }}</p>
+					</ion-col>
 					<ion-col col-4>
 						<p style="float: right">{{ creditDetail.creditTransationType.transactionSign }} {{ creditDetail.creditAmount }}</p>
 					</ion-col>

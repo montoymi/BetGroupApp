@@ -43,9 +43,9 @@ export class HomePage {
 		return true;
 	}
 
-	// Runs when the page is about to enter and become the active page.
-	// Actualiza la página por la opción crear juego.
-	ionViewWillEnter() {
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
 		this.loadHome();
 	}
 

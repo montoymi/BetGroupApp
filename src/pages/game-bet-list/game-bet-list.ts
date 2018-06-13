@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, Refresher } from 'ionic-angular';
 
-import { UserProvider, PollaProvider } from '../../providers/providers';
+import { UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaBet } from '../../models/polla/polla-bet';
 import { Item } from '../../models/item';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast } from '../pages';
 
 @IonicPage()
 @Component({
@@ -24,7 +24,7 @@ export class GameBetListPage {
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
 		public pollaProvider: PollaProvider,
-		public loadingCtrl: LoadingController
+		public logger: EventLoggerProvider
 	) {}
 
 	ionViewCanEnter(): boolean {
@@ -41,27 +41,24 @@ export class GameBetListPage {
 		this.navBar.backButtonClick = (e: UIEvent) => {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
+
+		this.loadGameBets(null);
+
+		this.logger.logEvent(this.navCtrl.getActive().name, 'game_bet_list', null);
 	}
 
-	// Runs when the page is about to enter and become the active page.
-	// Actualiza la página por la opción crear juego.
-	ionViewWillEnter() {
-		this.loadGameBets();
-	}
-
-	loadGameBets() {
+	loadGameBets(refresher: Refresher) {
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 		let userId: number = this.userProvider.user.userId;
 
-		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getGameBetsByPollaIdAndUserId(pollaHeader.pollaId, userId).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.pollaBetList = res.body;
 				this.groupArray = this.buildGroupArray(this.pollaBetList);
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -79,7 +76,7 @@ export class GameBetListPage {
 			this.groupArray = this.buildGroupArray(this.pollaBetList);
 		} else {
 			// Reset items back to all of the items
-			this.loadGameBets();
+			this.loadGameBets(null);
 		}
 	}
 

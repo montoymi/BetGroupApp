@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Refresher } from 'ionic-angular';
 import * as moment from 'moment';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { Item } from '../../models/item';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast } from '../pages';
 import { DATE_FORMAT } from '../../constants/constants';
 
 @IonicPage()
@@ -22,8 +22,7 @@ export class GameAvailableListPage {
 		public navParams: NavParams,
 		public toastCtrl: ToastController,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider,
-		public loadingCtrl: LoadingController
+		public pollaProvider: PollaProvider
 	) {}
 
 	ionViewCanEnter(): boolean {
@@ -34,24 +33,23 @@ export class GameAvailableListPage {
 		return true;
 	}
 
-	// Runs when the page is about to enter and become the active page.
-	// Actualiza la página por la opción inscribirse en juego.
-	ionViewWillEnter() {
-		this.loadPollas();
+	// Runs when the page has loaded. This event is NOT fired on
+	// entering a view that is already cached.
+	ionViewDidLoad() {
+		this.loadPollas(null);
 	}
 
-	loadPollas() {
+	loadPollas(refresher: Refresher) {
 		let userId: number = this.userProvider.user.userId;
 
-		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollasByUserId(userId, false).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.pollaHeaderList = res.body;
 				this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
@@ -69,7 +67,7 @@ export class GameAvailableListPage {
 			this.groupArray = this.buildGroupArray(this.pollaHeaderList);
 		} else {
 			// Reset items back to all of the items
-			this.loadPollas();
+			this.loadPollas(null);
 		}
 	}
 
