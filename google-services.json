@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "177097717456",
-    "firebase_url": "https://betgroupsports.firebaseio.com",
-    "project_id": "betgroupsports",
-    "storage_bucket": "betgroupsports.appspot.com"
+    "project_number": "66869344637",
+    "firebase_url": "https://kiniela-sports.firebaseio.com",
+    "project_id": "kiniela-sports",
+    "storage_bucket": "kiniela-sports.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:177097717456:android:d1360d0657d73f16",
+        "mobilesdk_app_id": "1:66869344637:android:7eb8a3fe3272d4ca",
         "android_client_info": {
-          "package_name": "com.amadeus.betgroup"
+          "package_name": "com.kinielasports"
         }
       },
       "oauth_client": [
         {
-          "client_id": "177097717456-65unqod1us7ds99n1cu2kikn6khata1o.apps.googleusercontent.com",
+          "client_id": "66869344637-pgqpom9l6o3p35b9ndr5phm6kd0k21jv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAerhdIQzqeGwLZYH2ja-gL0y989qOQIxs"
+          "current_key": "AIzaSyC0m-SfakDkT1Vg6dzq2078TOW3CkIMLSA"
         }
       ],
       "services": {
