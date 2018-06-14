@@ -1,7 +1,6 @@
 import { Api } from './api/api';
 import { Settings } from './settings/settings';
 import { EventLoggerProvider } from './event-logger/event-logger';
-import { PaymentProvider } from './payment/payment';
 import { UserProvider } from './data/user-provider';
 import { ParamValueProvider } from './data/param-value';
 import { TemplateProvider } from './data/template-provider';
@@ -17,7 +16,6 @@ export {
     Api,
 	Settings,
 	EventLoggerProvider,
-	PaymentProvider,
 	UserProvider,
 	ParamValueProvider,
 	TemplateProvider,
