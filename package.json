@@ -21,7 +21,6 @@
     "@angular/http": "5.2.10",
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
-    "@ionic-native/braintree": "^4.7.0",
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/firebase-analytics": "^4.7.0",
@@ -32,7 +31,6 @@
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "cordova-android": "7.0.0",
-    "cordova-plugin-braintree": "git+https://github.com/taracque/cordova-plugin-braintree.git",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-firebase-analytics": "^0.13.0",
     "cordova-plugin-globalization": "^1.11.0",
@@ -64,8 +62,7 @@
       "cordova-plugin-firebase-analytics": {
         "FIREBASE_VERSION": "11.6.+"
       },
-      "cordova-plugin-globalization": {},
-      "cordova-plugin-braintree": {}
+      "cordova-plugin-globalization": {}
     },
     "platforms": [
       "android"

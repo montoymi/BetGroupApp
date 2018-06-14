@@ -88,5 +88,4 @@
     </plugin>
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
     <engine name="android" spec="7.0.0" />
-    <plugin name="cordova-plugin-braintree" spec="https://github.com/taracque/cordova-plugin-braintree" />
 </widget>
