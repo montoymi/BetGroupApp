@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Config } from '../../config';
+
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-	//url: string = 'http://localhost:8080/betgroup-ws';
-	url: string = 'http://vmi143234.contaboserver.net:8080/betgroup-ws';
+	url: string = Config.wsUrl;
 
 	constructor(public http: HttpClient) {}
 

@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 import { Globalization } from '@ionic-native/globalization';
+import { PayPal } from '@ionic-native/paypal'
 
 import {
 	Api,
@@ -74,6 +75,7 @@ export function provideSettings(storage: Storage) {
 		FirebaseAnalytics,
 		Globalization,
 		EventLoggerProvider,
+		PayPal,
 		UserProvider,
 		ParamValueProvider,
 		TemplateProvider,

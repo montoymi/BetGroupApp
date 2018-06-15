@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { CreditDetail } from '../../models/credit/credit-detail';
 import { presentToast, presentLoading } from '../pages';
+
 import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
+import { Config } from '../../config';
 
 @IonicPage()
 @Component({
@@ -39,7 +42,8 @@ export class CreditAddPage {
 		public creditProvider: CreditProvider,
 		public formBuilder: FormBuilder,
 		public logger: EventLoggerProvider,
-		public loadingCtrl: LoadingController
+		public loadingCtrl: LoadingController,
+		private payPal: PayPal
 	) {
 		this.translate
 			.get([
@@ -167,7 +171,7 @@ export class CreditAddPage {
 				{
 					text: this.okButton,
 					handler: data => {
-						this.saveCreditTransaction();
+						this.makePayment();
 					}
 				}
 			]
@@ -177,5 +181,63 @@ export class CreditAddPage {
 
 	done() {
 		this.presentConfirm();
+	}
+
+	/*
+	 * Muestra la página de paypal para realizar el pago.
+	 */
+	makePayment() {
+		let creditDetail = this.prepareSave();
+		if (!creditDetail) {
+			return;
+		}
+
+		// Environment (Sandbox or Production)
+		let payPalEnvironment: string = 'payPalEnvironmentSandbox';
+
+		// Crea el objeto payment.
+		let amount: string = creditDetail.creditAmount.toString();
+		let currency: string = 'USD';
+		let shortDescription: string = creditDetail.comments;
+		let intent: string = creditDetail.transactionTypeId.toString(); // Intención, propósito.
+		let payment: PayPalPayment = new PayPalPayment(amount, currency, shortDescription, intent);
+
+		this.payPal
+			.init({
+				PayPalEnvironmentProduction: Config.payPalEnvironmentProduction,
+				PayPalEnvironmentSandbox: Config.payPalEnvironmentSandbox
+			})
+			.then(
+				() => {
+					this.payPal.prepareToRender(payPalEnvironment, new PayPalConfiguration({})).then(
+						() => {
+							this.payPal.renderSinglePaymentUI(payment).then(
+								response => {
+									if (response.response.state == 'approved') {
+										this.saveCreditTransaction();
+									}
+
+									console.log(response);
+								},
+								e => {
+									// Error or render dialog closed without being successful
+									console.error(e);
+								}
+							);
+						},
+						e => {
+							// Error in configuration
+							console.error(e);
+						}
+					);
+				},
+				e => {
+					// Error in initialization, maybe PayPal isn't supported or something else.
+					// Cuando se ejecuta desde el navegador entra a esta parte, porque no carga las librerias de cordova.
+					console.error(e);
+
+					presentToast(this.toastCtrl, 'Esta opción no esta disponible en modo web');
+				}
+			);
 	}
 }
