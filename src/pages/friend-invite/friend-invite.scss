@@ -2,4 +2,9 @@ page-friend-invite {
 	.item-md {
 		padding-left: 0px;
 	}
+
+	// Se da este tamaño para que corregir alturas
+	ion-item {
+		height: 70px;
+	}
 }

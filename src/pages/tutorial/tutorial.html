@@ -27,9 +27,11 @@
 					</ion-item>
 				</ion-col>
 				<ion-col>
-					<ion-buttons end *ngIf="showSkip">
-						<button ion-button (click)="startApp()" color="primary">{{ 'TUTORIAL_SKIP_BUTTON' | translate}}</button>
-					</ion-buttons>
+					<ion-item no-lines>
+						<ion-buttons end *ngIf="showSkip">
+							<button ion-button (click)="startApp()" color="primary">{{ 'TUTORIAL_SKIP_BUTTON' | translate}}</button>
+						</ion-buttons>
+					</ion-item>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
