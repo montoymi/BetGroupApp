@@ -8,7 +8,7 @@ import { PollaBet } from '../../models/polla/polla-bet';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaMatch } from '../../models/polla/polla-match';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601_Z } from '../providers';
+import { formatISO8601_Z } from '../../utils/utils';
 
 @Injectable()
 export class PollaProvider {

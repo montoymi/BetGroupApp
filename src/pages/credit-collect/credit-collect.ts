@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 
+import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
 import { CreditDetail } from '../../models/credit/credit-detail';
-import { presentToast, presentLoading } from '../pages';
-import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

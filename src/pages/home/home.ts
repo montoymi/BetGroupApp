@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+
 import { UserProvider, ParamValueProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 export interface Card {
 	idCard: number;

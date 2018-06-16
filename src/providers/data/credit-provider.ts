@@ -6,7 +6,7 @@ import { Api } from '../api/api';
 import { Credit } from '../../models/credit/credit';
 import { CreditDetail } from '../../models/credit/credit-detail';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601_Z } from '../providers';
+import { formatISO8601_Z } from '../../utils/utils';
 
 @Injectable()
 export class CreditProvider {

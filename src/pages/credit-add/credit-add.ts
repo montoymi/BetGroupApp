@@ -4,12 +4,11 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 //import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
+import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { CreditDetail } from '../../models/credit/credit-detail';
-import { presentToast, presentLoading } from '../pages';
-
-import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 import { Config } from '../../config';
+import { presentLoading, presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({
@@ -196,7 +195,7 @@ export class CreditAddPage {
 		let payPalEnvironment: string = 'payPalEnvironmentSandbox';
 
 		// Crea el objeto payment.
-		let amount: string = creditDetail.creditAmount.toString();
+		let amount: string = creditDetail.getDollars().toString();
 		let currency: string = 'USD';
 		let shortDescription: string = creditDetail.comments;
 		let intent: string = creditDetail.transactionTypeId.toString(); // Intención, propósito.

@@ -5,7 +5,7 @@ import { UserProvider, PollaProvider, EventLoggerProvider } from '../../provider
 import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaBet } from '../../models/polla/polla-bet';
 import { Item } from '../../models/item';
-import { presentToast } from '../pages';
+import { presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({

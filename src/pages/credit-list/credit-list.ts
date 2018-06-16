@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController, Refresher } from 
 
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
 import { Credit } from '../../models/credit/credit';
-import { presentToast } from '../pages';
+import { presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({

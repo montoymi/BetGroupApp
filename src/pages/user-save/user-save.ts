@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider, formatISO8601 } from '../../providers/providers';
+import { RESPONSE_ERROR, EMAIL_PATTERN } from '../../constants/constants';
+import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
 import { Item } from '../../models/item';
-import { RESPONSE_ERROR, EMAIL_PATTERN } from '../../constants/constants';
-import { presentToast, getFlagValue, presentLoading } from '../pages';
+import { presentToast, getFlagValue, presentLoading, formatISO8601 } from '../../utils/utils';
 
 @IonicPage()
 @Component({

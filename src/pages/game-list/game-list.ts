@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController, Refresher } from 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { Item } from '../../models/item';
-import { presentToast } from '../pages';
+import { presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserProvider, formatISO8601 } from '../../providers/providers';
+import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading, formatISO8601 } from '../../utils/utils';
 
 @IonicPage()
 @Component({

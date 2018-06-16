@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingCo
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, presentLoading, getFlagValue } from '../pages';
+import { presentToast, presentLoading, getFlagValue } from '../../utils/utils';
 
 @IonicPage()
 @Component({

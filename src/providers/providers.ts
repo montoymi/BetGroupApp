@@ -9,9 +9,6 @@ import { CreditProvider } from './data/credit-provider';
 import { FriendProvider } from './data/friend-provider';
 import { MatchProvider } from './data/match-provider';
 
-import * as moment from 'moment';
-import { DATE_FORMAT_ISO8601_Z, DATE_FORMAT_ISO8601 } from '../constants/constants';
-
 export {
     Api,
 	Settings,
@@ -24,12 +21,3 @@ export {
 	FriendProvider,
 	MatchProvider
 };
-
-// Se asigna el formato ISO 8601 para poder manejar el dato como fecha.
-export function formatISO8601_Z(value) {
-	return value != undefined ? moment(value, DATE_FORMAT_ISO8601_Z).format() : value;
-}
-
-export function formatISO8601(value) {
-	return value != undefined ? moment(value, DATE_FORMAT_ISO8601).format() : value;
-}

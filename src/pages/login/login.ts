@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, MenuController, LoadingController } from 'ionic-angular';
 
+import { RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { MainPage, presentToast, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { MainPage } from '../pages';
+import { presentLoading, presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({
