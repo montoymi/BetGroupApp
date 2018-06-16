@@ -19,5 +19,9 @@ export class CreditDetail {
 	credit: Credit;
 
 	statusDescription: string;
+	
+	getDollars(): number {
+		return this.creditAmount / 10;
+	}
 }
 

@@ -21,17 +21,15 @@
 		<ion-grid no-padding>
 			<ion-row align-items-center>
 				<ion-col>
-					<ion-item no-lines>
+					<ion-item no-lines style="background: transparent">
 						<ion-label>{{ 'NO_SHOW' | translate }}</ion-label>
 						<ion-checkbox [(ngModel)]="noShowTutorial" name=noShowTutorial (ionChange)="updateSettings()"></ion-checkbox>
 					</ion-item>
 				</ion-col>
 				<ion-col>
-					<ion-item no-lines>
-						<ion-buttons end *ngIf="showSkip">
-							<button ion-button (click)="startApp()" color="primary">{{ 'TUTORIAL_SKIP_BUTTON' | translate}}</button>
-						</ion-buttons>
-					</ion-item>
+					<ion-buttons end *ngIf="showSkip">
+						<button ion-button (click)="startApp()" color="primary">{{ 'TUTORIAL_SKIP_BUTTON' | translate}}</button>
+					</ion-buttons>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

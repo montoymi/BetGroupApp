@@ -195,7 +195,7 @@ export class CreditAddPage {
 		let payPalEnvironment: string = 'payPalEnvironmentSandbox';
 
 		// Crea el objeto payment.
-		let amount: string = creditDetail.creditAmount.toString();
+		let amount: string = creditDetail.getDollars().toString();
 		let currency: string = 'USD';
 		let shortDescription: string = creditDetail.comments;
 		let intent: string = creditDetail.transactionTypeId.toString(); // Intención, propósito.
