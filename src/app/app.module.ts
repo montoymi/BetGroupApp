@@ -75,7 +75,7 @@ export function provideSettings(storage: Storage) {
 		FirebaseAnalytics,
 		Globalization,
 		EventLoggerProvider,
-		PayPal,
+	//	PayPal,
 		UserProvider,
 		ParamValueProvider,
 		TemplateProvider,
