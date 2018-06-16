@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController, L
 
 import { UserProvider, TemplateProvider } from '../../providers/providers';
 import { TemplateDetail } from '../../models/template/template-detail';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

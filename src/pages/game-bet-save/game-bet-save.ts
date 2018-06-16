@@ -3,10 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 
+import { RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
 import { PollaBet } from '../../models/polla/polla-bet';
-import { presentToast, getFlagValue, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { presentToast, getFlagValue, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

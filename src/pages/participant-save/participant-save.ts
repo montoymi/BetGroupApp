@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController, AlertController } from 'ionic-angular';
 
+import { RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { PollaParticipant } from '../../models/polla/polla-participant';
-import { presentToast, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Api } from '../api/api';
 import { TemplateHeader } from '../../models/template/template-header';
 import { RESPONSE_STATUS } from '../../constants/constants';
-import { formatISO8601_Z } from '../providers';
+import { formatISO8601_Z } from '../../utils/utils';
 
 @Injectable()
 export class TemplateProvider {

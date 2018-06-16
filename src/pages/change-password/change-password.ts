@@ -3,10 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { IonicPage, NavController, ToastController, LoadingController, ViewController } from 'ionic-angular';
 
+import { PASSWORD_PATTERN } from '../../constants/constants';
 import { UserProvider } from '../../providers/providers';
 import { User } from '../../models/account/user';
-import { presentToast, presentLoading } from '../pages';
-import { PASSWORD_PATTERN } from '../../constants/constants';
+import { presentToast, presentLoading } from '../../utils/utils';
 import { PasswordValidator } from '../../validators/password.validator';
 
 @IonicPage()

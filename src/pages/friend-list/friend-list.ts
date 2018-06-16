@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 
 import { UserProvider, FriendProvider } from '../../providers/providers';
 import { Friend } from '../../models/account/friend';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, MenuController, NavController, Platform, ToastController, LoadingController, Slides } from 'ionic-angular';
 
 import { UserProvider, ParamValueProvider, EventLoggerProvider, Settings } from '../../providers/providers';
-import { presentToast, presentLoading } from '../pages';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 export interface Slide {
 	title: string;

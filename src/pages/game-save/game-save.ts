@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController, TextInput, Checkbox, LoadingController } from 'ionic-angular';
 import { IonicStepperComponent, IonicStepComponent } from 'ionic-stepper';
 
+import { RESPONSE_ERROR } from '../../constants/constants';
 import { TemplateProvider, UserProvider, PollaProvider, EventLoggerProvider } from '../../providers/providers';
 import { TemplateHeader } from '../../models/template/template-header';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, getFlagValue, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { presentToast, getFlagValue, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, Refresher } from 'ionic-angular';
 import * as moment from 'moment';
 
+import { DATE_FORMAT } from '../../constants/constants';
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaHeader } from '../../models/polla/polla-header';
 import { Item } from '../../models/item';
-import { presentToast } from '../pages';
-import { DATE_FORMAT } from '../../constants/constants';
+import { presentToast } from '../../utils/utils';
 
 @IonicPage()
 @Component({

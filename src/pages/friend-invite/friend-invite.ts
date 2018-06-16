@@ -2,12 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, Navbar, ToastController, AlertController, LoadingController } from 'ionic-angular';
 
+import { RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, FriendProvider } from '../../providers/providers';
 import { Friend } from '../../models/account/friend';
 import { User } from '../../models/account/user';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, presentLoading } from '../pages';
-import { RESPONSE_ERROR } from '../../constants/constants';
+import { presentToast, presentLoading } from '../../utils/utils';
 
 @IonicPage()
 @Component({
