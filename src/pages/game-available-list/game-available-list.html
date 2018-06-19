@@ -24,7 +24,7 @@
 			</ion-item-divider>
 
 			<div *ngIf="group.showDetails">
-				<button ion-item *ngFor="let pollaHeader of pollaHeaderList" (click)="openGameTabsPage(pollaHeader)">
+				<button ion-item *ngFor="let pollaHeader of group.pollaHeaderArray" (click)="openGameTabsPage(pollaHeader)">
 					<ion-thumbnail item-start>
 						<img [src]="pollaHeader.image" />
 					</ion-thumbnail>
@@ -51,16 +51,18 @@
 							</ion-col>
 						</ion-row>
 						<ion-row align-items-center>
-							<ion-col col-1>
-								<ion-icon name="cash"></ion-icon>
-							</ion-col>
 							<ion-col>
+								<!--<ion-icon name="cash"></ion-icon>-->
+								<h3>Entrada:</h3>
+							<!--</ion-col>-->
+							<!--<ion-col>-->
 								<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 							</ion-col>
-							<ion-col col-1>
-								<ion-icon name="trophy"></ion-icon>
-							</ion-col>
 							<ion-col>
+								<!--<ion-icon name="trophy"></ion-icon>-->
+								<h3>Pozo:</h3>
+							<!--</ion-col>-->
+							<!--<ion-col>-->
 								<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 							</ion-col>
 						</ion-row>

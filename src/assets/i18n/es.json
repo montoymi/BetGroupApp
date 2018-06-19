@@ -124,7 +124,7 @@
 	"GAME_CODE": "Código del juego",
 	"GAME_NAME": "Nombre del juego",
 	"GAME_COST_FLAG": "Costo? (s/n)",
-	"GAME_POLLA_COST": "Cuota de inscripción",
+	"GAME_POLLA_COST": "Entrada",
 	"GAME_ACCESS_LABEL": "Privado? (s/n)",
 	"GAME_ACCESS_FLAG_PRIVATE": "Privado",
 	"GAME_ACCESS_FLAG_PUBLIC": "Público",

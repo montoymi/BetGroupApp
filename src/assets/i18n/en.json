@@ -124,7 +124,7 @@
 	"GAME_CODE": "Game code",
 	"GAME_NAME": "Game name",
 	"GAME_COST_FLAG": "Cost? (y/n)",
-	"GAME_POLLA_COST": "Registration fee",
+	"GAME_POLLA_COST": "Entry",
 	"GAME_ACCESS_LABEL": "Private? (y/n)",
 	"GAME_ACCESS_FLAG_PRIVATE": "Private",
 	"GAME_ACCESS_FLAG_PUBLIC": "Public",
