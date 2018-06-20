@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, Navbar, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, ToastController, Refresher } from 'ionic-angular';
 
 import { UserProvider, PollaProvider } from '../../providers/providers';
 import { PollaParticipant } from '../../models/polla/polla-participant';
 import { PollaHeader } from '../../models/polla/polla-header';
-import { presentToast, presentLoading, getFlagValue } from '../../utils/utils';
+import { presentToast, getFlagValue } from '../../utils/utils';
 
 @IonicPage()
 @Component({
@@ -16,11 +16,10 @@ export class RankingListPage {
 	@ViewChild(Navbar) navBar: Navbar;
 
 	segment: string;
-
-	pollaParticipantList: PollaParticipant[];
-
 	modePollitaFlag: boolean;
 	modePollaFlag: boolean;
+	
+	pollaParticipantList: PollaParticipant[];
 
 	constructor(
 		public navCtrl: NavController,
@@ -28,8 +27,7 @@ export class RankingListPage {
 		public toastCtrl: ToastController,
 		public translate: TranslateService,
 		public userProvider: UserProvider,
-		public pollaProvider: PollaProvider,
-		public loadingCtrl: LoadingController
+		public pollaProvider: PollaProvider
 	) {
 		// Habilita y seleciona el tab segun flags.
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
@@ -53,24 +51,27 @@ export class RankingListPage {
 			this.navCtrl.parent.viewCtrl.dismiss();
 		};
 
-		this.loadRanking();
+		this.loadRanking(null);
 	}
 
-	loadRanking() {
+	loadRanking(refresher: Refresher) {
 		let pollaHeader: PollaHeader = this.navParams.get('pollaHeader');
 
-		let loading = presentLoading(this.loadingCtrl);
 		this.pollaProvider.getPollaRankingByPollaId(pollaHeader.pollaId).subscribe(
 			(res: any) => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				this.pollaParticipantList = res.body;
 			},
 			err => {
-				loading.dismiss();
+				if (refresher) refresher.complete();
 				presentToast(this.toastCtrl, err.message);
 			}
 		);
 	}
 
 	segmentChanged() {}
+
+	openRankingDetailPage(pollaParticipant: PollaParticipant) {
+		this.navCtrl.push('RankingDetailPage', { pollaParticipant: pollaParticipant });
+	}
 }

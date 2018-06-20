@@ -100,7 +100,9 @@ export class GameAvailableListPage {
 		// Asigna los items a cada grupo.
 		for (let group of groupArray) {
 			for (let pollaHeader of pollaHeaderList) {
-				if (pollaHeader.startDate == group.strDate) {
+				let strDate: string = moment(pollaHeader.startDate).format(DATE_FORMAT);
+				
+				if (strDate == group.strDate) {
 					group.pollaHeaderArray.push(pollaHeader);
 				}
 			}

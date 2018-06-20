@@ -26,6 +26,10 @@
 			<p>{{ pollaHeader.endDate | moment:'DD/MM/YY H:mm' }}</p>
 		</ion-item>
 		<ion-item>
+			<h2>{{ 'GAME_POLLA_COST' | translate }}</h2>
+			<p>{{ pollaHeader.pollaCost }} créditos = {{ pollaHeader.pollaCost/10 }} U.S. dólar</p>
+		</ion-item>
+		<ion-item>
 			<h2>{{ 'GAME_ACCUMULATED_CREDITS' | translate }}</h2>
 			<p>{{ pollaHeader.total_bet }} créditos = {{ pollaHeader.total_bet/10 }} U.S. dólar</p>
 		</ion-item>
