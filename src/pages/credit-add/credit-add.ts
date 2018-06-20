@@ -192,7 +192,8 @@ export class CreditAddPage {
 		}
 
 		// Environment (Sandbox or Production)
-		let payPalEnvironment: string = 'payPalEnvironmentSandbox';
+		//let payPalEnvironment: string = 'payPalEnvironmentSandbox';
+		let payPalEnvironment: string = 'payPalEnvironmentProduction';
 
 		// Crea el objeto payment.
 		let amount: string = creditDetail.getDollars().toString();
