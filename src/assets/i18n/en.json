@@ -267,6 +267,6 @@
 	"MATCH_ENABLED_FLAG_1" : "Opened forecasts",
 
 	"POLLA_ENABLED_FLAG_0" : "Completed Kinielas",
-	"POLLA_ENABLED_FLAG_2" : "Kinielas in process",
-	"POLLA_ENABLED_FLAG_3" : "Open Kinielas"
+	"POLLA_ENABLED_FLAG_1" : "Kinielas in process",
+	"POLLA_ENABLED_FLAG_2" : "Open Kinielas"
 }

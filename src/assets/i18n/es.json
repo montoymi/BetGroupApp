@@ -270,6 +270,6 @@
 	"MATCH_ENABLED_FLAG_1" : "Pronósticos abiertos",
 
 	"POLLA_ENABLED_FLAG_0" : "Kinielas completadas",
-	"POLLA_ENABLED_FLAG_2" : "Kinielas en proceso",
-	"POLLA_ENABLED_FLAG_3" : "Kinielas abiertas"
+	"POLLA_ENABLED_FLAG_1" : "Kinielas en proceso",
+	"POLLA_ENABLED_FLAG_2" : "Kinielas abiertas"
 }
