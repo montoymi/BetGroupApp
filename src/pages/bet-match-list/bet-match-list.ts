@@ -101,6 +101,7 @@ export class BetMatchListPage {
 		for (let group of groupArray) {
 			for (let match of matchList) {
 				let strDate: string = moment(match.matchDateWithTimezone).format(DATE_FORMAT);
+				
 				if (strDate == group.strDate) {
 					group.matchArray.push(match);
 				}

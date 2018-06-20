@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'RANKING_DETAIL_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher (ionRefresh)="loadGameBets($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-list *ngIf="pollaParticipant">
+		<ion-item no-lines>
+			<ion-grid no-padding>
+				<ion-row align-items-end>
+					<ion-col col-6>
+						<h2>{{ 'USERNAME' | translate }}</h2>
+					</ion-col>
+					<ion-col col-6>
+						<p>{{ pollaParticipant.user.username }}</p>
+					</ion-col>
+				</ion-row>
+				<ion-row align-items-end>
+					<ion-col col-6>
+						<h2 text-wrap>{{ 'GAME_TOTAL' | translate }}</h2>
+					</ion-col>
+					<ion-col col-6>
+						<p>{{ pollaParticipant.total }}</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
+		<ion-item-divider>
+			<h3>{{ 'RANKING_DETAIL_SUBTITLE' | translate }}</h3>
+		</ion-item-divider>
+		<button ion-item no-lines class="bottom-border" *ngFor="let pollaBet of pollaBetList">
+			<ion-thumbnail item-start>
+				<img [src]="pollaBet.pollaMatch.match.localTeam.image" />
+			</ion-thumbnail>
+			<h2 text-wrap>{{ pollaBet.pollaMatch.match.localTeam.teamName }} vs. {{ pollaBet.pollaMatch.match.visitorTeam.teamName }}</h2>
+			<ion-grid no-padding>
+				<ion-row>
+					<ion-col>
+						<p>{{ pollaBet.pollaMatch.match.matchDateWithTimezone | moment:'DD/MM/YY H:mm' }}</p>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<p>Resultado: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			<ion-thumbnail item-end>
+				<img [src]="pollaBet.pollaMatch.match.visitorTeam.image" />
+			</ion-thumbnail>
+		</button>
+	</ion-list>
+</ion-content>

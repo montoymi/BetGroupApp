@@ -103,12 +103,11 @@
 	"GAME_EVENT_COUNT": "Número de partidos",
 	"GAME_DATE_COUNT": "Número de fechas",
 	"GAME_STATUS": "Estado",
-	"GAME_ACCUMULATED_POINTS": "Puntos acumulados",
 	"GAME_PENDING_EVENT_COUNT": "Número de eventos pendientes de apostar",
 	"GAME_REMAINING_WILDCARD_COUNT": "Cantidad de comodines restantes",
 	"GAME_INSCRIPTION_DATE": "Fecha de inscripción",
-	"GAME_TOTAL": "Puntos Acumulados",
-	"GAME_EARNINGS": "Ganancias Acumuladas",
+	"GAME_TOTAL": "Total",
+	"GAME_EARNINGS": "Ganancias",
 	"GAME_POSITION": "Posición",
 	"GAME_NUM_WILDCARDS": "Comodines",
 	"GAME_NUM_WILDCARDS_LEFT": "Comodines restantes",
@@ -153,6 +152,8 @@
 
 	"RULES_TITLE": "Reglas",
 	"EVENTS_TITLE": "Eventos",
+	"RANKING_DETAIL_TITLE": "Detalle del ranking",
+	"RANKING_DETAIL_SUBTITLE": "Pronósticos del usuario",
 
 	"BET_MATCH_SAVE_TITLE": "Pronóstico del evento",
 	"BET_MATCH_FORECAST": "Ingrese el pronóstico",

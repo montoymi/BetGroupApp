@@ -103,7 +103,6 @@
 	"GAME_EVENT_COUNT": "Number of matchs",
 	"GAME_DATE_COUNT": "Number of rounds",
 	"GAME_STATUS": "Status",
-	"GAME_ACCUMULATED_POINTS": "Accumulated points",
 	"GAME_PENDING_EVENT_COUNT": "Number of pending matchs to bet",
 	"GAME_REMAINING_WILDCARD_COUNT": "Number of remaining wildcards",
 	"GAME_INSCRIPTION_DATE": "Date of registration",
@@ -153,6 +152,8 @@
 
 	"RULES_TITLE": "Rules",
 	"EVENTS_TITLE": "Events",
+	"RANKING_DETAIL_TITLE": "Ranking detail",
+	"RANKING_DETAIL_SUBTITLE": "User forecasts",
 
 	"BET_MATCH_SAVE_TITLE": "Event forecast",
 	"BET_MATCH_FORECAST": "Enter the forecast",
