@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
+//import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
 import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
@@ -41,8 +41,8 @@ export class CreditAddPage {
 		public creditProvider: CreditProvider,
 		public formBuilder: FormBuilder,
 		public logger: EventLoggerProvider,
-		public loadingCtrl: LoadingController,
-		private payPal: PayPal
+		public loadingCtrl: LoadingController
+		//,		private payPal: PayPal
 	) {
 		this.translate
 			.get([
@@ -199,7 +199,7 @@ export class CreditAddPage {
 		let currency: string = 'USD';
 		let shortDescription: string = creditDetail.comments;
 		let intent: string = creditDetail.transactionTypeId.toString(); // Intención, propósito.
-		let payment: PayPalPayment = new PayPalPayment(amount, currency, shortDescription, intent);
+	/*	let payment: PayPalPayment = new PayPalPayment(amount, currency, shortDescription, intent);
 
 		this.payPal
 			.init({
@@ -238,5 +238,6 @@ export class CreditAddPage {
 					presentToast(this.toastCtrl, 'Esta opción no esta disponible en modo web');
 				}
 			);
+	*/
 	}
 }
