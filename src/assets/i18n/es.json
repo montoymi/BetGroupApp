@@ -263,8 +263,8 @@
 	"NEW_PASSWORD": "Nueva contraseña",
 	"CURRENT_PASSWORD_ERROR": "Contraseña incorrecta",
 
-	"ADD_CREDITS_BUTTON": "Comprar créditos",
-	"COLLECT_CREDITS_BUTTON": "Cobrar créditos",
+	"ADD_CREDITS_BUTTON": "Comprar",
+	"COLLECT_CREDITS_BUTTON": "Cobrar",
 
 	"MATCH_ENABLED_FLAG_0" : "Pronósticos cerrados",
 	"MATCH_ENABLED_FLAG_1" : "Pronósticos abiertos",

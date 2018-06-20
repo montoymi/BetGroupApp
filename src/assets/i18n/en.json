@@ -260,8 +260,8 @@
 	"NEW_PASSWORD": "New password",
 	"CURRENT_PASSWORD_ERROR": "Incorrect password",
 
-	"ADD_CREDITS_BUTTON": "Buy credits",
-	"COLLECT_CREDITS_BUTTON": "Collect credits",
+	"ADD_CREDITS_BUTTON": "Buy",
+	"COLLECT_CREDITS_BUTTON": "Collect",
 
 	"MATCH_ENABLED_FLAG_0" : "Closed forecasts",
 	"MATCH_ENABLED_FLAG_1" : "Opened forecasts",
