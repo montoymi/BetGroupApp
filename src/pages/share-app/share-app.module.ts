@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
-
-import { SettingsPage } from './settings';
+import { ShareAppPage } from './share-app';
 
 @NgModule({
 	declarations: [
-		SettingsPage
+		ShareAppPage
 	],
 	imports: [
-		IonicPageModule.forChild(SettingsPage), 
+		IonicPageModule.forChild(ShareAppPage),
 		TranslateModule.forChild()
 	],
 	exports: [
-		SettingsPage
+		ShareAppPage
 	]
 })
-export class SettingsPageModule {}
+export class ShareAppPageModule {}

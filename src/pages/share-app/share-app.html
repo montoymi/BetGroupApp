@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'SHARE_APP_TITLE' | translate }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div align="center" padding>
+		<h2 class="share-text">{{ 'SHARE_APP_TEXT' | translate }}
+			<br>{{ 'SHARE_APP_TEXT2' | translate }}
+		</h2>
+		<p>¡Por cada amigo que descargue Kiniela Sports obtendrás 100 creditos!</p>
+		<img src="assets/img/share-persons.png" class="slide-image" />
+	</div>
+	<ion-fab #fab right bottom>
+		<button ion-fab>
+			<ion-icon name="share"></ion-icon>
+		</button>
+		<ion-fab-list side="top">
+			<button ion-fab (click)="share('facebook', fab)">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</button>
+			<button ion-fab (click)="share('twitter', fab)">
+				<ion-icon name="logo-twitter"></ion-icon>
+			</button>
+			<button ion-fab (click)="share('whatsapp', fab)">
+				<ion-icon name="logo-whatsapp"></ion-icon>
+			</button>
+		</ion-fab-list>
+	</ion-fab>
+</ion-content>

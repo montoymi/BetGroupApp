@@ -40,6 +40,7 @@ export class MenuPage {
 	];
 
 	secondaryPageList: PageInterface[] = [
+		{ title: 'SHARE_APP_TITLE', subtitle: 'SHARE_APP_SUBTITLE', component: 'ShareAppPage', icon: 'share' },
 		{ title: 'CONTACT_US_TITLE', subtitle: 'CONTACT_US_SUBTITLE', component: 'ContactUsPage', icon: 'help-circle' },
 		{ title: 'SETTINGS_TITLE', subtitle: 'SETTINGS_SUBTITLE', component: 'SettingsPage', icon: 'settings' },
 		{ title: 'TUTORIAL_TITLE', subtitle: 'TUTORIAL_SUBTITLE', component: 'TutorialPage', icon: 'school' },

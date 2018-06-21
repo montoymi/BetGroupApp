@@ -36,8 +36,7 @@
 	"EMAIL_PATTERN_ERROR": "Ingrese un correo electrónico válido.",
 	"PASSWORD_REQUIRED_ERROR": "La contraseña es requerida.",
 	"PASSWORD_MINLENGTH_ERROR": "La contraseña debe tener al menos 5 caracteres de longitud.",
-	"PASSWORD_PATTERN_ERROR":
-		"Su contraseña debe contener al menos una letra mayúscula, una minúscula y un número. No se admiten caracteres especiales como: #$%&",
+	"PASSWORD_PATTERN_ERROR": "Su contraseña debe contener al menos una letra mayúscula, una minúscula y un número. No se admiten caracteres especiales como: #$%&",
 	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirmar contraseña es requerido.",
 	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "Las contraseñas no coinciden.",
 	"TERMS_PATTERN_ERROR": "Debe aceptar los términos y condiciones.",
@@ -56,6 +55,7 @@
 	"BET_MATCH_LIST_TITLE": "Mis pronósticos",
 	"FRIEND_LIST_TITLE": "Mis amigos",
 	"CREDIT_LIST_TITLE": "Créditos",
+	"SHARE_APP_TITLE": "Compártelo",
 	"CONTACT_US_TITLE": "Contáctanos",
 	"SETTINGS_TITLE": "Configuraciones",
 	"TUTORIAL_TITLE": "Tutorial",
@@ -68,6 +68,7 @@
 	"BET_MATCH_LIST_SUBTITLE": "Listado de eventos suscritos desde donde podrás ingresar tus pronósticos",
 	"FRIEND_LIST_SUBTITLE": "Listado de amigos registrados",
 	"CREDIT_LIST_SUBTITLE": "Acá podrás ver tu cuenta y gestionar operaciones de créditos",
+	"SHARE_APP_SUBTITLE": "Comparte la aplicación con tus amigos",
 	"CONTACT_US_SUBTITLE": "Consultas y sugerencias, ",
 	"SETTINGS_SUBTITLE": "Preferencias del usuario",
 	"TUTORIAL_SUBTITLE": "Documentación de ayuda",
@@ -246,6 +247,9 @@
 
 	"SETTINGS_OPTION1": "Idioma",
 
+	"SHARE_APP_TEXT": "¿Te estás divirtiendo en Kiniela Sports?",
+	"SHARE_APP_TEXT2": "Cuentale a tus amigos",
+
 	"BACK_BUTTON_TEXT": "Atrás",
 	"OK_BUTTON": "Aceptar",
 	"CANCEL_BUTTON": "Cancelar",
@@ -266,10 +270,10 @@
 	"ADD_CREDITS_BUTTON": "Comprar",
 	"COLLECT_CREDITS_BUTTON": "Cobrar",
 
-	"MATCH_ENABLED_FLAG_0" : "Pronósticos cerrados",
-	"MATCH_ENABLED_FLAG_1" : "Pronósticos abiertos",
+	"MATCH_ENABLED_FLAG_0": "Pronósticos cerrados",
+	"MATCH_ENABLED_FLAG_1": "Pronósticos abiertos",
 
-	"POLLA_ENABLED_FLAG_0" : "Kinielas completadas",
-	"POLLA_ENABLED_FLAG_1" : "Kinielas en proceso",
-	"POLLA_ENABLED_FLAG_2" : "Kinielas abiertas"
+	"POLLA_ENABLED_FLAG_0": "Kinielas completadas",
+	"POLLA_ENABLED_FLAG_1": "Kinielas en proceso",
+	"POLLA_ENABLED_FLAG_2": "Kinielas abiertas"
 }

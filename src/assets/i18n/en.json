@@ -56,6 +56,7 @@
 	"BET_MATCH_LIST_TITLE": "My forecasts",
 	"FRIEND_LIST_TITLE": "My friends",
 	"CREDIT_LIST_TITLE": "Credits",
+	"SHARE_APP_TITLE": "Share it",
 	"CONTACT_US_TITLE": "Contact us",
 	"SETTINGS_TITLE": "Settings",
 	"TUTORIAL_TITLE": "Tutorial",
@@ -68,6 +69,7 @@
 	"BET_MATCH_LIST_SUBTITLE": "List of subscribed events from where you can enter your forecasts",
 	"FRIEND_LIST_SUBTITLE": "List of registered friends",
 	"CREDIT_LIST_SUBTITLE": "Here you can see your account and manage credit operations",
+	"SHARE_APP_SUBTITLE": "Share the application with your friends",
 	"CONTACT_US_SUBTITLE": "Here you can send us any questions, comments or suggestions about the app",
 	"SETTINGS_SUBTITLE": "User preferences",
 	"TUTORIAL_SUBTITLE": "Help documentation",
@@ -243,6 +245,9 @@
 	"CREDITS": "credits",
 
 	"SETTINGS_OPTION1": "Language",
+
+	"SHARE_APP_TEXT": "Are you having fun at Kiniela Sports?",
+	"SHARE_APP_TEXT2": "Tell your friends",
 
 	"BACK_BUTTON_TEXT": "Back",
 	"OK_BUTTON": "Ok",
