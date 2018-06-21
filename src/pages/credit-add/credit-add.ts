@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
 import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
@@ -20,6 +20,10 @@ export class CreditAddPage {
 	validationMessages;
 
 	creditAmount: number;
+
+	// Permite verificar si se ejecuta en el dispositivo. En la computadora ocurre
+	// un error por que no se encuentran librerias de cordova en el navegador.
+	isApp: boolean;
 
 	private confirmTitle: string;
 	private confirmMessage: string;
@@ -42,8 +46,15 @@ export class CreditAddPage {
 		public formBuilder: FormBuilder,
 		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController,
-		private payPal: PayPal
+		private payPal: PayPal,
+		private platform: Platform
 	) {
+		if (this.platform.is('core') || this.platform.is('mobileweb')) {
+			this.isApp = false;
+		} else {
+			this.isApp = true;
+		}
+
 		this.translate
 			.get([
 				'CREDIT_ADD_CONFIRM_TITLE',
@@ -170,7 +181,14 @@ export class CreditAddPage {
 				{
 					text: this.okButton,
 					handler: data => {
-						this.makePayment();
+						// Si se ejecuta desde la app se invoka al servicio
+						// de paypal, caso contrario la transaccion se realiza
+						// en forma manual.
+						if (this.isApp) {
+							this.makePayment();
+						} else {
+							this.saveCreditTransaction();
+						}
 					}
 				}
 			]
@@ -233,10 +251,7 @@ export class CreditAddPage {
 				},
 				e => {
 					// Error in initialization, maybe PayPal isn't supported or something else.
-					// Cuando se ejecuta desde el navegador entra a esta parte, porque no carga las librerias de cordova.
 					console.error(e);
-
-					presentToast(this.toastCtrl, 'Esta opción no esta disponible desde el navegador');
 				}
 			);
 	}

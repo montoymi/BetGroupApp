@@ -92,7 +92,9 @@ export class GameBetListPage {
 		let groupArray = new Array<Item>();
 
 		// Crea el array de grupos.
-		for (let pollaBet of pollaBetList) {
+		// Se recorre el arreglo en sentido inverso porque se debe ordenar por estado.
+		for (let index = pollaBetList.length - 1; index >= 0; index--) {
+			let pollaBet: PollaBet = pollaBetList[index];
 			let status: string = pollaBet.pollaMatch.match.enabled_flag;
 
 			if (!this.contains(groupArray, status)) {
