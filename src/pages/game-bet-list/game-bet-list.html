@@ -33,17 +33,17 @@
 						</ion-row>
 						<ion-row>
 							<ion-col>
-								<p>Pronóstico: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
+								<p>{{ 'BET_SCORE' | translate }}: {{ pollaBet.localBetScore }} - {{ pollaBet.visitorBetScore }}</p>
 							</ion-col>
 						</ion-row>
 						<ion-row>
 							<ion-col>
-								<p>Resultado: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
+								<p>{{ 'MATCH_SCORE' | translate }}: {{ pollaBet.pollaMatch.match.scoreLocal }} - {{ pollaBet.pollaMatch.match.scoreVisitor }}</p>
 							</ion-col>
 						</ion-row>
 						<ion-row>
 							<ion-col>
-								<p>Puntos: {{ pollaBet.points }} </p>
+								<p>{{ 'BET_POINTS' | translate }}: {{ pollaBet.points }} </p>
 							</ion-col>
 						</ion-row>
 					</ion-grid>

@@ -36,8 +36,7 @@
 	"EMAIL_PATTERN_ERROR": "Enter a valid email.",
 	"PASSWORD_REQUIRED_ERROR": "Password is required.",
 	"PASSWORD_MINLENGTH_ERROR": "Password must be at least 5 characters long.",
-	"PASSWORD_PATTERN_ERROR":
-		"Your password must contain at least one uppercase, one lowercase, and one number. No special characters are allowed: #$%&",
+	"PASSWORD_PATTERN_ERROR": "Your password must contain at least one uppercase, one lowercase, and one number. No special characters are allowed: #$%&",
 	"CONFIRM_PASSWORD_REQUIRED_ERROR": "Confirm password is required.",
 	"CONFIRM_PASSWORD_ARE_EQUAL_ERROR": "The passwords do not match.",
 	"TERMS_PATTERN_ERROR": "You must accept terms and conditions.",
@@ -181,6 +180,10 @@
 	"BET_SAVE_ERROR": "This forecast can not be updated, since the event has already started according to the current date and time defined",
 	"BET_SAVE_ERROR2": "You have exceeded the maximum number of wildcards for this game",
 
+	"BET_SCORE": "Forecast",
+	"MATCH_SCORE": "Result",
+	"BET_POINTS": "Point",
+
 	"REGISTER_CONFIRM_TITLE": "Confirm register",
 	"REGISTER_CONFIRM_MESSAGE": "Do you want to register?",
 	"REGISTER_SUCCESS": "Registration created",
@@ -270,10 +273,10 @@
 	"ADD_CREDITS_BUTTON": "Buy",
 	"COLLECT_CREDITS_BUTTON": "Collect",
 
-	"MATCH_ENABLED_FLAG_0" : "Closed forecasts",
-	"MATCH_ENABLED_FLAG_1" : "Opened forecasts",
+	"MATCH_ENABLED_FLAG_0": "Closed forecasts",
+	"MATCH_ENABLED_FLAG_1": "Opened forecasts",
 
-	"POLLA_ENABLED_FLAG_0" : "Completed Kinielas",
-	"POLLA_ENABLED_FLAG_1" : "Kinielas in process",
-	"POLLA_ENABLED_FLAG_2" : "Open Kinielas"
+	"POLLA_ENABLED_FLAG_0": "Completed Kinielas",
+	"POLLA_ENABLED_FLAG_1": "Kinielas in process",
+	"POLLA_ENABLED_FLAG_2": "Open Kinielas"
 }

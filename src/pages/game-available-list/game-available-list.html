@@ -28,7 +28,7 @@
 					<ion-thumbnail item-start>
 						<img [src]="pollaHeader.image" />
 					</ion-thumbnail>
-					<ion-grid no-padding>
+					<ion-grid no-padding border>
 						<ion-row align-items-center>
 							<ion-col>
 								<h2 text-wrap>{{ pollaHeader.pollaName }}</h2>
@@ -51,22 +51,6 @@
 							</ion-col>
 						</ion-row>
 						<ion-row align-items-center>
-							<ion-col>
-								<!--<ion-icon name="cash"></ion-icon>-->
-								<h3>Entrada:</h3>
-							<!--</ion-col>-->
-							<!--<ion-col>-->
-								<p>{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
-							</ion-col>
-							<ion-col>
-								<!--<ion-icon name="trophy"></ion-icon>-->
-								<h3>Pozo:</h3>
-							<!--</ion-col>-->
-							<!--<ion-col>-->
-								<p>{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
-							</ion-col>
-						</ion-row>
-						<ion-row align-items-center>
 							<ion-col col-1>
 								<ion-icon name="time"></ion-icon>
 							</ion-col>
@@ -78,6 +62,22 @@
 							</ion-col>
 							<ion-col>
 								<p>{{ pollaHeader.numParticipants }} {{ 'GAME_LIST_NUM_PARTICIPANTS' | translate }}</p>
+							</ion-col>
+						</ion-row>
+						<ion-row align-items-center>
+							<ion-col>
+								<h3>Entrada:</h3>
+							</ion-col>
+							<ion-col>
+								<p style="padding-left: 0px">{{ pollaHeader.pollaCost ? ( pollaHeader.pollaCost | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
+							</ion-col>
+						</ion-row>
+						<ion-row align-items-center>
+							<ion-col>
+								<h3>Pozo:</h3>
+							</ion-col>
+							<ion-col>
+								<p style="padding-left: 0px">{{ pollaHeader.total_bet ? ( pollaHeader.total_bet | number ) : 0 }} {{ 'CREDITS' | translate }}</p>
 							</ion-col>
 						</ion-row>
 					</ion-grid>

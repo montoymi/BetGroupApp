@@ -180,6 +180,10 @@
 	"BET_SAVE_ERROR": "Este pronóstico no puede ser actualizado, dado que el evento ya empezó según la fecha y hora actual definidos",
 	"BET_SAVE_ERROR2": "Ha excedido el máximo número de comodines para este juego",
 
+	"BET_SCORE": "Pronóstico",
+	"MATCH_SCORE": "Resultado",
+	"BET_POINTS": "Puntos",
+
 	"REGISTER_CONFIRM_TITLE": "Confirmar inscripción",
 	"REGISTER_CONFIRM_MESSAGE": "¿Quieres inscribirte?",
 	"REGISTER_SUCCESS": "Inscripción creada",

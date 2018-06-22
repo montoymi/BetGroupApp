@@ -15,7 +15,7 @@ export class Match {
 	resultMatch: string;
 	scoreLocal: number;
 	scoreVisitor: number;
-	enabled_flag: string;
+	enabled_flag: string; // 0 = el partido empezó, 1 = el partido no ha empezado.
 	lastUpdatedDate: any;
 	lastUpdatedBy: any;
 	match_code: string;
