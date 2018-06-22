@@ -35,7 +35,7 @@
 				<h2>Costo de los créditos</h2>
 				<p>{{ creditAmount }} créditos = {{ creditAmount/10 }} U.S. dólar</p>
 			</ion-item>
-			<ion-item>
+			<ion-item *ngIf="!isApp">
 				<p text-wrap align="justify">{{ 'CREDITS_BUY_INFO' | translate }}</p>
 			</ion-item>
 		</ion-list>
