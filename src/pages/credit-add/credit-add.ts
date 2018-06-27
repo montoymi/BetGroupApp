@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController, Platform } from 'ionic-angular';
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
+import { Braintree, ApplePayOptions, PaymentUIOptions, PaymentUIResult } from '@ionic-native/braintree';
 
 import { TRANSACTION_TYPE, TRANSACTION_STATUS, RESPONSE_ERROR } from '../../constants/constants';
 import { UserProvider, CreditProvider, EventLoggerProvider } from '../../providers/providers';
@@ -46,7 +46,7 @@ export class CreditAddPage {
 		public formBuilder: FormBuilder,
 		public logger: EventLoggerProvider,
 		public loadingCtrl: LoadingController,
-		private payPal: PayPal,
+		private braintree: Braintree,
 		private platform: Platform
 	) {
 		if (this.platform.is('core') || this.platform.is('mobileweb')) {
@@ -209,50 +209,40 @@ export class CreditAddPage {
 			return;
 		}
 
-		// Environment (Sandbox or Production)
-		//let payPalEnvironment: string = 'payPalEnvironmentSandbox';
-		let payPalEnvironment: string = 'payPalEnvironmentProduction';
-
-		// Crea el objeto payment.
-		let amount: string = creditDetail.getDollars().toString();
+		// Parámetros del pago.
 		let currency: string = 'USD';
-		let shortDescription: string = creditDetail.comments;
-		let intent: string = creditDetail.transactionTypeId.toString(); // Intención, propósito.
-		let payment: PayPalPayment = new PayPalPayment(amount, currency, shortDescription, intent);
+		let country: 'PE';
+		let amount: string = creditDetail.getDollars().toString();
+		let primaryDescription: string = creditDetail.comments;
 
-		this.payPal
-			.init({
-				PayPalEnvironmentProduction: Config.payPalEnvironmentProduction,
-				PayPalEnvironmentSandbox: Config.payPalEnvironmentSandbox
-			})
-			.then(
-				() => {
-					this.payPal.prepareToRender(payPalEnvironment, new PayPalConfiguration({})).then(
-						() => {
-							this.payPal.renderSinglePaymentUI(payment).then(
-								response => {
-									if (response.response.state == 'approved') {
-										this.saveCreditTransaction();
-									}
+		const appleOptions: ApplePayOptions = {
+			merchantId: '<YOUR MERCHANT ID>',
+			currency: currency,
+			country: country
+		};
 
-									console.log(response);
-								},
-								e => {
-									// Error or render dialog closed without being successful
-									console.error(e);
-								}
-							);
-						},
-						e => {
-							// Error in configuration
-							console.error(e);
-						}
-					);
-				},
-				e => {
-					// Error in initialization, maybe PayPal isn't supported or something else.
-					console.error(e);
+		const paymentOptions: PaymentUIOptions = {
+			amount: amount,
+			primaryDescription: primaryDescription
+		};
+
+		this.braintree
+			.initialize(Config.BRAINTREE_TOKEN)
+			//.then(() => this.braintree.setupApplePay(appleOptions))
+			.then(() => this.braintree.presentDropInPaymentUI(paymentOptions))
+			.then((result: PaymentUIResult) => {
+				if (result.userCancelled) {
+					console.log('User cancelled payment dialog.');
+				} else {
+					this.saveCreditTransaction();
+					
+					console.log('User successfully completed payment!');
+					console.log('Payment Nonce: ' + result.nonce);
+					console.log('Payment Result.', result);
 				}
-			);
+			})
+			.catch((error: string) => {
+				console.error(error);
+			});
 	}
 }

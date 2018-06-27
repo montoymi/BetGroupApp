@@ -40,6 +40,7 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
         <resource-file src="google-services.json" target="app/google-services.json" />
+        <resource-file src="config.xml" target="app/res/xml/config.xml" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -87,7 +88,7 @@
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
-    <plugin name="com.paypal.cordova.mobilesdk" spec="^3.5.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.0" />
-    <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-braintree" spec="https://github.com/taracque/cordova-plugin-braintree" />
+    <engine name="android" spec="~7.0.0" />
 </widget>
